@@ -1,0 +1,126 @@
+backend:
+  name: github
+  repo: koivulabs/siltajoen-sirkus
+  branch: main
+  base_url: https://sveltia-cms-auth.vercel.app
+
+# Mediat tallennetaan public/kuvia -kansioon, josta ne jo löytyvät
+media_folder: "public/kuvia"
+public_folder: "/kuvia"
+
+locale: fi
+
+collections:
+
+  # ─────────────────────────────────────────────
+  # ELÄIMET
+  # ─────────────────────────────────────────────
+  - name: "animals"
+    label: "Eläimet"
+    files:
+
+      - name: "animals_data"
+        label: "Kaikki eläimet"
+        file: "src/data/animals.json"
+        format: json
+        fields:
+
+          # Hero-osio
+          - label: "Hero-osio"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Otsikko", name: "title", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - label: "Kuvauskappaleet"
+                name: "description"
+                widget: "list"
+                field: { label: "Kappale", name: "item", widget: "text" }
+
+          # Erikoiskategoriat (Viiriäiset, Ankat)
+          - label: "Erikoiskategoriat (Viiriäiset, Ankat jne.)"
+            name: "specialCategories"
+            widget: "list"
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "Alaotsikko", name: "subtitle", widget: "string", required: false }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - label: "Kuvauskappaleet"
+                name: "description"
+                widget: "list"
+                field: { label: "Kappale", name: "item", widget: "text" }
+
+          # Kanarodut
+          - label: "Kanarodut"
+            name: "chickenBreeds"
+            widget: "list"
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - { label: "Leveä kortti (vie koko rivin)", name: "isWide", widget: "boolean", default: false, required: false }
+              - label: "Kuvauskappaleet"
+                name: "description"
+                widget: "list"
+                field: { label: "Kappale", name: "item", widget: "text" }
+              - label: "Hinnat"
+                name: "prices"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Nimike (esim. Nuorikko)", name: "label", widget: "string" }
+                  - { label: "Hinta (esim. 35€)", name: "amount", widget: "string" }
+
+  # ─────────────────────────────────────────────
+  # ETUSIVU
+  # ─────────────────────────────────────────────
+  - name: "homepage"
+    label: "Etusivu"
+    files:
+      - name: "homepage_data"
+        label: "Etusivun sisältö"
+        file: "src/data/homepage.json"
+        format: json
+        fields:
+          - { label: "Pääotsikko (rivi 1)", name: "heroLine1", widget: "string" }
+          - { label: "Pääotsikko (rivi 2, korostettu)", name: "heroLine2", widget: "string" }
+          - { label: "Hero-kuva 1", name: "heroImage1", widget: "image" }
+          - { label: "Hero-kuva 2", name: "heroImage2", widget: "image" }
+          - { label: "Hero-kuva 3", name: "heroImage3", widget: "image" }
+
+  # ─────────────────────────────────────────────
+  # TIIMI
+  # ─────────────────────────────────────────────
+  - name: "team"
+    label: "Tiimi"
+    files:
+      - name: "team_data"
+        label: "Tiimin jäsenet"
+        file: "src/data/team.json"
+        format: json
+        fields:
+          - label: "Henkilöt"
+            name: "members"
+            widget: "list"
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "Titteli / Rooli", name: "role", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - { label: "Kuvaus", name: "bio", widget: "text" }
+
+  # ─────────────────────────────────────────────
+  # YHTEYSTIEDOT
+  # ─────────────────────────────────────────────
+  - name: "contact"
+    label: "Yhteystiedot"
+    files:
+      - name: "contact_data"
+        label: "Yhteystiedot"
+        file: "src/data/contact.json"
+        format: json
+        fields:
+          - { label: "Osoite (katu)", name: "street", widget: "string" }
+          - { label: "Osoite (kaupunki)", name: "city", widget: "string" }
+          - { label: "Sähköposti 1", name: "email1", widget: "string" }
+          - { label: "Sähköposti 2", name: "email2", widget: "string" }
+          - { label: "Puhelin", name: "phone", widget: "string" }
+          - { label: "Hero-kuva", name: "heroImage", widget: "image" }

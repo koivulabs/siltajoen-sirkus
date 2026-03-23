@@ -1,0 +1,16 @@
+{
+  "members": [
+    {
+      "name": "Marianne",
+      "role": "Tirehtööri & Perustaja",
+      "image": "/kuvia/sylissa2.JPG",
+      "bio": "Marianne on Siltajoen Sirkuksen perustaja ja sielu. Hänellä on vuosien kokemus lintujen kasvatuksesta ja intohimo eläinten hyvinvointiin."
+    },
+    {
+      "name": "Ansa",
+      "role": "Somettaja",
+      "image": "/kuvia/darrock_koira_showcase.JPG",
+      "bio": "Ansa vastaa sirkuksen some-elämästä ja pitää seuraajat ajan tasalla sirkuksen tapahtumista ja uusista tulokaista."
+    }
+  ]
+}
