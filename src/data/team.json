@@ -62,8 +62,20 @@
     }
   ],
   "partners": [
-    { "name": "Villa Valo", "url": "https://www.villavalo.fi", "description": "Tunnelmallinen majoituskokonaisuus." },
-    { "name": "Pihkurin Ravintola", "url": "https://www.pihkuri.fi", "description": "Mariannen oma ravintola." },
-    { "name": "Valokuvaus", "url": "#", "description": "Tallennettuja hetkiä ja tunnelmia." }
+    {
+      "name": "Villa Valo",
+      "url": "https://www.villavalo.fi",
+      "description": "Tunnelmallinen majoituskokonaisuus."
+    },
+    {
+      "name": "Naissaaren Upeen kahvila | Vaajakoski",
+      "url": "https://upeeta.webnode.fi/naissaari/",
+      "description": "Naissaaren Upeen kahvila"
+    },
+    {
+      "name": "Marsku kuvaa",
+      "url": "https://www.instagram.com/marsku_kuvaa/",
+      "description": "Tallennettuja hetkiä ja tunnelmia."
+    }
   ]
 }
