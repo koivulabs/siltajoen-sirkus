@@ -37,33 +37,35 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <!-- Viiriäiset & Ankat (Special Categories) -->
       <div class="grid md:grid-cols-2 gap-10 mb-20">
         <!-- Viiriäiset -->
-        <article class="bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
           <div class="h-80 overflow-hidden relative">
             <img loading="lazy" src="/kuvia/viiriainenkasissa.JPG" alt="Viiriäiset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
             <h3 class="absolute bottom-6 left-8 font-headline text-4xl font-black text-white uppercase italic">Viiriäiset</h3>
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <p class="font-bold text-primary mb-4 italic text-lg">Pikkuiset munatykit</p>
-            <p class="text-on-surface-variant leading-relaxed flex-1">
-              Viiriäiset ovat pieniä kanalintuja, jotka munivat ruhtinaallisesti. Kuten kaikki munivat linnut, viiriäisetkin tarvitsevat paljon proteiinia ja kalkkia munantuotantonsa tueksi. Siksipä olemme kehittäneet oman suomalaisen rehun viiriäisten ruokintaan.
-            </p>
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant leading-relaxed flex-1">
+              <p>Viiriäiset ovat pieniä kanalintuja, jotka munivat ruhtinaallisesti. Kuten kaikki munivat linnut, viiriäisetkin tarvitsevat paljon proteiinia ja kalkkia munantuotantonsa tueksi. Siksipä olemme kehittäneet oman suomalaisen rehun viiriäisten ruokintaan.</p>
+            </div>
+            <button class="read-more-btn md:hidden font-bold text-secondary mt-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
           </div>
         </article>
 
         <!-- Ankat -->
-        <article class="bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
           <div class="h-80 overflow-hidden relative">
             <img loading="lazy" src="/kuvia/ankkanokkaauki.jpg" alt="Ankat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
             <h3 class="absolute bottom-6 left-8 font-headline text-4xl font-black text-white uppercase italic">Ankat</h3>
           </div>
-          <div class="p-8 flex-1 flex flex-col">
-            <div class="text-on-surface-variant leading-relaxed space-y-4 flex-1">
+          <div class="p-8 flex-1 flex flex-col items-start">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant leading-relaxed space-y-4 flex-1">
               <p>Kääkkäät ovat Tirehtöörin uusin villitys. Vahingossa hautomakoneeseen sujahtaneet ankanmunat itivät ja kuoriutuivat söpöiksi sydämen valtaajiksi. Se oli menoa heti ekan lättänokan myötä.</p>
               <p>Kasvatuksessa upean mustia Cayuga ankkoja, jotka munivat tummanharmaita munia. Cayuga porukkaa luotsaa erisukuinen Batman ankka.</p>
               <p>Toinen kvaakkuparvi on Peking pohjainen sortinsakki sekulikirjavia ja valkoisia ankkamatameja Peking ukkelin hellässä huomassa.</p>
             </div>
+            <button class="read-more-btn md:hidden font-bold text-secondary mt-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
           </div>
         </article>
       </div>
@@ -76,34 +78,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
         
         <!-- Silkkikanat -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
           <div class="aspect-video overflow-hidden">
             <img loading="lazy" src="/kuvia/silkkikana.jpg" alt="Silkkikanat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Silkkikanat</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base w-full">
               <p>Silkkikanat ovat söpön siliteltäviä pehmolelun näköisiä pööpiäisiä. Luonteeltaan silkit ovat juuri niin hurmaavia miltä näyttävätkin: uteliaan kesyjä ja pikkuisen höppänöitä.</p>
               <p>Silkkikanan sulka on tyypillisesti karvamainen höhhelö. Meillä silkeistä löytyy myös muut sulkamuodot ns smooth, eli "normisulkainen" ja frisee, eli kiharasulkainen versio.</p>
               <p>Silkkikana on pieni noin kilon kokoinen kääpiörotu ja erittäin hautomainnokas. Emoina silkit ovatkin mahtavia ja silkkien kasvattaja saakin nauttia ympäri vuoden pikkutipuista. Silkkikana on hautomakone, jossa ei ole on off-nappulaa.</p>
             </div>
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
           </div>
         </article>
 
         <!-- Kääpiökoch -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
           <div class="aspect-video overflow-hidden">
             <img loading="lazy" src="/kuvia/kaapiokoch.jpg" alt="Kääpiökoch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Kääpiökoch</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base w-full">
               <p>Vilkkaat ja eloisat pussihousut vain vilkkuvat kun kääpiökochit kipittävät pihapuuhiinsa. Lennokas askel ja pehmeän pyöreä pyrstö on näiden pikkuotusten tavaramerkki.</p>
               <p>Todella uteliaita, sosiaalisia ja mielellään mukana menossa oleva rotu, joka suorastaan tunkee syliin. Kääpiökochien kanssa saakin tottua tekemään töitään kaveri kainalossa tai olkapäällä. Ja kavereitahan riittää, sillä käppänät ovat todella ottaneet todesta "lisääntykää ja täyttäkää maa" ohjeistuksen.</p>
               <p>Halutessaan tipuja käppänämamma hautoo niitä vaikka porkkananpalasesta tai omenanpuolikkaasta. Suuri osa kääpiökoch kukoistamme osallistuu myös tipujen hoitoon tai viimeistään mamman vieroittaessa vauvansa astuu isä remmiin ja alkaa hoitaa ja opastaa nuorisoa.</p>
               <p>Ei ole ollenkaan ennenkuulumatonta, että käppänä kana tai kukko murtautuu konehaudottujen tipujen häkkiin ja alkaa hoitaa lapsosia ominaan.</p>
             </div>
-            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
+            <div class="border-t border-outline/10 w-full pt-4 mt-auto space-y-2 font-bold text-primary">
               <div class="flex justify-between"><span>Nuorikko</span> <span>35€</span></div>
               <div class="flex justify-between"><span>Kukko</span> <span>10€</span></div>
             </div>
@@ -111,17 +115,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <!-- Marans -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
           <div class="aspect-video overflow-hidden">
             <img loading="lazy" src="/kuvia/marans.jpg" alt="Marans" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Marans</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base w-full">
               <p>Marans on vanha ranskalainen liha- ja munarotu, jonka erityispiirre on erittäin tummanruskea kuoriset kookkaat munat.</p>
               <p>Siltajoella kasvatetaan Maranseja kahdessa erisukuisessa parvessa, väreissä Black Copper ja Blue Copper + Blue. Blue Copper kukon parvessa on muutama Splash kana, joten toisinaan myyntiin tulee myös Splashin värisiä kanoja ja kukkoja.</p>
             </div>
-            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
+            <div class="border-t border-outline/10 w-full pt-4 mt-auto space-y-2 font-bold text-primary">
               <div class="flex justify-between"><span>Nuorikko</span> <span>40€</span></div>
               <div class="flex justify-between"><span>Kukko</span> <span>25€</span></div>
               <div class="flex justify-between"><span>Lihakukkopojat (6-8vko)</span> <span>5€/kpl</span></div>
@@ -130,17 +135,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <!-- Marau -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
           <div class="aspect-video overflow-hidden">
             <img loading="lazy" src="/kuvia/marau.jpg" alt="Marau" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Marau</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base w-full">
               <p>Marau on Tirehtöörin oma kasvatusprojekti, jonka tarkoituksena on luoda leppoisan rauhallinen ja terve "rotu", joka kasvaa verrattain nopeasti, munii oliivinvihreitä pilkullisia munia, on hauskan näköinen, terve ja ei hautomainnokas.</p>
               <p>Nimensä mukaisesti Marau on lähtöisin Maransin ja Araucanan risteytyksestä, mutta mixailen mukaan myös hieman ruskeaa Hy-linea ja valkoista munintahybridiä varmistamaan runsasta munintaa ja hautomavietin puutetta. Kotikanaloissa monesti hyvin hautomainnokas rotu aiheuttaa päänvaivaa kun tipuja ei ole mahdollista vastaanottaa vuoden ympäri, mitä esimerkiksi silkki- ja kääpiökoch mammat mieluusti tekisivät.</p>
             </div>
-            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
+            <div class="border-t border-outline/10 w-full pt-4 mt-auto space-y-2 font-bold text-primary">
               <div class="flex justify-between"><span>Nuorikko</span> <span>35€</span></div>
               <div class="flex justify-between"><span>Kukko</span> <span>5€</span></div>
             </div>
@@ -148,16 +154,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <!-- Araucana -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
           <div class="aspect-video overflow-hidden">
             <img loading="lazy" src="/kuvia/araucana.jpg" alt="Araucana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Araucana</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base w-full">
               <p>Araucana rotu on lähtöisin Etelä-Amerikasta. Keskikokoisiin rotuihin lukeutuva araucana on liha- ja munarotu, jonka erityispiirre on sinertävä kuoriset munat. Araucanat ovat luonteeltaan hieman hitaita hämäläisiä, hoomoilasia hömelöitä, mutta erittäin oman arvonsa tuntevia ja ylväitä. Joillain Araucanoilla on myös maltillinen hautomavietti.</p>
             </div>
-            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
+            <div class="border-t border-outline/10 w-full pt-4 mt-auto space-y-2 font-bold text-primary">
               <div class="flex justify-between"><span>Nuorikko</span> <span>40€</span></div>
               <div class="flex justify-between"><span>Kukko</span> <span>10€</span></div>
             </div>
@@ -165,16 +172,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <!-- Mille Fleur -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
           <div class="aspect-video overflow-hidden">
             <img loading="lazy" src="/kuvia/millefleur.jpg" alt="Mille Fleur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Mille Fleur</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base w-full">
               <p>Kirjavat vilkkaat pikkukanat, voiko tällaisia olla olemassakaan? Aivan kuin sadusta. Silti ihan oikeita kanasia pienine munineen ja suurine jalkasulkineen.</p>
             </div>
-            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
+            <div class="border-t border-outline/10 w-full pt-4 mt-auto space-y-2 font-bold text-primary">
               <div class="flex justify-between"><span>Nuorikko</span> <span>25€</span></div>
               <div class="flex justify-between"><span>Muniva kana</span> <span>40€</span></div>
               <div class="flex justify-between"><span>Kukko</span> <span>10€</span></div>
@@ -183,16 +191,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </article>
 
         <!-- Sekulit -->
-        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col md:col-span-2 lg:col-span-3">
+        <article class="animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col md:col-span-2 lg:col-span-3">
           <div class="aspect-video lg:aspect-[21/9] overflow-hidden">
             <img loading="lazy" src="/kuvia/sekulit.jpg" alt="Sekulit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8 flex-1 flex flex-col">
+          <div class="p-8 flex-1 flex flex-col items-start">
             <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Sekulit</h3>
-            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base max-w-3xl">
+            <div class="animal-text-container line-clamp-4 md:line-clamp-none text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base max-w-3xl w-full">
               <p>Myyn sekarotuisina väri- ja rotuvirheelliset. Virheet ovat vain ulkonäöllisiä ominaisuuksia, joiden takia ko yksilö ei sovellu rotukasvatukseen. Luonteensa puolesta nämäkin ovat tyypillisiä rotunsa edustajia ja hurmaavia lemmikkitasoisia otuksia, jotka sopivat mainiosti kotikanalan sekaparveen munimaan ja hyvää elämää viettämään.</p>
             </div>
-            <div class="border-t border-outline/10 pt-4 mt-auto grid sm:grid-cols-3 gap-4 font-bold text-primary">
+            <button class="read-more-btn md:hidden font-bold text-secondary mb-4 uppercase text-xs tracking-wider flex items-center gap-1 hover:text-primary transition-colors">Lue lisää ↓</button>
+            <div class="border-t border-outline/10 pt-4 mt-auto grid sm:grid-cols-3 gap-4 font-bold text-primary w-full">
               <div class="flex justify-between bg-surface-container-low px-4 py-2 rounded-lg"><span>Nuorikko</span> <span>25€</span></div>
               <div class="flex justify-between bg-surface-container-low px-4 py-2 rounded-lg"><span>Muniva kana</span> <span>35€</span></div>
               <div class="flex justify-between bg-surface-container-low px-4 py-2 rounded-lg"><span>Jätkän pätkä</span> <span>5€</span></div>
@@ -223,3 +232,43 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.animal-card');
+    
+    cards.forEach(card => {
+      const btn = card.querySelector('.read-more-btn');
+      const textContainer = card.querySelector('.animal-text-container');
+      
+      if(btn && textContainer) {
+        btn.addEventListener('click', () => {
+          const isExpanded = !textContainer.classList.contains('line-clamp-4');
+          
+          // Collapse all other cards
+          cards.forEach(c => {
+            if (c !== card) {
+              const otherBtn = c.querySelector('.read-more-btn');
+              const otherText = c.querySelector('.animal-text-container');
+              if(otherBtn && otherText) {
+                otherText.classList.add('line-clamp-4');
+                otherBtn.innerText = 'Lue lisää ↓';
+              }
+            }
+          });
+          
+          // Toggle the clicked card
+          if (isExpanded) {
+            textContainer.classList.add('line-clamp-4');
+            btn.innerText = 'Lue lisää ↓';
+            // Scroll slightly back up to card top if it gets lost
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            textContainer.classList.remove('line-clamp-4');
+            btn.innerText = 'Näytä vähemmän ↑';
+          }
+        });
+      }
+    });
+  });
+</script>
