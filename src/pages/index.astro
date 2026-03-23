@@ -35,13 +35,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
       <!-- Left Column: Headlines -->
       <div class="space-y-20">
-        <div class="group cursor-default">
-          <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2">SIIVEKÄSTÄ ARKEA</h2>
-          <p class="text-xl text-secondary font-bold italic">Lintutilalla</p>
+        <div class="group">
+          <a href="/blogi" class="hover:text-primary transition-colors">
+            <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 hover:border-primary transition-colors">SIIVEKÄSTÄ ARKEA</h2>
+          </a>
+          <a href="/blogi" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Tilan tarinat →</a>
         </div>
         <div class="group cursor-default">
           <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 uppercase tracking-tight">SIRKUKSEN</h2>
-          <a href="https://siltajoensirkus.blogspot.com/" target="_blank" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Blogiin &rarr;</a>
+          <a href="/blogi" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Tarinoihin →</a>
         </div>
         <div class="group cursor-default">
           <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 uppercase tracking-widest">SIILON</h2>

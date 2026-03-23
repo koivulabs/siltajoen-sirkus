@@ -320,14 +320,30 @@ function addSpecialCategory(){
 // ─── BLOG ──────────────────────────────────────────────────────
 function renderBlog(){
   if(!blogData)return;let html='';
+  html+=`<div class="card"><div class="card-title"><span class="card-title-left">📝 Sivun otsikot</span></div>
+    <div class="field-group"><label class="field-label">Pääotsikko</label><input class="field-input" id="blog-heroTitle" value="${esc(blogData.heroTitle||'')}" /></div>
+    <div class="field-group"><label class="field-label">Alaotsikko</label><input class="field-input" id="blog-heroSubtitle" value="${esc(blogData.heroSubtitle||'')}" /></div>
+    <div class="field-group"><label class="field-label">Kuvaus</label><textarea class="field-input" id="blog-heroBody">${esc(blogData.heroBody||'')}</textarea></div>
+    <div class="field-group"><label class="field-label">Blogger-arkiston URL</label><input class="field-input" id="blog-bloggerUrl" value="${esc(blogData.bloggerUrl||'')}" /></div>
+  </div>`;
   blogData.posts.forEach((post,i)=>{
+    const extraImgs=(post.images||[]).slice(1).map((img,ii)=>`
+      <div class="field-group"><label class="field-label">Lisäkuva ${ii+2}</label>
+        ${imgPickerHtml(`post-${i}-img-${ii+1}`,img,50,50)}
+        <button class="btn-del" onclick="removePostImage(${i},${ii+1})" style="margin-top:0.5rem">✕ Poista tämä kuva</button>
+      </div>`).join('');
     html+=`<div class="card"><div class="card-title"><span class="card-title-left">📰 ${esc(post.title)}</span><button class="btn-del" onclick="removePost(${i})" title="Poista">✕</button></div>
       <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="post-${i}-title" value="${esc(post.title)}" /></div>
-      <div class="field-group"><label class="field-label">Kategoria (esim. UUTINEN, VINKIT, TARINAT)</label><input class="field-input" id="post-${i}-category" value="${esc(post.category)}" /></div>
-      <div class="field-group"><label class="field-label">Päivämäärä</label><input class="field-input" id="post-${i}-date" value="${esc(post.date)}" /></div>
-      <div class="field-group"><label class="field-label">Lyhyt kuvaus</label><textarea class="field-input" id="post-${i}-excerpt">${esc(post.excerpt)}</textarea></div>
-      <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`post-${i}-image`,post.image,post.focalX,post.focalY)}</div>
-      <div class="field-group"><div class="checkbox-row"><input type="checkbox" id="post-${i}-featured" ${post.featured?'checked':''}><label class="field-label" style="margin:0;cursor:pointer" for="post-${i}-featured">Pääartikkeli (näkyy isommin)</label></div></div>
+      <div class="prices-row">
+        <div><label class="field-label">Kategoria</label><input class="field-input" id="post-${i}-category" value="${esc(post.category)}" /></div>
+        <div><label class="field-label">Päivämäärä</label><input class="field-input" id="post-${i}-date" value="${esc(post.date)}" /></div>
+      </div>
+      <div class="field-group"><label class="field-label">Lyhyt kuvaus (näytetään aina)</label><textarea class="field-input" id="post-${i}-excerpt">${esc(post.excerpt)}</textarea></div>
+      <div class="field-group"><label class="field-label">Koko teksti (näkyy avattaessa, tyhjä väli = uusi kappale)</label><textarea class="field-input" id="post-${i}-body" style="min-height:180px">${esc(post.body||'')}</textarea></div>
+      <div class="field-group"><label class="field-label">Pikkukuva / Pääkuva</label>${imgPickerHtml(`post-${i}-img-0`,(post.images||[])[0]||'',post.focalX,post.focalY)}</div>
+      ${extraImgs}
+      <button class="btn-add" onclick="addPostImage(${i})" style="margin:0.5rem 0 1rem">+ Lisää kuva tähän postaukseen</button>
+      <div class="field-group"><div class="checkbox-row"><input type="checkbox" id="post-${i}-featured" ${post.featured?'checked':''}><label class="field-label" style="margin:0;cursor:pointer" for="post-${i}-featured">Pääartikkeli (näkyy isona yläosassa)</label></div></div>
     </div>`;
   });
   html+=`<button class="btn-add" onclick="addPost()">+ Lisää uusi artikkeli</button>`;
@@ -434,7 +450,17 @@ async function saveCurrentSection(){
     animalsData.chickenBreeds.forEach((breed,i)=>{breed.image=val(`breed-${i}-image`);breed.description=val(`breed-${i}-desc`).split('\n\n').filter(Boolean);Object.assign(breed,getFocal(`breed-${i}-image`));(breed.prices||[]).forEach((p,pi)=>{p.label=val(`breed-${i}-price-${pi}-label`);p.amount=val(`breed-${i}-price-${pi}-amount`);});});
     filePath='src/data/animals.json';content=animalsData;
   } else if(currentSection==='blog'){
-    blogData.posts.forEach((post,i)=>{post.title=val(`post-${i}-title`);post.category=val(`post-${i}-category`);post.date=val(`post-${i}-date`);post.excerpt=val(`post-${i}-excerpt`);post.image=val(`post-${i}-image`);post.featured=document.getElementById(`post-${i}-featured`)?.checked||false;Object.assign(post,getFocal(`post-${i}-image`));});
+    blogData.heroTitle=val('blog-heroTitle');blogData.heroSubtitle=val('blog-heroSubtitle');blogData.heroBody=val('blog-heroBody');blogData.bloggerUrl=val('blog-bloggerUrl');
+    blogData.posts.forEach((post,i)=>{
+      post.title=val(`post-${i}-title`);post.category=val(`post-${i}-category`);post.date=val(`post-${i}-date`);post.excerpt=val(`post-${i}-excerpt`);post.body=val(`post-${i}-body`);
+      post.featured=document.getElementById(`post-${i}-featured`)?.checked||false;
+      // Collect images array
+      const imgs=[];
+      const img0=val(`post-${i}-img-0`);if(img0)imgs.push(img0);
+      (post.images||[]).slice(1).forEach((_,ii)=>{const v=val(`post-${i}-img-${ii+1}`);if(v)imgs.push(v);});
+      post.images=imgs;
+      const f=getFocal(`post-${i}-img-0`);post.focalX=f.focalX;post.focalY=f.focalY;
+    });
     filePath='src/data/blog.json';content=blogData;
   } else if(currentSection==='team'){
     teamData.members.forEach((m,i)=>{m.name=val(`tm-${i}-name`);m.role=val(`tm-${i}-role`);m.phone=val(`tm-${i}-phone`);m.email=val(`tm-${i}-email`);m.image=val(`tm-${i}-image`);m.bio=val(`tm-${i}-bio`);Object.assign(m,getFocal(`tm-${i}-image`));});
