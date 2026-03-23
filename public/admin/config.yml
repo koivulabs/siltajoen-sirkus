@@ -2,7 +2,8 @@ backend:
   name: github
   repo: koivulabs/siltajoen-sirkus
   branch: main
-  base_url: https://sveltia-cms-auth.vercel.app
+  base_url: https://siltajoensirkus.vercel.app
+  auth_endpoint: /api/auth
 
 # Mediat tallennetaan public/kuvia -kansioon, josta ne jo löytyvät
 media_folder: "public/kuvia"
