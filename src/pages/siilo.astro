@@ -22,8 +22,8 @@ const siiloData = siiloDataRaw as any;
             {siiloData.heroBody}
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="#lisaa" class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all inline-block">
-              Lue lisää
+          <a href="#tuotteet" class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all inline-block">
+              Verkkokaupan suosikit
           </a>
         </div>
       </div>
@@ -35,8 +35,39 @@ const siiloData = siiloDataRaw as any;
     </div>
   </section>
 
+  <!-- Products Section -->
+  {siiloData.products && (
+    <section id="tuotteet" class="px-8 py-24 bg-surface-container/30">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-16 reveal">
+           <span class="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Parhaat eväät</span>
+           <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">Suosituimmat tuotteet</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {siiloData.products.map((p: any) => (
+            <div class="bg-white rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-lg group reveal">
+              <div class="aspect-square bg-neutral-100 relative overflow-hidden">
+                <img src={p.image} alt={p.title} class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                <div class="absolute top-6 right-6 bg-white px-4 py-2 rounded-full font-black text-sm italic shadow-md">
+                   {p.price}
+                </div>
+              </div>
+              <div class="p-8 space-y-4">
+                <h3 class="text-2xl font-black uppercase italic tracking-tight">{p.title}</h3>
+                <p class="text-on-surface/50 text-sm leading-relaxed">{p.description}</p>
+                <a href={p.url} target="_blank" class="flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-primary group-hover:gap-4 transition-all">
+                   Tilaa verkkokaupasta <span class="material-symbols-outlined text-sm">shopping_basket</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Content Section -->
-  <section id="lisaa" class="px-8 py-24">
+  <section class="px-8 py-24">
     <div class="max-w-4xl mx-auto text-center mb-20 reveal">
       <h2 class="text-3xl md:text-5xl font-black mb-8 tracking-tighter">Silo &amp; Logistiikka</h2>
       <p class="text-xl leading-relaxed text-on-background/80">

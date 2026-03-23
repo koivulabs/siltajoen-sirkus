@@ -62,6 +62,27 @@ const teamData = teamDataRaw as any;
     </div>
   </section>
 
+  <!-- Partners & Projects Section -->
+  {teamData.partners && (
+    <section class="max-w-7xl mx-auto px-8 mt-40">
+      <div class="text-center mb-16 reveal">
+        <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-4 block">Verkosto & Yhteystyö</span>
+        <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter">Muut projektit</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {teamData.partners.map((p: any) => (
+          <a href={p.url} target="_blank" class="bg-surface-container p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-all hover:-translate-y-2 group reveal">
+            <h3 class="text-2xl font-black uppercase italic mb-2 group-hover:text-primary transition-colors">{p.name}</h3>
+            <p class="text-on-surface/50 text-sm">{p.description}</p>
+            <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+               Vieraile sivustolla <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
   <!-- Info Banner -->
   <section class="max-w-7xl mx-auto px-8 mt-32 mb-10 reveal">
     <div class="bg-surface-container rounded-[3rem] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 border border-outline">

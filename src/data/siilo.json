@@ -39,5 +39,21 @@
       "text": "Siilon kautta haku onnistui vaivattomasti. Erittäin tyytyväinen palveluun.",
       "date": "15.3.2024"
     }
+  ],
+  "products": [
+    {
+      "title": "Sirkuksen Täysrehu",
+      "description": "Optimaalinen ravinto kanoille ja viiriäisille.",
+      "price": "24,90 €",
+      "image": "/kuvia/sylissa1.JPG",
+      "url": "https://siltajoensirkus.mycashflow.fi/"
+    },
+    {
+      "title": "Virikekylpyhiekka",
+      "description": "Puhdasta ja hienojakoista hiekkaa kylpyihin.",
+      "price": "12,50 €",
+      "image": "/kuvia/sylissa2.JPG",
+      "url": "https://siltajoensirkus.mycashflow.fi/"
+    }
   ]
 }

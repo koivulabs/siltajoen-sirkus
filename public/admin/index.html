@@ -369,10 +369,22 @@ function renderTeam(){
     </div>`;
   });
   html+=`<button class="btn-add" onclick="addMember()">+ Lisää tiimin jäsen</button>`;
+  
+  html+=`<h3 style="font-weight:800;margin-top:2rem;margin-bottom:1rem;font-size:1rem;color:#a8c5a8">🤝 Muut projektit & Kumppanit</h3>`;
+  (teamData.partners||[]).forEach((p,i)=>{
+    html+=`<div class="card"><div class="card-title"><span class="card-title-left">🤝 ${esc(p.name)}</span><button class="btn-del" onclick="removePartner(${i})">✕</button></div>
+      <div class="field-group"><label class="field-label">Nimi</label><input class="field-input" id="p-${i}-name" value="${esc(p.name)}" /></div>
+      <div class="field-group"><label class="field-label">URL</label><input class="field-input" id="p-${i}-url" value="${esc(p.url)}" /></div>
+      <div class="field-group"><label class="field-label">Lyhyt kuvaus</label><input class="field-input" id="p-${i}-desc" value="${esc(p.description)}" /></div>
+    </div>`;
+  });
+  html+=`<button class="btn-add" onclick="addPartner()">+ Lisää projekti/kumppani</button>`;
   document.getElementById('team-editor').innerHTML=html;
 }
 function addMember(){teamData.members.push({name:'Uusi jäsen',role:'',phone:'',email:'',bio:'',image:'',focalX:50,focalY:50});renderTeam();}
 function removeMember(i){if(confirm('Poista tämä jäsen?')){teamData.members.splice(i,1);renderTeam();}}
+function addPartner(){teamData.partners=teamData.partners||[];teamData.partners.push({name:'Uusi projekti',url:'#',description:''});renderTeam();}
+function removePartner(i){if(confirm('Poista kumppani?')){teamData.partners.splice(i,1);renderTeam();}}
 
 // ─── SIILO ─────────────────────────────────────────────────────
 function renderSiilo(){
@@ -402,6 +414,17 @@ function renderSiilo(){
       ${statsHtml}
       <button class="btn-add" onclick="addSiiloStat()" style="margin-top:0.5rem">+ Lisää tilasto</button>
     </div>
+    <h3 style="font-weight:800;margin-top:2rem;margin-bottom:1rem;font-size:1rem;color:#a8c5a8">🛍️ Verkkokaupan tuotteet</h3>
+    ${(siiloData.products||[]).map((p,i)=>`
+      <div class="card"><div class="card-title"><span class="card-title-left">🛍️ ${esc(p.title)}</span><button class="btn-del" onclick="removeProduct(${i})">✕</button></div>
+        <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="p2-${i}-title" value="${esc(p.title)}" /></div>
+        <div class="field-group"><label class="field-label">Hinta</label><input class="field-input" id="p2-${i}-price" value="${esc(p.price)}" /></div>
+        <div class="field-group"><label class="field-label">URL</label><input class="field-input" id="p2-${i}-url" value="${esc(p.url)}" /></div>
+        <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`p2-${i}-img`,p.image,50,50)}</div>
+        <div class="field-group"><label class="field-label">Kuvaus</label><input class="field-input" id="p2-${i}-desc" value="${esc(p.description)}" /></div>
+      </div>`).join('')}
+    <button class="btn-add" onclick="addProduct()">+ Lisää tuote-esittely</button>
+    
     <h3 style="font-weight:800;margin-top:2rem;margin-bottom:1rem;font-size:1rem;color:#a8c5a8">💬 Asiakasvolat (Testimonials)</h3>
     ${(siiloData.testimonials||[]).map((t,i)=>`
       <div class="card"><div class="card-title"><span class="card-title-left">💬 Palaute ${i+1}</span><button class="btn-del" onclick="removeTestimonial(${i})">✕</button></div>
@@ -414,6 +437,8 @@ function renderSiilo(){
 function addSiiloCard(){siiloData.featureCards.push({icon:'star',title:'Uusi ominaisuus',body:''});renderSiilo();}
 function removeSiiloCard(i){if(confirm('Poista kortti?')){siiloData.featureCards.splice(i,1);renderSiilo();}}
 function addSiiloStat(){siiloData.stats.push({value:'',label:''});renderSiilo();}
+function addProduct(){siiloData.products=siiloData.products||[];siiloData.products.push({title:'Uusi tuote',price:'',url:'',description:'',image:''});renderSiilo();}
+function removeProduct(i){if(confirm('Poista tuote?')){siiloData.products.splice(i,1);renderSiilo();}}
 function addTestimonial(){siiloData.testimonials=siiloData.testimonials||[];siiloData.testimonials.push({name:'Uusi asiakas',text:'',date:new Date().toLocaleDateString('fi-FI')});renderSiilo();}
 function removeTestimonial(i){if(confirm('Poista palaute?')){siiloData.testimonials.splice(i,1);renderSiilo();}}
 
@@ -486,11 +511,13 @@ async function saveCurrentSection(){
     filePath='src/data/blog.json';content=blogData;
   } else if(currentSection==='team'){
     teamData.members.forEach((m,i)=>{m.name=val(`tm-${i}-name`);m.role=val(`tm-${i}-role`);m.phone=val(`tm-${i}-phone`);m.email=val(`tm-${i}-email`);m.image=val(`tm-${i}-image`);m.bio=val(`tm-${i}-bio`);Object.assign(m,getFocal(`tm-${i}-image`));});
+    teamData.partners=(teamData.partners||[]).map((_,i)=>({name:val(`p-${i}-name`),url:val(`p-${i}-url`),description:val(`p-${i}-desc`)}));
     filePath='src/data/team.json';content=teamData;
   } else if(currentSection==='siilo'){
     siiloData.heroTagline=val('siilo-tagline');siiloData.heroTitle=val('siilo-title');siiloData.heroBody=val('siilo-body');siiloData.heroImage=val('siilo-heroimage');const hf=getFocal('siilo-heroimage');siiloData.heroFocalX=hf.focalX;siiloData.heroFocalY=hf.focalY;
     siiloData.featureCards.forEach((c,i)=>{c.icon=val(`sc2-${i}-icon`);c.title=val(`sc2-${i}-title`);c.body=val(`sc2-${i}-body`);});
     siiloData.stats.forEach((s,i)=>{s.value=val(`stat-${i}-value`);s.label=val(`stat-${i}-label`);});
+    siiloData.products=(siiloData.products||[]).map((_,i)=>({title:val(`p2-${i}-title`),price:val(`p2-${i}-price`),url:val(`p2-${i}-url`),description:val(`p2-${i}-desc`),image:val(`p2-${i}-img`)}));
     siiloData.testimonials=(siiloData.testimonials||[]).map((_,i)=>({name:val(`t-${i}-name`),text:val(`t-${i}-text`),date:val(`t-${i}-date`)}));
     filePath='src/data/siilo.json';content=siiloData;
   } else if(currentSection==='contact'){

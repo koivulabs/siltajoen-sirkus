@@ -2,10 +2,10 @@
   "members": [
     {
       "name": "Marianne",
-      "role": "Tirehtööri",
+      "role": "Tirehtööri / Omistaja",
       "phone": "044 975 0415",
       "email": "marianne@siltajoensirkus.fi",
-      "bio": "Sirkuksen sielu ja johtaja, joka pitää huolen siitä, että karavaani kulkee ja jokainen tuntee olonsa kotoisaksi.",
+      "bio": "Marianne on tilan sydän ja sielu, jolla on yli 20 vuoden vankka kokemus eläinten kasvatuksesta ja tilan hoidosta. Hänen intohimonsa näkyy jokaisessa sirkuksen siivekkäässä ja tarkasti mietityssä yksityiskohdassa. Vaatimattomuus sikseen – Marianne on alansa todellinen rautainen ammattilainen.",
       "image": "/kuvia/sylissa2.JPG",
       "focalX": 50,
       "focalY": 30
@@ -60,5 +60,10 @@
       "focalX": 45,
       "focalY": 48
     }
+  ],
+  "partners": [
+    { "name": "Villa Valo", "url": "https://www.villavalo.fi", "description": "Tunnelmallinen majoituskokonaisuus." },
+    { "name": "Pihkurin Ravintola", "url": "https://www.pihkuri.fi", "description": "Mariannen oma ravintola." },
+    { "name": "Valokuvaus", "url": "#", "description": "Tallennettuja hetkiä ja tunnelmia." }
   ]
 }
