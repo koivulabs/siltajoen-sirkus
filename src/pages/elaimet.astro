@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout 
   title="Eläimet" 
-  description="Löydä käsyksi kasvatetut rotukanat ja untuvikot Siltajoen Sirkuksesta. Marans, Silkkikanat, Araucana ja Orpington. Toimimme Leppävedellä ja Vaajakoskella."
+  description="Löydä käsyksi kasvatetut rotukanat, viiriäiset ja ankat Siltajoen Sirkuksesta. Kaikki eläimet on kasvatettu syliin tottuneina perheenjäseninä."
 >
   <!-- Hero Section -->
   <section class="relative px-6 py-20 lg:py-32 overflow-hidden">
@@ -14,16 +14,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h1 class="font-headline text-4xl sm:text-5xl lg:text-7xl font-black text-on-surface leading-[0.9] mb-8 lg:mb-10 uppercase italic break-words">
             Sylissä <br/> <span class="text-primary">Kasvaneita</span>
         </h1>
-        <p class="text-xl lg:text-2xl text-on-surface-variant leading-relaxed max-w-xl font-medium">
-            Kaikki eläimemme on kasvatettu rakkaudella ja huolenpidolla. Ne ovat tottuneet ihmisen läheisyyteen, ääniin ja sirkuselämän vilinään. Jokainen siivekäs on meillä perheenjäsen – sylissä pidetty ja onnellisena varttunut.
-        </p>
+        <div class="text-lg lg:text-xl text-on-surface-variant leading-relaxed font-medium space-y-6">
+            <p class="font-bold text-2xl text-on-surface italic">Kesyjä eläimiä</p>
+            <p>Meillä kaikki eläimet kasvavat perheenjäseninä ja muuttavat vain oikeisiin rakastaviin koteihin.</p>
+            <p>Opastamme mielellämme valitsemasi lajin ja rodun hoidossa, jokainen on ollut joskus aloittelija. Pyrimme myös aina löytämään juuri ne oikeat yksilöt teidän perheen parveen ja laumaan. Joten kerrothan jo yhteyttä ottaessasi millainen porukka ja tilat teillä on tarjolla ja mitä toivotte uusilta perheenjäseniltänne.</p>
+            <p>Kiinnitämme erityisesti huomiota siitoskukkojemme luonteisiin, jotta meiltä voi turvallisin mielin ostaa lapsiperhekukkoja. Kiekukauloja, jotka osaavat kanojen hoidon lisäksi myös olla kivoja ihmisilleen.</p>
+        </div>
       </div>
       <div class="relative">
-        <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl transform rotate-2">
-          <div class="w-full h-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant text-center p-12 italic border-2 border-dashed border-outline-variant">
-              Asiakkaan valitsema kuva: [Pääkuva: sylissä pidetty untuvikko]
-              <img loading="lazy"  src="/placeholder-main.jpg" alt="Untuvikko" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
-          </div>
+        <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl transform rotate-2 bg-surface-container">
+          <img loading="lazy" src="/kuvia/sylissa1.JPG" alt="Sylissä kasvanut lintu" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
         </div>
         <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl -z-10"></div>
       </div>
@@ -33,162 +33,173 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <!-- Product Grid Section -->
   <section class="bg-surface-container-low py-32 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-20 gap-8">
-        <div>
-          <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-4 uppercase italic break-words">Sulkapeitteiset Tähdet</h2>
-          <p class="text-on-surface-variant text-base sm:text-lg max-w-md">Löydä uusi perheenjäsen sirkuksen laadukkaimmista ja rakastetuimmista roduista.</p>
-        </div>
-        <div class="flex flex-wrap gap-3">
-          <span class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-full text-xs font-black uppercase flex items-center gap-2">
-            <span class="material-symbols-outlined text-base">potted_plant</span>
-            Käsin kasvatettu
-          </span>
-          <span class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full text-xs font-black uppercase flex items-center gap-2">
-            <span class="material-symbols-outlined text-base">verified</span>
-            Terveystarkastettu
-          </span>
-        </div>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-        <!-- Marans -->
-        <article class="group">
-          <div class="aspect-square rounded-xl overflow-hidden mb-8 bg-surface-container border border-outline-variant/30 flex items-center justify-center text-center p-6 text-sm italic text-on-surface-variant transition-transform duration-500 group-hover:scale-105 relative">
-              Asiakkaan valitsema kuva: [Marans]
-              <img loading="lazy"  src="/placeholder-marans.jpg" alt="Marans" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity" onerror="this.style.display='none'" />
+      
+      <!-- Viiriäiset & Ankat (Special Categories) -->
+      <div class="grid md:grid-cols-2 gap-10 mb-20">
+        <!-- Viiriäiset -->
+        <article class="bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
+          <div class="h-80 overflow-hidden relative">
+            <img loading="lazy" src="/kuvia/viiriainenkasissa.JPG" alt="Viiriäiset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <h3 class="absolute bottom-6 left-8 font-headline text-4xl font-black text-white uppercase italic">Viiriäiset</h3>
           </div>
-          <h3 class="font-headline text-3xl font-black mb-2 uppercase italic">Marans</h3>
-          <p class="text-on-surface-variant mb-6 text-lg">Ranskan ylpeys, suklaanruskeat munat.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-primary font-black text-2xl">45€/kpl</span>
-            <a class="flex items-center gap-2 text-secondary font-bold uppercase text-sm tracking-widest hover:gap-4 transition-all" href="/yhteystiedot">
-                Varaa
-                <span class="material-symbols-outlined">arrow_forward</span>
-            </a>
+          <div class="p-8 flex-1 flex flex-col">
+            <p class="font-bold text-primary mb-4 italic text-lg">Pikkuiset munatykit</p>
+            <p class="text-on-surface-variant leading-relaxed flex-1">
+              Viiriäiset ovat pieniä kanalintuja, jotka munivat ruhtinaallisesti. Kuten kaikki munivat linnut, viiriäisetkin tarvitsevat paljon proteiinia ja kalkkia munantuotantonsa tueksi. Siksipä olemme kehittäneet oman suomalaisen rehun viiriäisten ruokintaan.
+            </p>
           </div>
         </article>
 
-        <!-- Silkkikanat -->
-        <article class="group">
-          <div class="aspect-square rounded-xl overflow-hidden mb-8 bg-surface-container border border-outline-variant/30 flex items-center justify-center text-center p-6 text-sm italic text-on-surface-variant transition-transform duration-500 group-hover:scale-105 relative">
-              Asiakkaan valitsema kuva: [Silkkikanat]
-              <img loading="lazy"  src="/placeholder-silkkikanat.jpg" alt="Silkkikanat" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity" onerror="this.style.display='none'" />
+        <!-- Ankat -->
+        <article class="bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
+          <div class="h-80 overflow-hidden relative">
+            <img loading="lazy" src="/kuvia/ankkanokkaauki.jpg" alt="Ankat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <h3 class="absolute bottom-6 left-8 font-headline text-4xl font-black text-white uppercase italic">Ankat</h3>
           </div>
-          <h3 class="font-headline text-3xl font-black mb-2 uppercase italic">Silkkikanat</h3>
-          <p class="text-on-surface-variant mb-6 text-lg">Maailman pehmeimmät lemmikit.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-primary font-black text-2xl">35€/kpl</span>
-            <a class="flex items-center gap-2 text-secondary font-bold uppercase text-sm tracking-widest hover:gap-4 transition-all" href="/yhteystiedot">
-                Varaa
-                <span class="material-symbols-outlined">arrow_forward</span>
-            </a>
+          <div class="p-8 flex-1 flex flex-col">
+            <div class="text-on-surface-variant leading-relaxed space-y-4 flex-1">
+              <p>Kääkkäät ovat Tirehtöörin uusin villitys. Vahingossa hautomakoneeseen sujahtaneet ankanmunat itivät ja kuoriutuivat söpöiksi sydämen valtaajiksi. Se oli menoa heti ekan lättänokan myötä.</p>
+              <p>Kasvatuksessa upean mustia Cayuga ankkoja, jotka munivat tummanharmaita munia. Cayuga porukkaa luotsaa erisukuinen Batman ankka.</p>
+              <p>Toinen kvaakkuparvi on Peking pohjainen sortinsakki sekulikirjavia ja valkoisia ankkamatameja Peking ukkelin hellässä huomassa.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mb-12">
+        <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-4 uppercase italic break-words">Kanarodut</h2>
+        <p class="text-on-surface-variant text-base sm:text-lg max-w-2xl">Löydä uusi perheenjäsen sirkuksen laadukkaimmista ja rakastetuimmista roduista.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
+        
+        <!-- Silkkikanat -->
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img loading="lazy" src="/kuvia/silkkikana.jpg" alt="Silkkikanat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Silkkikanat</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+              <p>Silkkikanat ovat söpön siliteltäviä pehmolelun näköisiä pööpiäisiä. Luonteeltaan silkit ovat juuri niin hurmaavia miltä näyttävätkin: uteliaan kesyjä ja pikkuisen höppänöitä.</p>
+              <p>Silkkikanan sulka on tyypillisesti karvamainen höhhelö. Meillä silkeistä löytyy myös muut sulkamuodot ns smooth, eli "normisulkainen" ja frisee, eli kiharasulkainen versio.</p>
+              <p>Silkkikana on pieni noin kilon kokoinen kääpiörotu ja erittäin hautomainnokas. Emoina silkit ovatkin mahtavia ja silkkien kasvattaja saakin nauttia ympäri vuoden pikkutipuista. Silkkikana on hautomakone, jossa ei ole on off-nappulaa.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kääpiökoch -->
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img loading="lazy" src="/kuvia/kaapiokoch.jpg" alt="Kääpiökoch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Kääpiökoch</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+              <p>Vilkkaat ja eloisat pussihousut vain vilkkuvat kun kääpiökochit kipittävät pihapuuhiinsa. Lennokas askel ja pehmeän pyöreä pyrstö on näiden pikkuotusten tavaramerkki.</p>
+              <p>Todella uteliaita, sosiaalisia ja mielellään mukana menossa oleva rotu, joka suorastaan tunkee syliin. Kääpiökochien kanssa saakin tottua tekemään töitään kaveri kainalossa tai olkapäällä. Ja kavereitahan riittää, sillä käppänät ovat todella ottaneet todesta "lisääntykää ja täyttäkää maa" ohjeistuksen.</p>
+              <p>Halutessaan tipuja käppänämamma hautoo niitä vaikka porkkananpalasesta tai omenanpuolikkaasta. Suuri osa kääpiökoch kukoistamme osallistuu myös tipujen hoitoon tai viimeistään mamman vieroittaessa vauvansa astuu isä remmiin ja alkaa hoitaa ja opastaa nuorisoa.</p>
+              <p>Ei ole ollenkaan ennenkuulumatonta, että käppänä kana tai kukko murtautuu konehaudottujen tipujen häkkiin ja alkaa hoitaa lapsosia ominaan.</p>
+            </div>
+            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+              <div class="flex justify-between"><span>Nuorikko</span> <span>35€</span></div>
+              <div class="flex justify-between"><span>Kukko</span> <span>10€</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Marans -->
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img loading="lazy" src="/kuvia/marans.jpg" alt="Marans" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Marans</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+              <p>Marans on vanha ranskalainen liha- ja munarotu, jonka erityispiirre on erittäin tummanruskea kuoriset kookkaat munat.</p>
+              <p>Siltajoella kasvatetaan Maranseja kahdessa erisukuisessa parvessa, väreissä Black Copper ja Blue Copper + Blue. Blue Copper kukon parvessa on muutama Splash kana, joten toisinaan myyntiin tulee myös Splashin värisiä kanoja ja kukkoja.</p>
+            </div>
+            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+              <div class="flex justify-between"><span>Nuorikko</span> <span>40€</span></div>
+              <div class="flex justify-between"><span>Kukko</span> <span>25€</span></div>
+              <div class="flex justify-between"><span>Lihakukkopojat (6-8vko)</span> <span>5€/kpl</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Marau -->
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img loading="lazy" src="/kuvia/marau.jpg" alt="Marau" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Marau</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+              <p>Marau on Tirehtöörin oma kasvatusprojekti, jonka tarkoituksena on luoda leppoisan rauhallinen ja terve "rotu", joka kasvaa verrattain nopeasti, munii oliivinvihreitä pilkullisia munia, on hauskan näköinen, terve ja ei hautomainnokas.</p>
+              <p>Nimensä mukaisesti Marau on lähtöisin Maransin ja Araucanan risteytyksestä, mutta mixailen mukaan myös hieman ruskeaa Hy-linea ja valkoista munintahybridiä varmistamaan runsasta munintaa ja hautomavietin puutetta. Kotikanaloissa monesti hyvin hautomainnokas rotu aiheuttaa päänvaivaa kun tipuja ei ole mahdollista vastaanottaa vuoden ympäri, mitä esimerkiksi silkki- ja kääpiökoch mammat mieluusti tekisivät.</p>
+            </div>
+            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+              <div class="flex justify-between"><span>Nuorikko</span> <span>35€</span></div>
+              <div class="flex justify-between"><span>Kukko</span> <span>5€</span></div>
+            </div>
           </div>
         </article>
 
         <!-- Araucana -->
-        <article class="group">
-          <div class="aspect-square rounded-xl overflow-hidden mb-8 bg-surface-container border border-outline-variant/30 flex items-center justify-center text-center p-6 text-sm italic text-on-surface-variant transition-transform duration-500 group-hover:scale-105 relative">
-              Asiakkaan valitsema kuva: [Araucana]
-              <img loading="lazy"  src="/placeholder-araucana.jpg" alt="Araucana" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity" onerror="this.style.display='none'" />
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img loading="lazy" src="/kuvia/araucana.jpg" alt="Araucana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <h3 class="font-headline text-3xl font-black mb-2 uppercase italic">Araucana</h3>
-          <p class="text-on-surface-variant mb-6 text-lg">Turkoosien munien mestari.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-primary font-black text-2xl">40€/kpl</span>
-            <a class="flex items-center gap-2 text-secondary font-bold uppercase text-sm tracking-widest hover:gap-4 transition-all" href="/yhteystiedot">
-                Varaa
-                <span class="material-symbols-outlined">arrow_forward</span>
-            </a>
-          </div>
-        </article>
-
-        <!-- Orpington -->
-        <article class="group">
-          <div class="aspect-square rounded-xl overflow-hidden mb-8 bg-surface-container border border-outline-variant/30 flex items-center justify-center text-center p-6 text-sm italic text-on-surface-variant transition-transform duration-500 group-hover:scale-105 relative">
-              Asiakkaan valitsema kuva: [Orpington]
-              <img loading="lazy"  src="/placeholder-orpington.jpg" alt="Orpington" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity" onerror="this.style.display='none'" />
-          </div>
-          <h3 class="font-headline text-3xl font-black mb-2 uppercase italic">Orpington</h3>
-          <p class="text-on-surface-variant mb-6 text-lg">Lempeä jättiläinen.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-primary font-black text-2xl">50€/kpl</span>
-            <a class="flex items-center gap-2 text-secondary font-bold uppercase text-sm tracking-widest hover:gap-4 transition-all" href="/yhteystiedot">
-                Varaa
-                <span class="material-symbols-outlined">arrow_forward</span>
-            </a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Section -->
-  <section class="py-32 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="bg-surface-container-highest rounded-xl p-8 sm:p-12 lg:p-24 relative overflow-hidden">
-        <div class="max-w-2xl relative z-10">
-          <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-8 lg:mb-10 leading-tight uppercase italic break-words">
-              Miksi valita <br/><span class="text-primary">Siltajoen siivekäs?</span>
-          </h2>
-          <div class="space-y-8 text-xl text-on-surface-variant">
-            <p class="font-medium">
-                Meillä uskotaan, että onnellinen kana on paras lemmikki ja munija. Jokainen untuvikko aloittaa elämänsä ihmisen sylissä, mikä tekee linnuistamme poikkeuksellisen kesyjä ja luottavaisia.
-            </p>
-            <div class="grid sm:grid-cols-2 gap-8">
-              <div class="flex items-start gap-4">
-                <span class="material-symbols-outlined text-primary font-bold text-3xl">favorite</span>
-                <div>
-                  <h4 class="font-black uppercase italic text-sm mb-1">Käsin kesytetty</h4>
-                  <p class="text-base">Linnut eivät pelkää käsittelyä.</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <span class="material-symbols-outlined text-primary font-bold text-3xl">music_note</span>
-                <div>
-                  <h4 class="font-black uppercase italic text-sm mb-1">Sirkuskoulutettu</h4>
-                  <p class="text-base">Tottuneet meteliin ja lapsiin.</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <span class="material-symbols-outlined text-primary font-bold text-3xl">egg</span>
-                <div>
-                  <h4 class="font-black uppercase italic text-sm mb-1">Vastuullinen</h4>
-                  <p class="text-base">Valitsemme vain parhaat emolinjat.</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <span class="material-symbols-outlined text-primary font-bold text-3xl">home</span>
-                <div>
-                  <h4 class="font-black uppercase italic text-sm mb-1">Kotimainen</h4>
-                  <p class="text-base">Kasvatettu Keski-Suomessa.</p>
-                </div>
-              </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Araucana</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+              <p>Araucana rotu on lähtöisin Etelä-Amerikasta. Keskikokoisiin rotuihin lukeutuva araucana on liha- ja munarotu, jonka erityispiirre on sinertävä kuoriset munat. Araucanat ovat luonteeltaan hieman hitaita hämäläisiä, hoomoilasia hömelöitä, mutta erittäin oman arvonsa tuntevia ja ylväitä. Joillain Araucanoilla on myös maltillinen hautomavietti.</p>
+            </div>
+            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+              <div class="flex justify-between"><span>Nuorikko</span> <span>40€</span></div>
+              <div class="flex justify-between"><span>Kukko</span> <span>10€</span></div>
             </div>
           </div>
-        </div>
-        <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-primary/10 to-transparent hidden lg:block"></div>
-        <div class="absolute -right-32 -bottom-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      </div>
-    </div>
-  </section>
+        </article>
 
-  <!-- FAQ Section -->
-  <section class="py-20 lg:py-32 px-6 bg-surface-container-low">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-12 lg:mb-16 text-center uppercase italic break-words">Usein kysytyt kysymykset kanoista</h2>
-      <div class="space-y-8 lg:space-y-12">
-        <article class="bg-surface p-10 rounded-xl editorial-shadow border-l-8 border-primary">
-          <h3 class="font-headline text-2xl font-black mb-4 uppercase italic">Miten varaan untuvikkoja tai kanoja?</h3>
-          <p class="text-on-surface-variant text-lg">Laita meille viestiä yhteystietolomakkeen kautta tai soita suoraan. Sovimme tapaamisen sirkukselle Leppävedelle tai Vaajakoskelle, jossa voit tutustua lintuihin ennen ostopäätöstä.</p>
+        <!-- Mille Fleur -->
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img loading="lazy" src="/kuvia/millefleur.jpg" alt="Mille Fleur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Mille Fleur</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base">
+              <p>Kirjavat vilkkaat pikkukanat, voiko tällaisia olla olemassakaan? Aivan kuin sadusta. Silti ihan oikeita kanasia pienine munineen ja suurine jalkasulkineen.</p>
+            </div>
+            <div class="border-t border-outline/10 pt-4 mt-auto space-y-2 font-bold text-primary">
+              <div class="flex justify-between"><span>Nuorikko</span> <span>25€</span></div>
+              <div class="flex justify-between"><span>Muniva kana</span> <span>40€</span></div>
+              <div class="flex justify-between"><span>Kukko</span> <span>10€</span></div>
+            </div>
+          </div>
         </article>
-        <article class="bg-surface p-10 rounded-xl editorial-shadow border-l-8 border-primary">
-          <h3 class="font-headline text-2xl font-black mb-4 uppercase italic">Mitä tarvitsen kanojen hoitoon?</h3>
-          <p class="text-on-surface-variant text-lg">Tarvitset suojaisan kanalan, turvallisen ulkoilualueen, laadukasta rehua ja raikasta vettä. Ohjeistamme mielellämme kaikissa hoitoon liittyvissä asioissa kaupanteon yhteydessä.</p>
+
+        <!-- Sekulit -->
+        <article class="bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col md:col-span-2 lg:col-span-3">
+          <div class="aspect-video lg:aspect-[21/9] overflow-hidden">
+            <img loading="lazy" src="/kuvia/sekulit.jpg" alt="Sekulit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-8 flex-1 flex flex-col">
+            <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">Sekulit</h3>
+            <div class="text-on-surface-variant mb-6 space-y-4 flex-1 text-sm md:text-base max-w-3xl">
+              <p>Myyn sekarotuisina väri- ja rotuvirheelliset. Virheet ovat vain ulkonäöllisiä ominaisuuksia, joiden takia ko yksilö ei sovellu rotukasvatukseen. Luonteensa puolesta nämäkin ovat tyypillisiä rotunsa edustajia ja hurmaavia lemmikkitasoisia otuksia, jotka sopivat mainiosti kotikanalan sekaparveen munimaan ja hyvää elämää viettämään.</p>
+            </div>
+            <div class="border-t border-outline/10 pt-4 mt-auto grid sm:grid-cols-3 gap-4 font-bold text-primary">
+              <div class="flex justify-between bg-surface-container-low px-4 py-2 rounded-lg"><span>Nuorikko</span> <span>25€</span></div>
+              <div class="flex justify-between bg-surface-container-low px-4 py-2 rounded-lg"><span>Muniva kana</span> <span>35€</span></div>
+              <div class="flex justify-between bg-surface-container-low px-4 py-2 rounded-lg"><span>Jätkän pätkä</span> <span>5€</span></div>
+            </div>
+          </div>
         </article>
-        <article class="bg-surface p-10 rounded-xl editorial-shadow border-l-8 border-primary">
-          <h3 class="font-headline text-2xl font-black mb-4 uppercase italic">Ovatko kaikki rodut kilttejä lapsille?</h3>
-          <p class="text-on-surface-variant text-lg">Valitsemme jalostukseen vain hyväluonteisia yksilöitä. Erityisesti Silkkikanat ja Orpingtonit tunnetaan erittäin lempeästä luonteestaan ja soveltuvat mainiosti lapsiperheisiin.</p>
-        </article>
+
       </div>
     </div>
   </section>
@@ -199,13 +210,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <span class="text-primary font-black tracking-widest uppercase text-xs sm:text-sm mb-4 sm:mb-6 block">Haluatko varata omasi?</span>
       <h2 class="font-headline text-4xl sm:text-5xl lg:text-7xl font-black mb-8 sm:mb-10 uppercase italic break-words">Ota Yhteyttä</h2>
       <p class="text-lg sm:text-xl lg:text-2xl text-on-surface-variant mb-12 sm:mb-16 leading-relaxed font-medium">
-          Hinnat alk. 35€/kpl. Linnut myydään vain hyviin ja vastuullisiin koteihin. <br/>Laita viestiä ja sovitaan vierailu sirkuksen tiluksille!
+          Linnut myydään vain hyviin ja vastuullisiin koteihin. <br/>Laita viestiä ja sovitaan vierailu sirkuksen tiluksille!
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
         <a href="/yhteystiedot" class="bg-primary text-on-primary px-8 sm:px-12 py-4 sm:py-5 rounded-full font-black text-base sm:text-lg uppercase tracking-wider hover:scale-105 transition-transform shadow-xl shadow-primary/30 inline-block">
             Lähetä Viesti
         </a>
-        <a href="tel:+358401234567" class="bg-secondary-container text-on-secondary-container px-12 py-5 rounded-full font-black text-lg uppercase tracking-wider hover:scale-105 transition-transform inline-block">
+        <a href="tel:+358449750415" class="bg-secondary-container text-on-secondary-container px-12 py-5 rounded-full font-black text-lg uppercase tracking-wider hover:scale-105 transition-transform inline-block">
             Soita Meille
         </a>
       </div>
