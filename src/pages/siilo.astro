@@ -116,22 +116,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <!-- Stats Banner -->
   <section class="bg-[#1A1A1A] text-white py-20 px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-      <div>
-        <div class="text-5xl font-black text-primary mb-2">100%</div>
-        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Puhdas Rehu</div>
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center text-sm">
+      <div class="flex flex-col items-center justify-center p-4">
+        <p class="italic text-primary mb-2">(Marianne lisää tähän validia tekstiä)</p>
+        <div class="uppercase tracking-[0.2em] font-bold opacity-60">Puhdas Rehu</div>
       </div>
-      <div>
-        <div class="text-5xl font-black text-primary mb-2">24/7</div>
-        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Valvonta</div>
+      <div class="flex flex-col items-center justify-center p-4">
+        <p class="italic text-primary mb-2">(Marianne lisää tähän validia tekstiä)</p>
+        <div class="uppercase tracking-[0.2em] font-bold opacity-60">Valvonta</div>
       </div>
-      <div>
-        <div class="text-5xl font-black text-primary mb-2">0</div>
-        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Hävikki</div>
+      <div class="flex flex-col items-center justify-center p-4">
+        <p class="italic text-primary mb-2">(Marianne lisää tähän validia tekstiä)</p>
+        <div class="uppercase tracking-[0.2em] font-bold opacity-60">Hävikki</div>
       </div>
-      <div>
-        <div class="text-5xl font-black text-primary mb-2">12+</div>
-        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Lähitilaa</div>
+      <div class="flex flex-col items-center justify-center p-4">
+        <p class="italic text-primary mb-2">(Marianne lisää tähän validia tekstiä)</p>
+        <div class="uppercase tracking-[0.2em] font-bold opacity-60">Lähitilaa</div>
       </div>
     </div>
   </section>
@@ -141,10 +141,52 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="max-w-5xl mx-auto rounded-[3rem] bg-primary text-on-primary p-12 md:p-20 text-center">
       <h2 class="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Haluatko tietää lisää?</h2>
       <p class="text-[white]/80 text-lg mb-12 max-w-xl mx-auto">Vastaamme mielellämme kysymyksiisi eläintemme ravinnosta ja sirkuksemme toiminnasta.</p>
-      <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
-        <input class="flex-grow rounded-full border-none px-8 py-4 text-[#1A1A1A] placeholder:text-[#1A1A1A]/50 focus:ring-2 focus:ring-[white]" placeholder="Sähköpostiosoitteesi" required type="email"/>
-        <button class="bg-white text-primary px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all" type="submit">Lähetä</button>
+      <form id="siiloContactForm" class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+        <input class="flex-grow rounded-full border-none px-8 py-4 text-[#1A1A1A] placeholder:text-[#1A1A1A]/50 focus:ring-2 focus:ring-[white]" name="email" placeholder="Sähköpostiosoitteesi" required type="email"/>
+        <button id="siiloSubmitBtn" class="bg-white text-primary px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all flex items-center justify-center gap-2" type="submit">
+            Lähetä
+        </button>
       </form>
+      <p id="siiloFormStatus" class="mt-6 font-bold text-sm hidden"></p>
     </div>
   </section>
+
+  <script>
+    const siiloForm = document.getElementById('siiloContactForm');
+    const siiloStatus = document.getElementById('siiloFormStatus');
+    const siiloBtn = document.getElementById('siiloSubmitBtn');
+
+    siiloForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      siiloStatus.classList.remove('hidden');
+      siiloStatus.innerText = 'Lähetetään...';
+      siiloBtn.disabled = true;
+
+      try {
+        const formData = new FormData(siiloForm);
+        formData.append('type', 'contact');
+        formData.append('name', 'Siilo-sivun kysyjä');
+        formData.append('message', 'Haluan lisätietoja siilon toiminnasta.'); // Default message
+        
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          siiloStatus.innerText = result.message;
+          siiloStatus.className = 'mt-6 text-sm font-bold text-white';
+          siiloForm.reset();
+        } else {
+          throw new Error(result.message);
+        }
+      } catch (err) {
+        siiloStatus.innerText = err.message || 'Hups, jotain meni pieleen.';
+        siiloStatus.className = 'mt-6 text-sm font-bold text-[white]/80';
+      } finally {
+        siiloBtn.disabled = false;
+      }
+    });
+  </script>
 </BaseLayout>

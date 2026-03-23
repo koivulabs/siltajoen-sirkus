@@ -30,7 +30,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </div>
                 <div>
                   <p class="font-bold text-lg mb-1">Päämaja</p>
-                  <address class="text-on-surface-variant not-italic leading-relaxed">Siltajoentie 124,<br/>04130 Siltajoki</address>
+                  <address class="text-on-surface-variant not-italic leading-relaxed">Siltajoentie 2,<br/>41310 Leppävesi</address>
                 </div>
               </div>
               <div class="flex items-start gap-6">
@@ -39,7 +39,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </div>
                 <div>
                   <p class="font-bold text-lg mb-1">Sähköposti</p>
-                  <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20" href="mailto:siilo@siltajoensirkus.fi">siilo@siltajoensirkus.fi</a>
+                  <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20 block" href="mailto:siilo@siltajoensirkus.fi">siilo@siltajoensirkus.fi</a>
+                  <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20 block" href="mailto:marianne@siltajoensirkus.fi">marianne@siltajoensirkus.fi</a>
                 </div>
               </div>
               <div class="flex items-start gap-6">
@@ -78,24 +79,61 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <section class="lg:col-span-7 bg-surface-container rounded-[3rem] p-8 md:p-16 border border-outline/5">
         <div>
           <h2 class="font-headline text-4xl font-black mb-12 italic tracking-tight">Lähetä viesti</h2>
-          <form onsubmit="event.preventDefault(); alert('Viesti lähetetty!');" class="space-y-10">
+          <form id="contactForm" class="space-y-10">
             <div class="space-y-3">
               <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="name">Nimi</label>
-              <input class="w-full bg-surface border-none rounded-full px-8 py-5 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30" id="name" placeholder="Nimesi tai yrityksesi nimi" type="text" required/>
+              <input class="w-full bg-surface border-none rounded-full px-8 py-5 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30" name="name" id="name" placeholder="Nimesi tai yrityksesi nimi" type="text" required/>
             </div>
             <div class="space-y-3">
               <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="email">Sähköposti</label>
-              <input class="w-full bg-surface border-none rounded-full px-8 py-5 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30" id="email" placeholder="sähköposti@esimerkki.fi" type="email" required/>
+              <input class="w-full bg-surface border-none rounded-full px-8 py-5 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30" name="email" id="email" placeholder="sähköposti@esimerkki.fi" type="email" required/>
             </div>
             <div class="space-y-3">
               <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="message">Viesti</label>
-              <textarea class="w-full bg-surface border-none rounded-[2rem] px-8 py-6 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30 resize-none" id="message" placeholder="Miten voimme auttaa?" rows="6" required></textarea>
+              <textarea class="w-full bg-surface border-none rounded-[2rem] px-8 py-6 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30 resize-none" name="message" id="message" placeholder="Miten voimme auttaa?" rows="6" required></textarea>
             </div>
-            <button class="w-full bg-primary text-on-primary font-headline font-black tracking-[0.2em] py-6 rounded-full hover:bg-primary-dim transition-all shadow-2xl shadow-primary/30 flex justify-center items-center gap-3 uppercase text-sm italic" type="submit">
+            <p id="formStatus" class="hidden text-sm font-bold text-primary ml-4"></p>
+            <button id="submitBtn" class="w-full bg-primary text-on-primary font-headline font-black tracking-[0.2em] py-6 rounded-full hover:bg-primary-dim transition-all shadow-2xl shadow-primary/30 flex justify-center items-center gap-3 uppercase text-sm italic" type="submit">
               <span class="material-symbols-outlined" data-icon="send">send</span>
               Lähetä viesti
             </button>
           </form>
+
+          <script>
+            const form = document.getElementById('contactForm');
+            const statusLabel = document.getElementById('formStatus');
+            const submitBtn = document.getElementById('submitBtn');
+
+            form.addEventListener('submit', async (e) => {
+              e.preventDefault();
+              statusLabel.classList.remove('hidden');
+              statusLabel.innerText = 'Lähetetään...';
+              submitBtn.disabled = true;
+
+              try {
+                const formData = new FormData(form);
+                formData.append('type', 'contact');
+                const response = await fetch('/api/contact', {
+                  method: 'POST',
+                  body: formData,
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                  statusLabel.innerText = result.message;
+                  statusLabel.className = 'text-sm font-bold text-tertiary ml-4';
+                  form.reset();
+                } else {
+                  throw new Error(result.message);
+                }
+              } catch (err) {
+                statusLabel.innerText = err.message || 'Hups, jotain meni pieleen.';
+                statusLabel.className = 'text-sm font-bold text-primary ml-4';
+              } finally {
+                submitBtn.disabled = false;
+              }
+            });
+          </script>
         </div>
       </section>
     </div>
@@ -134,19 +172,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="space-y-6">
             <div class="flex items-center gap-5 group">
               <span class="material-symbols-outlined text-primary bg-primary/10 p-3 rounded-full">location_on</span>
-              <span class="font-bold">Siltajoki (Päämaja): Siltajoentie 124</span>
-            </div>
-            <div class="flex items-center gap-5 group">
-              <span class="material-symbols-outlined text-secondary bg-secondary/10 p-3 rounded-full">store</span>
-              <span class="font-bold">Leppävesi (Treenitila): Keskustie 1</span>
-            </div>
-            <div class="flex items-center gap-5 group">
-              <span class="material-symbols-outlined text-tertiary bg-tertiary/10 p-3 rounded-full">local_activity</span>
-              <span class="font-bold">Vaajakoski (Lipunmyynti): Vesmannintie 2</span>
+              <span class="font-bold">Päämaja & Treenitila: Siltajoentie 2, 41310 Leppävesi</span>
             </div>
           </div>
         </div>
-        <a class="inline-flex items-center gap-4 font-headline font-black text-primary tracking-widest uppercase italic group text-sm" href="https://www.google.com/maps/dir/?api=1&destination=Siltajoentie+124+Siltajoki" target="_blank">
+        <a class="inline-flex items-center gap-4 font-headline font-black text-primary tracking-widest uppercase italic group text-sm" href="https://www.google.com/maps/dir/?api=1&destination=Siltajoentie+2+Leppavesi" target="_blank">
             Avaa navigointi
             <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
         </a>

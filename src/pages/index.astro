@@ -17,13 +17,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           # siltajoensirkus
       </h1>
       <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
-        <a href="/elaimet" class="w-full md:w-auto px-8 py-4 bg-primary text-on-primary font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block">
+        <a href="/elaimet" class="w-full md:w-auto px-8 py-4 bg-primary text-on-primary font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
             Katso myytävät eläimet nyt
         </a>
-        <a href="/siilo" class="w-full md:w-auto px-8 py-4 bg-secondary text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block">
-            Mene Siiloon
+        <a href="https://siltajoensirkus.mycashflow.fi/" target="_blank" class="w-full md:w-auto px-8 py-4 bg-secondary text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
+            Verkkokauppaan
         </a>
-        <a href="/blogi" class="w-full md:w-auto px-8 py-4 bg-white/90 text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block">
+        <a href="https://siltajoensirkus.blogspot.com/" target="_blank" class="w-full md:w-auto px-8 py-4 bg-white/90 text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
             Lue blogista vinkit
         </a>
       </div>
@@ -41,15 +41,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
         <div class="group cursor-default">
           <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 uppercase tracking-tight">SIRKUKSEN</h2>
-          <p class="text-xl text-secondary font-bold italic">Blogiin</p>
+          <a href="https://siltajoensirkus.blogspot.com/" target="_blank" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Blogiin &rarr;</a>
         </div>
         <div class="group cursor-default">
           <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 uppercase tracking-widest">SIILON</h2>
-          <p class="text-xl text-secondary font-bold italic">Verkkokauppaan</p>
+          <a href="https://siltajoensirkus.mycashflow.fi/" target="_blank" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Verkkokauppaan &rarr;</a>
         </div>
-        <div class="pt-8">
-          <a href="/siilo" class="bg-zinc-900 text-white px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-zinc-700 transition-colors inline-block">
-              TÄSTÄ KLIKETI KLAK
+        <div class="pt-8 flex flex-col sm:flex-row gap-4">
+          <a href="https://siltajoensirkus.mycashflow.fi/" target="_blank" class="bg-zinc-900 text-white text-center px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-zinc-700 transition-colors inline-block">
+              OSTOKSILLE VERKKOKAUPPAAN
           </a>
         </div>
       </div>

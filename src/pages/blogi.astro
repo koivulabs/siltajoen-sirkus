@@ -101,10 +101,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <span class="text-secondary font-bold tracking-widest uppercase text-sm mb-4">UUTISKIRJE</span>
       <h2 class="text-4xl md:text-5xl font-bold mb-6">Tilaa uutiset suoraan <span class="text-primary italic">sähköpostiisi</span>.</h2>
       <p class="max-w-lg text-on-surface-variant mb-10 text-lg">Ole ensimmäinen, joka kuulee myyntiin tulevista linnuista.</p>
-      <form class="flex flex-col md:flex-row w-full max-w-xl gap-4">
-        <input class="flex-1 bg-surface-container-lowest border-none rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary-fixed outline-none text-lg" placeholder="Sähköpostiosoitteesi" type="email" required/>
-        <button class="bg-primary text-on-primary px-10 py-4 rounded-xl font-bold hover:bg-primary-dim transition-colors">Tilaa nyt</button>
+      <form id="newsletterForm" class="flex flex-col md:flex-row w-full max-w-xl gap-4">
+        <input class="flex-1 bg-surface-container-lowest border-none rounded-xl px-6 py-4 focus:ring-2 focus:ring-primary-fixed outline-none text-lg" name="email" placeholder="Sähköpostiosoitteesi" type="email" required/>
+        <button id="newsletterBtn" type="submit" class="bg-primary text-on-primary px-10 py-4 rounded-xl font-bold hover:bg-primary-dim transition-colors">Tilaa nyt</button>
       </form>
+      <p id="newsletterStatus" class="mt-4 font-bold text-sm hidden"></p>
     </div>
   </section>
+
+  <script>
+    const form = document.getElementById('newsletterForm');
+    const statusLabel = document.getElementById('newsletterStatus');
+    const submitBtn = document.getElementById('newsletterBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusLabel.classList.remove('hidden');
+      statusLabel.innerText = 'Tilataan...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(form);
+        formData.append('type', 'newsletter');
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData,
+        });
+        const result = await response.json();
+        
+        if (result.success) {
+          statusLabel.innerText = result.message;
+          statusLabel.className = 'mt-4 text-sm font-bold text-tertiary';
+          form.reset();
+        } else {
+          throw new Error(result.message);
+        }
+      } catch (err) {
+        statusLabel.innerText = err.message || 'Hups, jotain meni pieleen.';
+        statusLabel.className = 'mt-4 text-sm font-bold text-primary';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 </BaseLayout>
