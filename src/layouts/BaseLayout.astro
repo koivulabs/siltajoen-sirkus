@@ -61,10 +61,17 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
     <!-- Top Navigation -->
     <header>
       <nav aria-label="Päävalikko" class="fixed top-0 w-full z-50 bg-[#fff8f5]/80 dark:bg-[#38312c]/80 backdrop-blur-md shadow-[0_20px_50px_rgba(56,49,44,0.06)]">
-        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-          <a href="/" class="text-2xl font-black text-[#D9534F] dark:text-[#ffaba5] uppercase italic font-['Epilogue'] tracking-tight cursor-pointer active:scale-95 transition-transform">
+        <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto">
+          <a href="/" class="text-xl md:text-2xl font-black text-[#D9534F] dark:text-[#ffaba5] uppercase italic font-['Epilogue'] tracking-tighter cursor-pointer active:scale-95 transition-transform truncate mr-4">
               # siltajoensirkus
           </a>
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="md:hidden flex flex-col items-center justify-center p-2 gap-1.5 focus:outline-none" aria-label="Avaa valikko">
+            <span class="w-6 h-0.5 bg-[#38312c] dark:bg-[#fff8f5] transition-transform origin-center"></span>
+            <span class="w-6 h-0.5 bg-[#38312c] dark:bg-[#fff8f5] transition-opacity"></span>
+            <span class="w-6 h-0.5 bg-[#38312c] dark:bg-[#fff8f5] transition-transform origin-center"></span>
+          </button>
+          
           <!-- Desktop Links -->
           <div class="hidden md:flex items-center gap-8 font-['Epilogue'] font-bold tracking-tight">
             <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/">Koti</a>
@@ -75,9 +82,16 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
             <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/tiimi">Tiimi</a>
             <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/yhteystiedot">Yhteystiedot</a>
           </div>
-          <button class="bg-[#D9534F] text-white px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-200 active:scale-95">
-              Liput
-          </button>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden flex-col bg-[#fff8f5] dark:bg-[#38312c] w-full px-6 py-4 shadow-xl border-t border-[#38312c]/10 dark:border-[#fff8f5]/10 font-['Epilogue'] font-bold text-lg">
+          <a class="py-3 text-[#38312c] dark:text-[#fbf2ec] border-b border-[#38312c]/5 dark:border-[#fff8f5]/5" href="/">Koti</a>
+          <a class="py-3 text-[#38312c] dark:text-[#fbf2ec] border-b border-[#38312c]/5 dark:border-[#fff8f5]/5" href="/elaimet">Eläimet</a>
+          <a class="py-3 text-[#38312c] dark:text-[#fbf2ec] border-b border-[#38312c]/5 dark:border-[#fff8f5]/5" href="/siilo">Siilo</a>
+          <a class="py-3 text-secondary font-black uppercase border-b border-[#38312c]/5 dark:border-[#fff8f5]/5" href="https://siltajoensirkus.mycashflow.fi/" target="_blank">Verkkokauppa</a>
+          <a class="py-3 text-[#38312c] dark:text-[#fbf2ec] border-b border-[#38312c]/5 dark:border-[#fff8f5]/5" href="/blogi">Blogi</a>
+          <a class="py-3 text-[#38312c] dark:text-[#fbf2ec] border-b border-[#38312c]/5 dark:border-[#fff8f5]/5" href="/tiimi">Tiimi</a>
+          <a class="py-3 text-[#38312c] dark:text-[#fbf2ec]" href="/yhteystiedot">Yhteystiedot</a>
         </div>
       </nav>
     </header>
@@ -139,6 +153,27 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
             localStorage.setItem('cookies-accepted', 'true');
             if(banner) banner.classList.add('translate-y-full');
           });
+      }
+
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          mobileMenu.classList.toggle('flex');
+          // Animate hamburger to X (simplified toggle)
+          const spans = mobileBtn.querySelectorAll('span');
+          if (!mobileMenu.classList.contains('hidden')) {
+             spans[0].style.transform = 'translateY(8px) rotate(45deg)';
+             spans[1].style.opacity = '0';
+             spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+          } else {
+             spans[0].style.transform = 'none';
+             spans[1].style.opacity = '1';
+             spans[2].style.transform = 'none';
+          }
+        });
       }
     </script>
   </body>

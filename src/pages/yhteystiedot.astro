@@ -67,7 +67,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <!-- Bird/Farm Themed Placeholder -->
         <div class="relative overflow-hidden rounded-[2.5rem] aspect-square bg-neutral-200">
-          <img alt="Siltajoen sirkuksen tunnelmaa" class="w-full h-full object-cover grayscale opacity-60" src="/placeholder-magic.jpg" onerror="this.style.display='none'" />
+          <img loading="lazy"  alt="Siltajoen sirkuksen tunnelmaa" class="w-full h-full object-cover grayscale opacity-60" src="/placeholder-magic.jpg" onerror="this.style.display='none'" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           <div class="absolute bottom-10 left-10 text-white z-10">
             <p class="font-headline font-black text-3xl italic tracking-tighter leading-tight">Taikuus alkaa<br/>täältä.</p>
@@ -182,7 +182,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </a>
       </div>
       <div class="min-h-[500px] bg-neutral-100 relative grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden">
-        <img alt="Siltajoen Sirkus sijainti" class="w-full h-full object-cover opacity-70" src="/placeholder-map.jpg" onerror="this.style.display='none'" />
+        <img loading="lazy"  alt="Siltajoen Sirkus sijainti" class="w-full h-full object-cover opacity-70" src="/placeholder-map.jpg" onerror="this.style.display='none'" />
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="bg-primary text-on-primary w-16 h-16 rounded-full flex items-center justify-center shadow-2xl animate-bounce">
             <span class="material-symbols-outlined text-3xl">location_on</span>

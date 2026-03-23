@@ -12,8 +12,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <iframe allow="autoplay; encrypted-media" allowfullscreen="" class="w-full h-full object-cover opacity-60 pointer-events-none" frameborder="0" src="https://www.youtube.com/embed/ASIAKKAAN_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=ASIAKKAAN_VIDEO_ID&controls=0&showinfo=0&autohide=1" title="Siltajoen Sirkus"></iframe>
       <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-surface"></div>
     </div>
-    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
-      <h1 class="text-6xl md:text-9xl font-headline font-black italic tracking-tighter text-white mb-12 uppercase drop-shadow-2xl">
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto w-full">
+      <h1 class="text-[12vw] sm:text-7xl md:text-9xl font-headline font-black italic tracking-tighter text-white mb-8 md:mb-12 uppercase drop-shadow-2xl break-words leading-none">
           # siltajoensirkus
       </h1>
       <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
@@ -72,15 +72,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="pb-24 px-8 bg-surface">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="aspect-square bg-zinc-200 flex items-center justify-center p-8 text-center text-zinc-500 font-bold border-2 border-zinc-300 rounded-2xl overflow-hidden">
-          <img src="/placeholder-bird.jpg" alt="Lintu" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <img loading="lazy"  src="/placeholder-bird.jpg" alt="Lintu" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           <span class="absolute">Kuva: [lintu]</span>
       </div>
       <div class="aspect-square bg-zinc-200 flex items-center justify-center p-8 text-center text-zinc-500 font-bold border-2 border-zinc-300 rounded-2xl overflow-hidden">
-          <img src="/placeholder-boy-chicken.jpg" alt="Poika ja kana" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <img loading="lazy"  src="/placeholder-boy-chicken.jpg" alt="Poika ja kana" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           <span class="absolute">Kuva: [poika ja kana]</span>
       </div>
       <div class="aspect-square bg-zinc-200 flex items-center justify-center p-8 text-center text-zinc-500 font-bold border-2 border-zinc-300 rounded-2xl overflow-hidden">
-          <img src="/placeholder-quail.jpg" alt="Viiriäisen poikanen" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          <img loading="lazy"  src="/placeholder-quail.jpg" alt="Viiriäisen poikanen" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           <span class="absolute">Kuva: [viiriäisen poikanen]</span>
       </div>
     </div>
