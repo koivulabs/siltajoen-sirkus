@@ -24,7 +24,7 @@ import animalsData from "../data/animals.json";
       </div>
       <div class="relative">
         <div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl transform rotate-2 bg-surface-container">
-          <img loading="lazy" src={animalsData.hero.image} alt="Sylissä kasvanut lintu" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
+          <img loading="lazy" src={animalsData.hero.image} alt="Sylissä kasvanut lintu" class="absolute inset-0 w-full h-full object-cover" style={`object-position: ${animalsData.hero.focalX ?? 50}% ${animalsData.hero.focalY ?? 50}%`} onerror="this.style.display='none'" />
         </div>
         <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl -z-10"></div>
       </div>
@@ -40,7 +40,7 @@ import animalsData from "../data/animals.json";
         {animalsData.specialCategories.map(category => (
           <article class="animal-card bg-surface rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-xl hover:shadow-2xl transition-all group flex flex-col">
             <div class="h-80 overflow-hidden relative">
-              <img loading="lazy" src={category.image} alt={category.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img loading="lazy" src={category.image} alt={category.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" style={`object-position: ${category.focalX ?? 50}% ${category.focalY ?? 50}%`} />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
               <h3 class="absolute bottom-6 left-8 font-headline text-4xl font-black text-white uppercase italic">{category.name}</h3>
             </div>
@@ -67,7 +67,7 @@ import animalsData from "../data/animals.json";
         {animalsData.chickenBreeds.map(breed => (
           <article class={`animal-card bg-surface rounded-3xl overflow-hidden border border-outline/5 hover:border-primary/30 transition-all group flex flex-col ${breed.isWide ? 'md:col-span-2 lg:col-span-3' : ''}`}>
             <div class={`overflow-hidden ${breed.isWide ? 'aspect-video lg:aspect-[21/9]' : 'aspect-video'}`}>
-              <img loading="lazy" src={breed.image} alt={breed.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img loading="lazy" src={breed.image} alt={breed.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" style={`object-position: ${breed.focalX ?? 50}% ${breed.focalY ?? 50}%`} />
             </div>
             <div class="p-8 flex-1 flex flex-col items-start">
               <h3 class="font-headline text-3xl font-black mb-4 uppercase italic text-on-surface">{breed.name}</h3>
