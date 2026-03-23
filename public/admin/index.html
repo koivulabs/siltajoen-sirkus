@@ -10,8 +10,6 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0f1117; color: #e8e8e8; min-height: 100vh; }
-
-    /* LOGIN */
     #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
     .login-box { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 1.5rem; padding: 3rem; width: 100%; max-width: 400px; text-align: center; }
     .login-box h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -21,19 +19,18 @@
     .btn-primary { width: 100%; padding: 0.9rem; border-radius: 0.75rem; border: none; background: #416047; color: white; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
     .btn-primary:hover { background: #527a52; }
     .error-msg { color: #e05555; font-size: 0.9rem; margin-top: 0.75rem; }
-
-    /* ADMIN */
     #admin-screen { display: none; }
     .admin-header { background: #1a1d27; border-bottom: 1px solid #2a2d3a; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
     .admin-header h1 { font-size: 1.2rem; font-weight: 800; color: #a8c5a8; }
     .admin-header button { background: none; border: 1px solid #444; color: #888; padding: 0.4rem 1rem; border-radius: 0.5rem; cursor: pointer; font-size: 0.85rem; font-family: inherit; }
     .admin-body { display: flex; min-height: calc(100vh - 61px); }
-    .sidebar { width: 220px; background: #1a1d27; border-right: 1px solid #2a2d3a; padding: 1.5rem 1rem; flex-shrink: 0; }
-    .sidebar-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #555; margin-bottom: 0.75rem; padding-left: 0.5rem; }
+    .sidebar { width: 220px; background: #1a1d27; border-right: 1px solid #2a2d3a; padding: 1.5rem 1rem; flex-shrink: 0; overflow-y: auto; }
+    .sidebar-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #555; margin-bottom: 0.75rem; padding-left: 0.5rem; margin-top: 1.5rem; }
+    .sidebar-label:first-child { margin-top: 0; }
     .nav-item { display: block; width: 100%; text-align: left; padding: 0.65rem 0.75rem; border-radius: 0.6rem; border: none; background: none; color: #aaa; font-size: 0.9rem; cursor: pointer; font-family: inherit; margin-bottom: 0.25rem; transition: all 0.15s; }
     .nav-item:hover { background: #2a2d3a; color: #e8e8e8; }
     .nav-item.active { background: #2d3d2d; color: #a8c5a8; font-weight: 700; }
-    .main-content { flex: 1; padding: 2rem; max-width: 900px; padding-bottom: 80px; }
+    .main-content { flex: 1; padding: 2rem; max-width: 900px; padding-bottom: 80px; overflow-y: auto; }
     .section { display: none; }
     .section.active { display: block; }
     .section h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
@@ -45,7 +42,8 @@
     textarea.field-input { min-height: 100px; }
     select.field-input { cursor: pointer; }
     .card { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem; }
-    .card-title { font-size: 1rem; font-weight: 800; color: #a8c5a8; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #2a2d3a; display: flex; align-items: center; gap: 0.5rem; }
+    .card-title { font-size: 1rem; font-weight: 800; color: #a8c5a8; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #2a2d3a; display: flex; align-items: center; justify-content: space-between; }
+    .card-title-left { display: flex; align-items: center; gap: 0.5rem; }
     .prices-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
     .save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #1a1d27; border-top: 1px solid #2a2d3a; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; }
     .btn-save { padding: 0.75rem 2rem; border-radius: 0.75rem; border: none; background: #416047; color: white; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s; }
@@ -54,41 +52,31 @@
     .save-status { font-size: 0.9rem; color: #888; }
     .save-status.success { color: #6ab86a; }
     .save-status.error { color: #e05555; }
-
-    /* IMAGE PICKER WITH FOCAL POINT */
+    /* Add new / delete buttons */
+    .btn-add { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 0.6rem; border: 1px dashed #416047; background: #1a2a1a; color: #a8c5a8; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: inherit; margin-bottom: 1.5rem; transition: all 0.2s; }
+    .btn-add:hover { background: #2d3d2d; }
+    .btn-del { background: none; border: none; color: #e05555; font-size: 1.1rem; cursor: pointer; padding: 0.2rem 0.5rem; border-radius: 0.4rem; transition: background 0.15s; line-height: 1; }
+    .btn-del:hover { background: rgba(224,85,85,0.15); }
+    /* IMAGE PICKER */
     .img-picker-wrap { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
-    .focal-container {
-      position: relative; width: 200px; height: 150px; flex-shrink: 0;
-      border-radius: 0.75rem; overflow: hidden; border: 2px solid #2a2d3a;
-      background: #0a0a0f; cursor: crosshair;
-    }
+    .focal-container { position: relative; width: 200px; height: 150px; flex-shrink: 0; border-radius: 0.75rem; overflow: hidden; border: 2px solid #2a2d3a; background: #0a0a0f; cursor: crosshair; }
     .focal-img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
-    .focal-dot {
-      position: absolute; width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(255,255,255,0.95); border: 2px solid #416047;
-      box-shadow: 0 0 0 3px rgba(65,96,71,0.5), 0 2px 8px rgba(0,0,0,0.6);
-      transform: translate(-50%, -50%); pointer-events: none;
-      transition: box-shadow 0.1s;
-    }
+    .focal-dot { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.95); border: 2px solid #416047; box-shadow: 0 0 0 3px rgba(65,96,71,0.5),0 2px 8px rgba(0,0,0,0.6); transform: translate(-50%,-50%); pointer-events: none; }
     .focal-hint { font-size: 0.72rem; color: #555; margin-top: 0.4rem; text-align: center; width: 200px; }
     .focal-coords { font-size: 0.72rem; color: #5a7a5a; margin-top: 0.2rem; text-align: center; width: 200px; font-weight: 700; }
     .img-picker-controls { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 0.75rem; }
-    .btn-upload {
-      display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem;
-      border-radius: 0.6rem; border: 1px dashed #416047; background: #1a2a1a;
-      color: #a8c5a8; font-size: 0.85rem; font-weight: 700; cursor: pointer;
-      font-family: inherit; transition: all 0.2s; width: 100%;
-    }
-    .btn-upload:hover { background: #2d3d2d; border-color: #6aaa6a; }
+    .btn-upload { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 0.6rem; border: 1px dashed #416047; background: #1a2a1a; color: #a8c5a8; font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s; width: 100%; }
+    .btn-upload:hover { background: #2d3d2d; }
     .upload-progress { font-size: 0.8rem; color: #888; }
     .upload-progress.uploading { color: #f0a030; }
     .upload-progress.done { color: #6ab86a; }
     .upload-progress.err { color: #e05555; }
+    .checkbox-row { display: flex; align-items: center; gap: 0.75rem; }
+    .checkbox-row input[type=checkbox] { width: 18px; height: 18px; accent-color: #416047; cursor: pointer; }
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <div style="font-size:2.5rem;margin-bottom:1rem">🐓</div>
@@ -100,7 +88,6 @@
   </div>
 </div>
 
-<!-- ADMIN -->
 <div id="admin-screen">
   <div class="admin-header">
     <h1>🐓 Siltajoen Sirkus — Hallintapaneeli</h1>
@@ -108,26 +95,44 @@
   </div>
   <div class="admin-body">
     <nav class="sidebar">
-      <div class="sidebar-label">Osiot</div>
-      <button class="nav-item active" onclick="showSection('animals', event)">🐔 Eläimet</button>
-      <button class="nav-item" onclick="showSection('contact', event)">📍 Yhteystiedot</button>
-      <button class="nav-item" onclick="showSection('team', event)">👥 Tiimi</button>
+      <div class="sidebar-label">Sivut</div>
+      <button class="nav-item active" onclick="showSection('animals',event)">🐔 Eläimet</button>
+      <button class="nav-item" onclick="showSection('blog',event)">📝 Blogi</button>
+      <button class="nav-item" onclick="showSection('team',event)">👥 Tiimi</button>
+      <button class="nav-item" onclick="showSection('siilo',event)">🌾 Siilo</button>
+      <button class="nav-item" onclick="showSection('contact',event)">📍 Yhteystiedot</button>
+      <button class="nav-item" onclick="showSection('homepage',event)">🏠 Kotisivu</button>
     </nav>
     <div class="main-content">
       <div class="section active" id="section-animals">
         <h2>Eläimet</h2>
-        <p class="desc">Muokkaa kuvauksia, hintoja ja kuvia. Raahaa tähtäintä kuvan päällä asettaaksesi sopivan kuvapisteen (focal point). Tallennuksen jälkeen sivu päivittyy noin minuutissa.</p>
+        <p class="desc">Muokkaa eläinten kuvauksia, hintoja ja kuvia. Raahaa tähtäintä focal pointin asettamiseksi. Tallennettuasi sivu päivittyy noin minuutissa.</p>
         <div id="animals-editor">Ladataan...</div>
+      </div>
+      <div class="section" id="section-blog">
+        <h2>Blogi</h2>
+        <p class="desc">Hallinnoi blogiartikkeleja. Lisää uusia artikkeleita tai muokkaa olemassaolevia.</p>
+        <div id="blog-editor">Ladataan...</div>
+      </div>
+      <div class="section" id="section-team">
+        <h2>Tiimi</h2>
+        <p class="desc">Hallinnoi tiimin jäseniä. Lisää uusi jäsen tai muokkaa olemassaolevia.</p>
+        <div id="team-editor">Ladataan...</div>
+      </div>
+      <div class="section" id="section-siilo">
+        <h2>Siilo</h2>
+        <p class="desc">Muokkaa Siilo-sivun tekstejä, ominaisuuskortteja ja tilastoja.</p>
+        <div id="siilo-editor">Ladataan...</div>
       </div>
       <div class="section" id="section-contact">
         <h2>Yhteystiedot</h2>
         <p class="desc">Muokkaa yhteystietoja.</p>
         <div id="contact-editor">Ladataan...</div>
       </div>
-      <div class="section" id="section-team">
-        <h2>Tiimi</h2>
-        <p class="desc">Muokkaa tiimin jäseniä.</p>
-        <div id="team-editor">Ladataan...</div>
+      <div class="section" id="section-homepage">
+        <h2>Kotisivu</h2>
+        <p class="desc">Muokkaa etusivun tekstejä ja kuvia.</p>
+        <div id="homepage-editor">Ladataan...</div>
       </div>
     </div>
   </div>
@@ -139,365 +144,324 @@
 </div>
 
 <script>
-let animalsData = null, contactData = null, teamData = null;
-let allImages = [];
-let currentSection = 'animals';
+let animalsData=null,blogData=null,teamData=null,siiloData=null,contactData=null,homepageData=null;
+let allImages=[];
+let currentSection='animals';
 
-// ─── LOGIN ────────────────────────────────────────────────────────
-document.getElementById('password-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-
-async function doLogin() {
-  const pw = document.getElementById('password-input').value;
-  const errEl = document.getElementById('login-error');
-  errEl.textContent = '';
-  const res = await fetch('/api/admin-login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({password: pw}) });
-  if (res.ok) showAdmin();
-  else errEl.textContent = 'Väärä salasana';
+// ─── LOGIN ─────────────────────────────────────────────────────
+document.getElementById('password-input').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+async function doLogin(){
+  const pw=document.getElementById('password-input').value;
+  const errEl=document.getElementById('login-error');errEl.textContent='';
+  const res=await fetch('/api/admin-login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});
+  if(res.ok)showAdmin();else errEl.textContent='Väärä salasana';
 }
+function logout(){document.cookie='admin_session=; Max-Age=0; Path=/';location.reload();}
 
-function logout() { document.cookie = 'admin_session=; Max-Age=0; Path=/'; location.reload(); }
-
-// ─── INIT ─────────────────────────────────────────────────────────
-async function showAdmin() {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('admin-screen').style.display = 'block';
-  document.getElementById('save-bar').style.display = 'flex';
+// ─── INIT ──────────────────────────────────────────────────────
+async function showAdmin(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('admin-screen').style.display='block';
+  document.getElementById('save-bar').style.display='flex';
   await loadAllData();
   renderSection('animals');
 }
-
-async function loadAllData() {
-  const base = 'https://raw.githubusercontent.com/koivulabs/siltajoen-sirkus/main/';
-  const [a, c, t] = await Promise.all([
-    fetch(base + 'src/data/animals.json').then(r => r.json()),
-    fetch(base + 'src/data/contact.json').then(r => r.json()),
-    fetch(base + 'src/data/team.json').then(r => r.json()),
+async function loadAllData(){
+  const base='https://raw.githubusercontent.com/koivulabs/siltajoen-sirkus/main/';
+  const [a,bl,t,s,c,h]=await Promise.all([
+    fetch(base+'src/data/animals.json').then(r=>r.json()),
+    fetch(base+'src/data/blog.json').then(r=>r.json()),
+    fetch(base+'src/data/team.json').then(r=>r.json()),
+    fetch(base+'src/data/siilo.json').then(r=>r.json()),
+    fetch(base+'src/data/contact.json').then(r=>r.json()),
+    fetch(base+'src/data/homepage.json').then(r=>r.json()),
   ]);
-  animalsData = JSON.parse(JSON.stringify(a));
-  contactData = JSON.parse(JSON.stringify(c));
-  teamData = JSON.parse(JSON.stringify(t));
-  try {
-    const imgRes = await fetch('https://api.github.com/repos/koivulabs/siltajoen-sirkus/contents/public/kuvia');
-    const files = await imgRes.json();
-    allImages = files.filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f.name)).map(f => `/kuvia/${f.name}`);
-  } catch { allImages = []; }
+  animalsData=JSON.parse(JSON.stringify(a));
+  blogData=JSON.parse(JSON.stringify(bl));
+  teamData=JSON.parse(JSON.stringify(t));
+  siiloData=JSON.parse(JSON.stringify(s));
+  contactData=JSON.parse(JSON.stringify(c));
+  homepageData=JSON.parse(JSON.stringify(h));
+  try{
+    const imgRes=await fetch('https://api.github.com/repos/koivulabs/siltajoen-sirkus/contents/public/kuvia');
+    const files=await imgRes.json();
+    allImages=files.filter(f=>/\.(jpg|jpeg|png|webp|gif)$/i.test(f.name)).map(f=>`/kuvia/${f.name}`);
+  }catch{allImages=[];}
 }
 
-// ─── NAVIGATION ───────────────────────────────────────────────────
-function showSection(name, e) {
-  currentSection = name;
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  if (e && e.target) e.target.classList.add('active');
-  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-  document.getElementById('section-' + name).classList.add('active');
+// ─── NAV ───────────────────────────────────────────────────────
+function showSection(name,e){
+  currentSection=name;
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  if(e&&e.target)e.target.classList.add('active');
+  document.querySelectorAll('.section').forEach(el=>el.classList.remove('active'));
+  document.getElementById('section-'+name).classList.add('active');
   renderSection(name);
 }
-function renderSection(name) {
-  if (name === 'animals') renderAnimals();
-  if (name === 'contact') renderContact();
-  if (name === 'team') renderTeam();
+function renderSection(name){
+  if(name==='animals')renderAnimals();
+  if(name==='blog')renderBlog();
+  if(name==='team')renderTeam();
+  if(name==='siilo')renderSiilo();
+  if(name==='contact')renderContact();
+  if(name==='homepage')renderHomepage();
 }
 
-// ─── IMAGE PICKER WITH FOCAL POINT ───────────────────────────────
-function imgPickerHtml(id, currentVal, focalX, focalY) {
-  const fx = focalX !== undefined ? focalX : 50;
-  const fy = focalY !== undefined ? focalY : 50;
-  const options = allImages.map(img => {
-    const n = img.split('/').pop();
-    return `<option value="${img}" ${img === currentVal ? 'selected' : ''}>${n}</option>`;
-  }).join('');
-  return `
-    <div class="img-picker-wrap">
-      <div>
-        <div class="focal-container" id="fc-${id}" onmousedown="startFocal(event,'${id}')" ontouchstart="startFocalTouch(event,'${id}')">
-          <img class="focal-img" id="prev-${id}" src="${currentVal||''}" onerror="this.style.opacity=0.15" />
-          <div class="focal-dot" id="dot-${id}" style="left:${fx}%;top:${fy}%"></div>
-        </div>
-        <div class="focal-hint">☝️ Raahaa tähtäintä asettaaksesi kuvapisteen</div>
-        <div class="focal-coords" id="coords-${id}">${fx}% / ${fy}%</div>
-        <input type="hidden" id="fx-${id}" value="${fx}" />
-        <input type="hidden" id="fy-${id}" value="${fy}" />
+// ─── IMAGE PICKER ──────────────────────────────────────────────
+function imgPickerHtml(id,currentVal,focalX,focalY){
+  const fx=focalX!==undefined?focalX:50;
+  const fy=focalY!==undefined?focalY:50;
+  const options=allImages.map(img=>{const n=img.split('/').pop();return`<option value="${img}"${img===currentVal?' selected':''}>${n}</option>`;}).join('');
+  return`<div class="img-picker-wrap">
+    <div>
+      <div class="focal-container" id="fc-${id}" onmousedown="startFocal(event,'${id}')" ontouchstart="startFocalTouch(event,'${id}')">
+        <img class="focal-img" id="prev-${id}" src="${currentVal||''}" onerror="this.style.opacity=0.15" style="object-position:${fx}% ${fy}%" />
+        <div class="focal-dot" id="dot-${id}" style="left:${fx}%;top:${fy}%"></div>
       </div>
-      <div class="img-picker-controls">
-        <label class="field-label">Valitse olemassa oleva kuva</label>
-        <select class="field-input" id="${id}" onchange="updatePreview('${id}')">
-          <option value="">— valitse kuva —</option>
-          ${options}
-        </select>
-        <label class="field-label" style="margin-top:0.5rem">TAI lataa uusi kuva</label>
-        <button class="btn-upload" onclick="document.getElementById('file-${id}').click()">
-          📁 Valitse tiedosto omalta koneelta
-        </button>
-        <input type="file" id="file-${id}" accept="image/*" style="display:none" onchange="uploadImage('${id}')" />
-        <div class="upload-progress" id="uprog-${id}"></div>
-      </div>
-    </div>`;
+      <div class="focal-hint">☝️ Raahaa tähtäintä</div>
+      <div class="focal-coords" id="coords-${id}">${fx}% / ${fy}%</div>
+      <input type="hidden" id="fx-${id}" value="${fx}"><input type="hidden" id="fy-${id}" value="${fy}">
+    </div>
+    <div class="img-picker-controls">
+      <label class="field-label">Olemassa oleva kuva</label>
+      <select class="field-input" id="${id}" onchange="updatePreview('${id}')">
+        <option value="">— valitse —</option>${options}
+      </select>
+      <label class="field-label" style="margin-top:.5rem">Lataa uusi kuva</label>
+      <button class="btn-upload" onclick="document.getElementById('file-${id}').click()">📁 Valitse tiedostolta</button>
+      <input type="file" id="file-${id}" accept="image/*" style="display:none" onchange="uploadImage('${id}')">
+      <div class="upload-progress" id="uprog-${id}"></div>
+    </div>
+  </div>`;
 }
+function updatePreview(id){const v=val(id);if(v){const img=document.getElementById('prev-'+id);img.src=v;img.style.opacity=1;}}
 
-function updatePreview(id) {
-  const v = document.getElementById(id).value;
-  if (v) document.getElementById('prev-' + id).src = v;
-}
+// ─── FOCAL DRAG ────────────────────────────────────────────────
+let activeFocal=null;
+function startFocal(e,id){e.preventDefault();activeFocal=id;moveFocal(e,id);window.addEventListener('mousemove',onFocalMove);window.addEventListener('mouseup',stopFocal);}
+function startFocalTouch(e,id){activeFocal=id;moveFocalByTouch(e.touches[0],id);window.addEventListener('touchmove',onFocalTouchMove,{passive:false});window.addEventListener('touchend',stopFocal);}
+function onFocalMove(e){if(activeFocal)moveFocal(e,activeFocal);}
+function onFocalTouchMove(e){e.preventDefault();if(activeFocal)moveFocalByTouch(e.touches[0],activeFocal);}
+function stopFocal(){activeFocal=null;window.removeEventListener('mousemove',onFocalMove);window.removeEventListener('mouseup',stopFocal);window.removeEventListener('touchmove',onFocalTouchMove);window.removeEventListener('touchend',stopFocal);}
+function moveFocal(e,id){const c=document.getElementById('fc-'+id);if(!c)return;const r=c.getBoundingClientRect();setFocal(id,Math.max(0,Math.min(100,Math.round((e.clientX-r.left)/r.width*100))),Math.max(0,Math.min(100,Math.round((e.clientY-r.top)/r.height*100))));}
+function moveFocalByTouch(t,id){const c=document.getElementById('fc-'+id);if(!c)return;const r=c.getBoundingClientRect();setFocal(id,Math.max(0,Math.min(100,Math.round((t.clientX-r.left)/r.width*100))),Math.max(0,Math.min(100,Math.round((t.clientY-r.top)/r.height*100))));}
+function setFocal(id,x,y){const dot=document.getElementById('dot-'+id);const coords=document.getElementById('coords-'+id);const img=document.getElementById('prev-'+id);if(dot){dot.style.left=x+'%';dot.style.top=y+'%';}if(coords)coords.textContent=x+'% / '+y+'%';if(img)img.style.objectPosition=x+'% '+y+'%';const fx=document.getElementById('fx-'+id);const fy=document.getElementById('fy-'+id);if(fx)fx.value=x;if(fy)fy.value=y;}
 
-// ─── FOCAL POINT DRAG ─────────────────────────────────────────────
-let activeFocal = null;
-
-function startFocal(e, id) {
-  e.preventDefault();
-  activeFocal = id;
-  moveFocal(e, id);
-  window.addEventListener('mousemove', onFocalMove);
-  window.addEventListener('mouseup', stopFocal);
-}
-function startFocalTouch(e, id) {
-  activeFocal = id;
-  moveFocalByTouch(e.touches[0], id);
-  window.addEventListener('touchmove', onFocalTouchMove, { passive: false });
-  window.addEventListener('touchend', stopFocal);
-}
-function onFocalMove(e) { if (activeFocal) moveFocal(e, activeFocal); }
-function onFocalTouchMove(e) { e.preventDefault(); if (activeFocal) moveFocalByTouch(e.touches[0], activeFocal); }
-function stopFocal() {
-  activeFocal = null;
-  window.removeEventListener('mousemove', onFocalMove);
-  window.removeEventListener('mouseup', stopFocal);
-  window.removeEventListener('touchmove', onFocalTouchMove);
-  window.removeEventListener('touchend', stopFocal);
-}
-
-function moveFocal(e, id) {
-  const container = document.getElementById('fc-' + id);
-  if (!container) return;
-  const rect = container.getBoundingClientRect();
-  const x = Math.max(0, Math.min(100, Math.round((e.clientX - rect.left) / rect.width * 100)));
-  const y = Math.max(0, Math.min(100, Math.round((e.clientY - rect.top) / rect.height * 100)));
-  setFocal(id, x, y);
-}
-function moveFocalByTouch(touch, id) {
-  const container = document.getElementById('fc-' + id);
-  if (!container) return;
-  const rect = container.getBoundingClientRect();
-  const x = Math.max(0, Math.min(100, Math.round((touch.clientX - rect.left) / rect.width * 100)));
-  const y = Math.max(0, Math.min(100, Math.round((touch.clientY - rect.top) / rect.height * 100)));
-  setFocal(id, x, y);
-}
-function setFocal(id, x, y) {
-  const dot = document.getElementById('dot-' + id);
-  const coords = document.getElementById('coords-' + id);
-  const fxEl = document.getElementById('fx-' + id);
-  const fyEl = document.getElementById('fy-' + id);
-  if (dot) { dot.style.left = x + '%'; dot.style.top = y + '%'; }
-  if (coords) coords.textContent = x + '% / ' + y + '%';
-  if (fxEl) fxEl.value = x;
-  if (fyEl) fyEl.value = y;
-  // Live update the preview image's object-position
-  const img = document.getElementById('prev-' + id);
-  if (img) img.style.objectPosition = x + '% ' + y + '%';
-}
-
-// ─── IMAGE UPLOAD ─────────────────────────────────────────────────
-async function uploadImage(id) {
-  const fileInput = document.getElementById('file-' + id);
-  const progressEl = document.getElementById('uprog-' + id);
-  const file = fileInput.files[0];
-  if (!file) return;
-
-  progressEl.textContent = '⏳ Ladataan kuvaa...';
-  progressEl.className = 'upload-progress uploading';
-
-  const reader = new FileReader();
-  reader.onload = async function(e) {
-    const base64 = e.target.result.split(',')[1]; // strip data:image/...;base64,
-    try {
-      const res = await fetch('/api/admin-upload', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename: file.name, base64content: base64 }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        progressEl.textContent = '✅ ' + data.message;
-        progressEl.className = 'upload-progress done';
-        // Add to image list and auto-select
-        if (!allImages.includes(data.path)) allImages.unshift(data.path);
-        // Update the select dropdown
-        const select = document.getElementById(id);
-        if (select) {
-          const opt = document.createElement('option');
-          opt.value = data.path;
-          opt.textContent = data.path.split('/').pop();
-          opt.selected = true;
-          select.insertBefore(opt, select.options[1]);
-        }
-        // Update preview
-        const img = document.getElementById('prev-' + id);
-        if (img) { img.src = data.path; img.style.opacity = 1; }
-      } else {
-        progressEl.textContent = '❌ ' + data.error;
-        progressEl.className = 'upload-progress err';
-      }
-    } catch {
-      progressEl.textContent = '❌ Verkkovirhe';
-      progressEl.className = 'upload-progress err';
-    }
+// ─── UPLOAD ────────────────────────────────────────────────────
+async function uploadImage(id){
+  const fileInput=document.getElementById('file-'+id);
+  const progressEl=document.getElementById('uprog-'+id);
+  const file=fileInput.files[0];if(!file)return;
+  progressEl.textContent='⏳ Ladataan...';progressEl.className='upload-progress uploading';
+  const reader=new FileReader();
+  reader.onload=async function(e){
+    const base64=e.target.result.split(',')[1];
+    try{
+      const res=await fetch('/api/admin-upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:file.name,base64content:base64})});
+      const data=await res.json();
+      if(res.ok){
+        progressEl.textContent='✅ '+data.message;progressEl.className='upload-progress done';
+        if(!allImages.includes(data.path))allImages.unshift(data.path);
+        const select=document.getElementById(id);
+        if(select){const opt=document.createElement('option');opt.value=data.path;opt.textContent=data.path.split('/').pop();opt.selected=true;select.insertBefore(opt,select.options[1]);}
+        const img=document.getElementById('prev-'+id);
+        if(img){img.src=data.path;img.style.opacity=1;}
+      }else{progressEl.textContent='❌ '+data.error;progressEl.className='upload-progress err';}
+    }catch{progressEl.textContent='❌ Verkkovirhe';progressEl.className='upload-progress err';}
   };
   reader.readAsDataURL(file);
 }
 
-// ─── ANIMALS RENDER ───────────────────────────────────────────────
-function renderAnimals() {
-  if (!animalsData) return;
-  let html = '';
+// ─── HELPERS ───────────────────────────────────────────────────
+function val(id){const el=document.getElementById(id);return el?el.value:'';}
+function esc(str){return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function getFocal(id){return{focalX:parseInt(document.getElementById('fx-'+id)?.value||50),focalY:parseInt(document.getElementById('fy-'+id)?.value||50)};}
 
-  html += `<div class="card"><div class="card-title">🦅 Hero-osio</div>
-    <div class="field-group"><label class="field-label">Otsikko</label>
-      <input class="field-input" id="hero-title" value="${esc(animalsData.hero.title)}" /></div>
-    <div class="field-group"><label class="field-label">Hero-kuva</label>
-      ${imgPickerHtml('hero-image', animalsData.hero.image, animalsData.hero.focalX, animalsData.hero.focalY)}</div>
+// ─── ANIMALS ───────────────────────────────────────────────────
+function renderAnimals(){
+  if(!animalsData)return;let html='';
+  html+=`<div class="card"><div class="card-title"><span class="card-title-left">🦅 Hero-osio</span></div>
+    <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="hero-title" value="${esc(animalsData.hero.title)}" /></div>
+    <div class="field-group"><label class="field-label">Hero-kuva</label>${imgPickerHtml('hero-image',animalsData.hero.image,animalsData.hero.focalX,animalsData.hero.focalY)}</div>
   </div>`;
-
-  animalsData.specialCategories.forEach((cat, i) => {
-    html += `<div class="card"><div class="card-title">🦆 ${esc(cat.name)}</div>
-      <div class="field-group"><label class="field-label">Alaotsikko</label>
-        <input class="field-input" id="sc-${i}-subtitle" value="${esc(cat.subtitle||'')}" /></div>
-      <div class="field-group"><label class="field-label">Kuva</label>
-        ${imgPickerHtml(`sc-${i}-image`, cat.image, cat.focalX, cat.focalY)}</div>
-      <div class="field-group"><label class="field-label">Kuvaus</label>
-        <textarea class="field-input" id="sc-${i}-desc">${esc(cat.description.join('\n\n'))}</textarea></div>
+  animalsData.specialCategories.forEach((cat,i)=>{
+    html+=`<div class="card"><div class="card-title"><span class="card-title-left">🦆 ${esc(cat.name)}</span></div>
+      <div class="field-group"><label class="field-label">Alaotsikko</label><input class="field-input" id="sc-${i}-subtitle" value="${esc(cat.subtitle||'')}" /></div>
+      <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`sc-${i}-image`,cat.image,cat.focalX,cat.focalY)}</div>
+      <div class="field-group"><label class="field-label">Kuvaus</label><textarea class="field-input" id="sc-${i}-desc">${esc(cat.description.join('\n\n'))}</textarea></div>
     </div>`;
   });
-
-  animalsData.chickenBreeds.forEach((breed, i) => {
-    const pricesHtml = (breed.prices||[]).map((p,pi) => `
+  html+=`<button class="btn-add" onclick="addSpecialCategory()">+ Lisää erikoiskategoria</button>`;
+  animalsData.chickenBreeds.forEach((breed,i)=>{
+    const pricesHtml=(breed.prices||[]).map((p,pi)=>`
       <div class="prices-row">
-        <div><label class="field-label">Nimike</label>
-          <input class="field-input" id="breed-${i}-price-${pi}-label" value="${esc(p.label)}" /></div>
-        <div><label class="field-label">Hinta</label>
-          <input class="field-input" id="breed-${i}-price-${pi}-amount" value="${esc(p.amount)}" /></div>
+        <div><label class="field-label">Nimike</label><input class="field-input" id="breed-${i}-price-${pi}-label" value="${esc(p.label)}" /></div>
+        <div><label class="field-label">Hinta</label><input class="field-input" id="breed-${i}-price-${pi}-amount" value="${esc(p.amount)}" /></div>
       </div>`).join('');
-    html += `<div class="card"><div class="card-title">🐔 ${esc(breed.name)}</div>
-      <div class="field-group"><label class="field-label">Kuva</label>
-        ${imgPickerHtml(`breed-${i}-image`, breed.image, breed.focalX, breed.focalY)}</div>
-      <div class="field-group"><label class="field-label">Kuvaus</label>
-        <textarea class="field-input" id="breed-${i}-desc" style="min-height:120px">${esc(breed.description.join('\n\n'))}</textarea></div>
+    html+=`<div class="card"><div class="card-title"><span class="card-title-left">🐔 ${esc(breed.name)}</span><button class="btn-del" onclick="removeBreed(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`breed-${i}-image`,breed.image,breed.focalX,breed.focalY)}</div>
+      <div class="field-group"><label class="field-label">Kuvaus</label><textarea class="field-input" id="breed-${i}-desc" style="min-height:120px">${esc(breed.description.join('\n\n'))}</textarea></div>
       ${pricesHtml}
     </div>`;
   });
-
-  document.getElementById('animals-editor').innerHTML = html;
+  html+=`<button class="btn-add" onclick="addBreed()">+ Lisää uusi kanarotu</button>`;
+  document.getElementById('animals-editor').innerHTML=html;
+}
+function addBreed(){
+  animalsData.chickenBreeds.push({name:'Uusi rotu',image:'',description:[''],prices:[],focalX:50,focalY:50});
+  renderAnimals();
+}
+function removeBreed(i){if(confirm('Poista tämä rotu?')){animalsData.chickenBreeds.splice(i,1);renderAnimals();}}
+function addSpecialCategory(){
+  animalsData.specialCategories.push({name:'Uusi kategoria',subtitle:'',image:'',description:[''],focalX:50,focalY:50});
+  renderAnimals();
 }
 
-// ─── CONTACT RENDER ───────────────────────────────────────────────
-function renderContact() {
-  if (!contactData) return;
-  document.getElementById('contact-editor').innerHTML = `
-    <div class="card"><div class="card-title">📍 Yhteystiedot</div>
-      <div class="field-group"><label class="field-label">Katuosoite</label>
-        <input class="field-input" id="c-street" value="${esc(contactData.street)}" /></div>
-      <div class="field-group"><label class="field-label">Kaupunki / Postinumero</label>
-        <input class="field-input" id="c-city" value="${esc(contactData.city)}" /></div>
-      <div class="field-group"><label class="field-label">Sähköposti 1</label>
-        <input class="field-input" id="c-email1" value="${esc(contactData.email1)}" /></div>
-      <div class="field-group"><label class="field-label">Sähköposti 2</label>
-        <input class="field-input" id="c-email2" value="${esc(contactData.email2)}" /></div>
-      <div class="field-group"><label class="field-label">Puhelin</label>
-        <input class="field-input" id="c-phone" value="${esc(contactData.phone)}" /></div>
-      <div class="field-group"><label class="field-label">Hero-kuva</label>
-        ${imgPickerHtml('c-heroimage', contactData.heroImage, contactData.heroFocalX, contactData.heroFocalY)}</div>
+// ─── BLOG ──────────────────────────────────────────────────────
+function renderBlog(){
+  if(!blogData)return;let html='';
+  blogData.posts.forEach((post,i)=>{
+    html+=`<div class="card"><div class="card-title"><span class="card-title-left">📰 ${esc(post.title)}</span><button class="btn-del" onclick="removePost(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="post-${i}-title" value="${esc(post.title)}" /></div>
+      <div class="field-group"><label class="field-label">Kategoria (esim. UUTINEN, VINKIT, TARINAT)</label><input class="field-input" id="post-${i}-category" value="${esc(post.category)}" /></div>
+      <div class="field-group"><label class="field-label">Päivämäärä</label><input class="field-input" id="post-${i}-date" value="${esc(post.date)}" /></div>
+      <div class="field-group"><label class="field-label">Lyhyt kuvaus</label><textarea class="field-input" id="post-${i}-excerpt">${esc(post.excerpt)}</textarea></div>
+      <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`post-${i}-image`,post.image,post.focalX,post.focalY)}</div>
+      <div class="field-group"><div class="checkbox-row"><input type="checkbox" id="post-${i}-featured" ${post.featured?'checked':''}><label class="field-label" style="margin:0;cursor:pointer" for="post-${i}-featured">Pääartikkeli (näkyy isommin)</label></div></div>
+    </div>`;
+  });
+  html+=`<button class="btn-add" onclick="addPost()">+ Lisää uusi artikkeli</button>`;
+  document.getElementById('blog-editor').innerHTML=html;
+}
+function addPost(){
+  blogData.posts.push({title:'Uusi artikkeli',category:'UUTINEN',date:'',excerpt:'',image:'',featured:false,focalX:50,focalY:50});
+  renderBlog();
+}
+function removePost(i){if(confirm('Poista tämä artikkeli?')){blogData.posts.splice(i,1);renderBlog();}}
+
+// ─── TEAM ──────────────────────────────────────────────────────
+function renderTeam(){
+  if(!teamData)return;let html='';
+  teamData.members.forEach((m,i)=>{
+    html+=`<div class="card"><div class="card-title"><span class="card-title-left">👤 ${esc(m.name)}</span><button class="btn-del" onclick="removeMember(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Nimi</label><input class="field-input" id="tm-${i}-name" value="${esc(m.name)}" /></div>
+      <div class="field-group"><label class="field-label">Rooli / Titteli</label><input class="field-input" id="tm-${i}-role" value="${esc(m.role)}" /></div>
+      <div class="field-group"><label class="field-label">Puhelin</label><input class="field-input" id="tm-${i}-phone" value="${esc(m.phone||'')}" /></div>
+      <div class="field-group"><label class="field-label">Sähköposti</label><input class="field-input" id="tm-${i}-email" value="${esc(m.email||'')}" /></div>
+      <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`tm-${i}-image`,m.image,m.focalX,m.focalY)}</div>
+      <div class="field-group"><label class="field-label">Kuvaus</label><textarea class="field-input" id="tm-${i}-bio">${esc(m.bio)}</textarea></div>
+    </div>`;
+  });
+  html+=`<button class="btn-add" onclick="addMember()">+ Lisää tiimin jäsen</button>`;
+  document.getElementById('team-editor').innerHTML=html;
+}
+function addMember(){teamData.members.push({name:'Uusi jäsen',role:'',phone:'',email:'',bio:'',image:'',focalX:50,focalY:50});renderTeam();}
+function removeMember(i){if(confirm('Poista tämä jäsen?')){teamData.members.splice(i,1);renderTeam();}}
+
+// ─── SIILO ─────────────────────────────────────────────────────
+function renderSiilo(){
+  if(!siiloData)return;
+  let cardsHtml=siiloData.featureCards.map((c,i)=>`
+    <div class="card"><div class="card-title"><span class="card-title-left">✨ Kortti ${i+1}</span><button class="btn-del" onclick="removeSiiloCard(${i})">✕</button></div>
+      <div class="field-group"><label class="field-label">Ikoni (Material Symbol)</label><input class="field-input" id="sc2-${i}-icon" value="${esc(c.icon)}" /></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="sc2-${i}-title" value="${esc(c.title)}" /></div>
+      <div class="field-group"><label class="field-label">Teksti</label><textarea class="field-input" id="sc2-${i}-body">${esc(c.body)}</textarea></div>
+    </div>`).join('');
+  let statsHtml=siiloData.stats.map((s,i)=>`
+    <div class="prices-row" style="margin-bottom:0.75rem">
+      <div><label class="field-label">Arvo</label><input class="field-input" id="stat-${i}-value" value="${esc(s.value)}" /></div>
+      <div><label class="field-label">Selite</label><input class="field-input" id="stat-${i}-label" value="${esc(s.label)}" /></div>
+    </div>`).join('');
+  document.getElementById('siilo-editor').innerHTML=`
+    <div class="card"><div class="card-title"><span class="card-title-left">🌾 Hero-teksti</span></div>
+      <div class="field-group"><label class="field-label">Tagline</label><input class="field-input" id="siilo-tagline" value="${esc(siiloData.heroTagline)}" /></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="siilo-title" value="${esc(siiloData.heroTitle)}" /></div>
+      <div class="field-group"><label class="field-label">Hero-teksti</label><textarea class="field-input" id="siilo-body">${esc(siiloData.heroBody)}</textarea></div>
+      <div class="field-group"><label class="field-label">Hero-kuva</label>${imgPickerHtml('siilo-heroimage',siiloData.heroImage,siiloData.heroFocalX,siiloData.heroFocalY)}</div>
+    </div>
+    <h3 style="font-weight:800;margin-bottom:1rem;font-size:1rem;color:#a8c5a8">✨ Ominaisuuskortit</h3>
+    ${cardsHtml}
+    <button class="btn-add" onclick="addSiiloCard()">+ Lisää kortti</button>
+    <div class="card" style="margin-top:1.5rem"><div class="card-title"><span class="card-title-left">📊 Tilastopalkki</span></div>
+      ${statsHtml}
+      <button class="btn-add" onclick="addSiiloStat()" style="margin-top:0.5rem">+ Lisää tilasto</button>
+    </div>`;
+}
+function addSiiloCard(){siiloData.featureCards.push({icon:'star',title:'Uusi ominaisuus',body:''});renderSiilo();}
+function removeSiiloCard(i){if(confirm('Poista kortti?')){siiloData.featureCards.splice(i,1);renderSiilo();}}
+function addSiiloStat(){siiloData.stats.push({value:'',label:''});renderSiilo();}
+
+// ─── CONTACT ───────────────────────────────────────────────────
+function renderContact(){
+  if(!contactData)return;
+  document.getElementById('contact-editor').innerHTML=`
+    <div class="card"><div class="card-title"><span class="card-title-left">📍 Yhteystiedot</span></div>
+      <div class="field-group"><label class="field-label">Katuosoite</label><input class="field-input" id="c-street" value="${esc(contactData.street)}" /></div>
+      <div class="field-group"><label class="field-label">Kaupunki / Postinumero</label><input class="field-input" id="c-city" value="${esc(contactData.city)}" /></div>
+      <div class="field-group"><label class="field-label">Sähköposti 1</label><input class="field-input" id="c-email1" value="${esc(contactData.email1)}" /></div>
+      <div class="field-group"><label class="field-label">Sähköposti 2</label><input class="field-input" id="c-email2" value="${esc(contactData.email2)}" /></div>
+      <div class="field-group"><label class="field-label">Puhelin</label><input class="field-input" id="c-phone" value="${esc(contactData.phone)}" /></div>
+      <div class="field-group"><label class="field-label">Hero-kuva</label>${imgPickerHtml('c-heroimage',contactData.heroImage,contactData.heroFocalX,contactData.heroFocalY)}</div>
     </div>`;
 }
 
-// ─── TEAM RENDER ──────────────────────────────────────────────────
-function renderTeam() {
-  if (!teamData) return;
-  let html = '';
-  teamData.members.forEach((m, i) => {
-    html += `<div class="card"><div class="card-title">👤 ${esc(m.name)}</div>
-      <div class="field-group"><label class="field-label">Nimi</label>
-        <input class="field-input" id="tm-${i}-name" value="${esc(m.name)}" /></div>
-      <div class="field-group"><label class="field-label">Rooli / Titteli</label>
-        <input class="field-input" id="tm-${i}-role" value="${esc(m.role)}" /></div>
-      <div class="field-group"><label class="field-label">Kuva</label>
-        ${imgPickerHtml(`tm-${i}-image`, m.image, m.focalX, m.focalY)}</div>
-      <div class="field-group"><label class="field-label">Kuvaus</label>
-        <textarea class="field-input" id="tm-${i}-bio">${esc(m.bio)}</textarea></div>
+// ─── HOMEPAGE ──────────────────────────────────────────────────
+function renderHomepage(){
+  if(!homepageData)return;
+  document.getElementById('homepage-editor').innerHTML=`
+    <div class="card"><div class="card-title"><span class="card-title-left">🏠 Hero-osio</span></div>
+      <div class="field-group"><label class="field-label">Hero-teksti (iso otsikko)</label><input class="field-input" id="hp-heroTitle" value="${esc(homepageData.heroTitle)}" /></div>
+      <div class="field-group"><label class="field-label">Intro-teksti 1</label><textarea class="field-input" id="hp-intro1">${esc(homepageData.introText)}</textarea></div>
+      <div class="field-group"><label class="field-label">Intro-teksti 2</label><textarea class="field-input" id="hp-intro2">${esc(homepageData.introText2)}</textarea></div>
+    </div>
+    <div class="card"><div class="card-title"><span class="card-title-left">🔗 Linkit</span></div>
+      <div class="field-group"><label class="field-label">Instagram URL</label><input class="field-input" id="hp-instagram" value="${esc(homepageData.instagramUrl)}" /></div>
+      <div class="field-group"><label class="field-label">Facebook URL</label><input class="field-input" id="hp-facebook" value="${esc(homepageData.facebookUrl)}" /></div>
+      <div class="field-group"><label class="field-label">Verkkokauppa URL</label><input class="field-input" id="hp-shop" value="${esc(homepageData.shopUrl)}" /></div>
     </div>`;
-  });
-  document.getElementById('team-editor').innerHTML = html;
 }
 
-// ─── SAVE ─────────────────────────────────────────────────────────
-async function saveCurrentSection() {
-  const btn = document.getElementById('save-btn');
-  const statusEl = document.getElementById('save-status');
-  btn.disabled = true;
-  statusEl.textContent = 'Tallennetaan...';
-  statusEl.className = 'save-status';
+// ─── SAVE ──────────────────────────────────────────────────────
+async function saveCurrentSection(){
+  const btn=document.getElementById('save-btn');
+  const statusEl=document.getElementById('save-status');
+  btn.disabled=true;statusEl.textContent='Tallennetaan...';statusEl.className='save-status';
+  let filePath,content;
 
-  let filePath, content;
-
-  const getFocal = (id) => ({
-    focalX: parseInt(document.getElementById('fx-'+id)?.value || 50),
-    focalY: parseInt(document.getElementById('fy-'+id)?.value || 50),
-  });
-
-  if (currentSection === 'animals') {
-    animalsData.hero.title = val('hero-title');
-    animalsData.hero.image = val('hero-image');
-    Object.assign(animalsData.hero, getFocal('hero-image'));
-    animalsData.specialCategories.forEach((cat, i) => {
-      cat.subtitle = val(`sc-${i}-subtitle`);
-      cat.image = val(`sc-${i}-image`);
-      cat.description = val(`sc-${i}-desc`).split('\n\n').filter(Boolean);
-      Object.assign(cat, getFocal(`sc-${i}-image`));
-    });
-    animalsData.chickenBreeds.forEach((breed, i) => {
-      breed.image = val(`breed-${i}-image`);
-      breed.description = val(`breed-${i}-desc`).split('\n\n').filter(Boolean);
-      Object.assign(breed, getFocal(`breed-${i}-image`));
-      (breed.prices||[]).forEach((p, pi) => {
-        p.label = val(`breed-${i}-price-${pi}-label`);
-        p.amount = val(`breed-${i}-price-${pi}-amount`);
-      });
-    });
-    filePath = 'src/data/animals.json'; content = animalsData;
-  } else if (currentSection === 'contact') {
-    contactData.street = val('c-street'); contactData.city = val('c-city');
-    contactData.email1 = val('c-email1'); contactData.email2 = val('c-email2');
-    contactData.phone = val('c-phone'); contactData.heroImage = val('c-heroimage');
-    const hf = getFocal('c-heroimage');
-    contactData.heroFocalX = hf.focalX; contactData.heroFocalY = hf.focalY;
-    filePath = 'src/data/contact.json'; content = contactData;
-  } else if (currentSection === 'team') {
-    teamData.members.forEach((m, i) => {
-      m.name = val(`tm-${i}-name`); m.role = val(`tm-${i}-role`);
-      m.image = val(`tm-${i}-image`); m.bio = val(`tm-${i}-bio`);
-      Object.assign(m, getFocal(`tm-${i}-image`));
-    });
-    filePath = 'src/data/team.json'; content = teamData;
+  if(currentSection==='animals'){
+    animalsData.hero.title=val('hero-title');animalsData.hero.image=val('hero-image');Object.assign(animalsData.hero,getFocal('hero-image'));
+    animalsData.specialCategories.forEach((cat,i)=>{cat.subtitle=val(`sc-${i}-subtitle`);cat.image=val(`sc-${i}-image`);cat.description=val(`sc-${i}-desc`).split('\n\n').filter(Boolean);Object.assign(cat,getFocal(`sc-${i}-image`));});
+    animalsData.chickenBreeds.forEach((breed,i)=>{breed.image=val(`breed-${i}-image`);breed.description=val(`breed-${i}-desc`).split('\n\n').filter(Boolean);Object.assign(breed,getFocal(`breed-${i}-image`));(breed.prices||[]).forEach((p,pi)=>{p.label=val(`breed-${i}-price-${pi}-label`);p.amount=val(`breed-${i}-price-${pi}-amount`);});});
+    filePath='src/data/animals.json';content=animalsData;
+  } else if(currentSection==='blog'){
+    blogData.posts.forEach((post,i)=>{post.title=val(`post-${i}-title`);post.category=val(`post-${i}-category`);post.date=val(`post-${i}-date`);post.excerpt=val(`post-${i}-excerpt`);post.image=val(`post-${i}-image`);post.featured=document.getElementById(`post-${i}-featured`)?.checked||false;Object.assign(post,getFocal(`post-${i}-image`));});
+    filePath='src/data/blog.json';content=blogData;
+  } else if(currentSection==='team'){
+    teamData.members.forEach((m,i)=>{m.name=val(`tm-${i}-name`);m.role=val(`tm-${i}-role`);m.phone=val(`tm-${i}-phone`);m.email=val(`tm-${i}-email`);m.image=val(`tm-${i}-image`);m.bio=val(`tm-${i}-bio`);Object.assign(m,getFocal(`tm-${i}-image`));});
+    filePath='src/data/team.json';content=teamData;
+  } else if(currentSection==='siilo'){
+    siiloData.heroTagline=val('siilo-tagline');siiloData.heroTitle=val('siilo-title');siiloData.heroBody=val('siilo-body');siiloData.heroImage=val('siilo-heroimage');const hf=getFocal('siilo-heroimage');siiloData.heroFocalX=hf.focalX;siiloData.heroFocalY=hf.focalY;
+    siiloData.featureCards.forEach((c,i)=>{c.icon=val(`sc2-${i}-icon`);c.title=val(`sc2-${i}-title`);c.body=val(`sc2-${i}-body`);});
+    siiloData.stats.forEach((s,i)=>{s.value=val(`stat-${i}-value`);s.label=val(`stat-${i}-label`);});
+    filePath='src/data/siilo.json';content=siiloData;
+  } else if(currentSection==='contact'){
+    contactData.street=val('c-street');contactData.city=val('c-city');contactData.email1=val('c-email1');contactData.email2=val('c-email2');contactData.phone=val('c-phone');contactData.heroImage=val('c-heroimage');const cf=getFocal('c-heroimage');contactData.heroFocalX=cf.focalX;contactData.heroFocalY=cf.focalY;
+    filePath='src/data/contact.json';content=contactData;
+  } else if(currentSection==='homepage'){
+    homepageData.heroTitle=val('hp-heroTitle');homepageData.introText=val('hp-intro1');homepageData.introText2=val('hp-intro2');homepageData.instagramUrl=val('hp-instagram');homepageData.facebookUrl=val('hp-facebook');homepageData.shopUrl=val('hp-shop');
+    filePath='src/data/homepage.json';content=homepageData;
   }
 
-  try {
-    const res = await fetch('/api/admin-save', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({filePath, content}),
-    });
-    const data = await res.json();
-    statusEl.textContent = res.ok ? '✅ ' + data.message : '❌ ' + data.error;
-    statusEl.className = 'save-status ' + (res.ok ? 'success' : 'error');
-  } catch {
-    statusEl.textContent = '❌ Verkkovirhe';
-    statusEl.className = 'save-status error';
-  }
-  btn.disabled = false;
+  try{
+    const res=await fetch('/api/admin-save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filePath,content})});
+    const data=await res.json();
+    statusEl.textContent=res.ok?'✅ '+data.message:'❌ '+data.error;
+    statusEl.className='save-status '+(res.ok?'success':'error');
+  }catch{statusEl.textContent='❌ Verkkovirhe';statusEl.className='save-status error';}
+  btn.disabled=false;
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────────
-function val(id) { const el = document.getElementById(id); return el ? el.value : ''; }
-function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-if (document.cookie.includes('admin_session=')) showAdmin();
+if(document.cookie.includes('admin_session='))showAdmin();
 </script>
 </body>
 </html>

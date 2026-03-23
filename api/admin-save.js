@@ -26,6 +26,8 @@ export default async function handler(req, res) {
     'src/data/homepage.json',
     'src/data/team.json',
     'src/data/contact.json',
+    'src/data/blog.json',
+    'src/data/siilo.json',
   ];
   if (!allowedPaths.includes(filePath)) {
     return res.status(403).json({ error: 'Tiedostopolku ei sallittu' });

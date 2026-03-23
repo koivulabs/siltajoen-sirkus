@@ -1,7 +1,11 @@
 {
-  "heroLine1": "Siltajoen",
-  "heroLine2": "Sirkus",
-  "heroImage1": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
-  "heroImage2": "/kuvia/tiputkadella.jpg",
-  "heroImage3": "/kuvia/viiriainenkasissa.JPG"
+  "heroTitle": "# SILTAJOENSIRKUS",
+  "heroImage1": "/kuvia/sylissa1.JPG",
+  "heroImage2": "/kuvia/viiriainenkasissa.JPG",
+  "heroImage3": "/kuvia/tiputkadella.jpg",
+  "introText": "Lintutila Siltajoen Sirkuksessa kasvatetaan eri rotuisia kanoja, viiriäisiä, ankkoja ja leijonaharjaskaneja.",
+  "introText2": "Siilon kautta hoidat helposti rehut ja tarvikkeet.",
+  "instagramUrl": "https://www.instagram.com/siltajoensirkus",
+  "facebookUrl": "https://www.facebook.com/siltajoensirkus",
+  "shopUrl": "https://siltajoensirkus.mycashflow.fi/"
 }

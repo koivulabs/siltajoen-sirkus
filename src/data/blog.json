@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "title": "Siltajoen kesäkauden aikataulu on julkaistu!",
+      "category": "UUTINEN",
+      "date": "15. Toukokuuta, 2026",
+      "slug": "#",
+      "excerpt": "Tänä kesänä otamme vastaan vierailijoita uusin aukioloin. Katso kaikki pysähdyspaikkamme ja valmistaudu tapaamaan uusia kanarotujamme.",
+      "image": "/kuvia/sylissa1.JPG",
+      "featured": true,
+      "focalX": 50,
+      "focalY": 40
+    },
+    {
+      "title": "5 vinkkiä kanojen talvihoitoon",
+      "category": "VINKIT",
+      "date": "3. Helmikuuta, 2026",
+      "slug": "#",
+      "excerpt": "Talvi on raskainta aikaa kanaloille. Tässä parhaat vinkkimme lintujen hyvinvointiin kylminä kuukausina.",
+      "image": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
+      "featured": false,
+      "focalX": 50,
+      "focalY": 50
+    },
+    {
+      "title": "Elämää maalla: Siltajoen arki",
+      "category": "TARINAT",
+      "date": "12. Tammikuuta, 2026",
+      "slug": "#",
+      "excerpt": "Päivä sirkuksessa alkaa aina kanojen aamiaisen valmistamisella. Kurkista kulissien taakse!",
+      "image": "/kuvia/tiputkadella.jpg",
+      "featured": false,
+      "focalX": 50,
+      "focalY": 50
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "heroTagline": "Rehuhuolto & Perinteet",
+  "heroTitle": "Siltajoen Siilo.",
+  "heroBody": "Siltajoen Sirkuksessa kaikki alkaa puhtaasta ja laadukkaasta ravinnosta. Perinteinen rehuhuoltomme varmistaa, että jokainen asukkaamme – kanoista suurimpiin tähtiin – saa parasta mahdollista huolenpitoa.",
+  "heroImage": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
+  "heroFocalX": 50,
+  "heroFocalY": 50,
+  "featureCards": [
+    {
+      "icon": "verified",
+      "title": "Laadunvarmistus",
+      "body": "Siltajoen Sirkuksen rehuhuolto perustuu tinkimättömään laatuun. Jokainen erä tarkastetaan huolellisesti ennen varastointia."
+    },
+    {
+      "icon": "nest_eco_leaf",
+      "title": "Luonnonmukaisuus",
+      "body": "Suosimme lähituotettua viljaa ja luonnollisia rehuja, jotka tukevat eläintemme terveyttä ja hyvinvointia kestävällä tavalla."
+    },
+    {
+      "icon": "local_shipping",
+      "title": "Tehokas Logistiikka",
+      "body": "Automatisoitu varastointijärjestelmämme takaa rehun tuoreuden ja hävikin minimoimisen kaikissa olosuhteissa."
+    }
+  ],
+  "stats": [
+    { "value": "100%", "label": "Puhdas Rehu" },
+    { "value": "24/7", "label": "Valvonta" },
+    { "value": "< 2%", "label": "Hävikki" },
+    { "value": "15 km", "label": "Lähitilaa" }
+  ]
+}

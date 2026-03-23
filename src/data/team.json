@@ -2,15 +2,33 @@
   "members": [
     {
       "name": "Marianne",
-      "role": "Tirehtööri & Perustaja",
+      "role": "Tirehtööri",
+      "phone": "044 975 0415",
+      "email": "",
+      "bio": "Sirkuksen sielu ja johtaja, joka pitää huolen siitä, että karavaani kulkee ja jokainen tuntee olonsa kotoisaksi.",
       "image": "/kuvia/sylissa2.JPG",
-      "bio": "Marianne on Siltajoen Sirkuksen perustaja ja sielu. Hänellä on vuosien kokemus lintujen kasvatuksesta ja intohimo eläinten hyvinvointiin."
+      "focalX": 50,
+      "focalY": 30
+    },
+    {
+      "name": "Markko",
+      "role": "Tekniikka & Huolto",
+      "phone": "",
+      "email": "markko@siltajoensirkus.fi",
+      "bio": "Mies, joka saa teltan pystyyn ja valot syttymään. Markko on paikalla ensimmäisenä ja lähtee viimeisenä.",
+      "image": "",
+      "focalX": 50,
+      "focalY": 30
     },
     {
       "name": "Ansa",
       "role": "Somettaja",
-      "image": "/kuvia/darrock_koira_showcase.JPG",
-      "bio": "Ansa vastaa sirkuksen some-elämästä ja pitää seuraajat ajan tasalla sirkuksen tapahtumista ja uusista tulokaista."
+      "phone": "",
+      "email": "",
+      "bio": "Sirkuksen visuaalinen ääni maailmalle. Ansa vastaa siitä, että jokainen temppu ja tunnelma välittyy verkon yli aitoina ja puhuttelevina tarinoina.",
+      "image": "",
+      "focalX": 50,
+      "focalY": 30
     }
   ]
 }
