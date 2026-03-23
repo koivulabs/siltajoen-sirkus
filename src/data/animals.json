@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "title": "Kesyjä eläimiä",
+    "description": [
+      "Meillä kaikki eläimet kasvavat perheenjäseninä ja muuttavat vain oikeisiin rakastaviin koteihin.",
+      "Opastamme mielellämme valitsemasi lajin ja rodun hoidossa, jokainen on ollut joskus aloittelija. Pyrimme myös aina löytämään juuri ne oikeat yksilöt teidän perheen parveen ja laumaan. Joten kerrothan jo yhteyttä ottaessasi millainen porukka ja tilat teillä on tarjolla ja mitä toivotte uusilta perheenjäseniltänne.",
+      "Kiinnitämme erityisesti huomiota siitoskukkojemme luonteisiin, jotta meiltä voi turvallisin mielin ostaa lapsiperhekukkoja. Kiekukauloja, jotka osaavat kanojen hoidon lisäksi myös olla kivoja ihmisilleen."
+    ],
+    "image": "/kuvia/sylissa1.JPG"
+  },
+  "specialCategories": [
+    {
+      "name": "Viiriäiset",
+      "subtitle": "Pikkuiset munatykit",
+      "image": "/kuvia/viiriainenkasissa.JPG",
+      "description": [
+        "Viiriäiset ovat pieniä kanalintuja, jotka munivat ruhtinaallisesti. Kuten kaikki munivat linnut, viiriäisetkin tarvitsevat paljon proteiinia ja kalkkia munantuotantonsa tueksi. Siksipä olemme kehittäneet oman suomalaisen rehun viiriäisten ruokintaan."
+      ]
+    },
+    {
+      "name": "Ankat",
+      "subtitle": "",
+      "image": "/kuvia/ankkanokkaauki.jpg",
+      "description": [
+        "Kääkkäät ovat Tirehtöörin uusin villitys. Vahingossa hautomakoneeseen sujahtaneet ankanmunat itivät ja kuoriutuivat söpöiksi sydämen valtaajiksi. Se oli menoa heti ekan lättänokan myötä.",
+        "Kasvatuksessa upean mustia Cayuga ankkoja, jotka munivat tummanharmaita munia. Cayuga porukkaa luotsaa erisukuinen Batman ankka.",
+        "Toinen kvaakkuparvi on Peking pohjainen sortinsakki sekulikirjavia ja valkoisia ankkamatameja Peking ukkelin hellässä huomassa."
+      ]
+    }
+  ],
+  "chickenBreeds": [
+    {
+      "name": "Silkkikanat",
+      "image": "/kuvia/silkkikana.jpg",
+      "description": [
+        "Silkkikanat ovat söpön siliteltäviä pehmolelun näköisiä pööpiäisiä. Luonteeltaan silkit ovat juuri niin hurmaavia miltä näyttävätkin: uteliaan kesyjä ja pikkuisen höppänöitä.",
+        "Silkkikanan sulka on tyypillisesti karvamainen höhhelö. Meillä silkeistä löytyy myös muut sulkamuodot ns smooth, eli \"normisulkainen\" ja frisee, eli kiharasulkainen versio.",
+        "Silkkikana on pieni noin kilon kokoinen kääpiörotu ja erittäin hautomainnokas. Emoina silkit ovatkin mahtavia ja silkkien kasvattaja saakin nauttia ympäri vuoden pikkutipuista. Silkkikana on hautomakone, jossa ei ole on off-nappulaa."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "35€" }
+      ]
+    },
+    {
+      "name": "Kääpiökoch",
+      "image": "/kuvia/kaapiokoch.jpg",
+      "description": [
+        "Vilkkaat ja eloisat pussihousut vain vilkkuvat kun kääpiökochit kipittävät pihapuuhiinsa. Lennokas askel ja pehmeän pyöreä pyrstö on näiden pikkuotusten tavaramerkki.",
+        "Todella uteliaita, sosiaalisia ja mielellään mukana menossa oleva rotu, joka suorastaan tunkee syliin. Kääpiökochien kanssa saakin tottua tekemään töitään kaveri kainalossa tai olkapäällä. Ja kavereitahan riittää, sillä käppänät ovat todella ottaneet todesta \"lisääntykää ja täyttäkää maa\" ohjeistuksen.",
+        "Halutessaan tipuja käppänämamma hautoo niitä vaikka porkkananpalasesta tai omenanpuolikkaasta. Suuri osa kääpiökoch kukoistamme osallistuu myös tipujen hoitoon tai viimeistään mamman vieroittaessa vauvansa astuu isä remmiin ja alkaa hoitaa ja opastaa nuorisoa.",
+        "Ei ole ollenkaan ennenkuulumatonta, että käppänä kana tai kukko murtautuu konehaudottujen tipujen häkkiin ja alkaa hoitaa lapsosia ominaan."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "35€" },
+        { "label": "Kukko", "amount": "10€" }
+      ]
+    },
+    {
+      "name": "Marans",
+      "image": "/kuvia/marans.jpg",
+      "description": [
+        "Marans on vanha ranskalainen liha- ja munarotu, jonka erityispiirre on erittäin tummanruskea kuoriset kookkaat munat.",
+        "Siltajoella kasvatetaan Maranseja kahdessa erisukuisessa parvessa, väreissä Black Copper ja Blue Copper + Blue. Blue Copper kukon parvessa on muutama Splash kana, joten toisinaan myyntiin tulee myös Splashin värisiä kanoja ja kukkoja."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "40€" },
+        { "label": "Kukko", "amount": "25€" },
+        { "label": "Lihakukkopojat (6-8vko)", "amount": "5€/kpl" }
+      ]
+    },
+    {
+      "name": "Marau",
+      "image": "/kuvia/marau.jpg",
+      "description": [
+        "Marau on Tirehtöörin oma kasvatusprojekti, jonka tarkoituksena on luoda leppoisan rauhallinen ja terve \"rotu\", joka kasvaa verrattain nopeasti, munii oliivinvihreitä pilkullisia munia, on hauskan näköinen, terve ja ei hautomainnokas.",
+        "Nimensä mukaisesti Marau on lähtöisin Maransin ja Araucanan risteytyksestä, mutta mixailen mukaan myös hieman ruskeaa Hy-linea ja valkoista munintahybridiä varmistamaan runsasta munintaa ja hautomavietin puutetta. Kotikanaloissa monesti hyvin hautomainnokas rotu aiheuttaa päänvaivaa kun tipuja ei ole mahdollista vastaanottaa vuoden ympäri, mitä esimerkiksi silkki- ja kääpiökoch mammat mieluusti tekisivät."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "35€" },
+        { "label": "Kukko", "amount": "5€" }
+      ]
+    },
+    {
+      "name": "Araucana",
+      "image": "/kuvia/araucana.jpg",
+      "description": [
+        "Araucana rotu on lähtöisin Etelä-Amerikasta. Keskikokoisiin rotuihin lukeutuva araucana on liha- ja munarotu, jonka erityispiirre on sinertävä kuoriset munat. Araucanat ovat luonteeltaan hieman hitaita hämäläisiä, hoomoilasia hömelöitä, mutta erittäin oman arvonsa tuntevia ja ylväitä. Joillain Araucanoilla on myös maltillinen hautomavietti."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "40€" },
+        { "label": "Kukko", "amount": "10€" }
+      ]
+    },
+    {
+      "name": "Mille Fleur",
+      "image": "/kuvia/millefleur.jpg",
+      "description": [
+        "Kirjavat vilkkaat pikkukanat, voiko tällaisia olla olemassakaan? Aivan kuin sadusta. Silti ihan oikeita kanasia pienine munineen ja suurine jalkasulkineen."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "25€" },
+        { "label": "Muniva kana", "amount": "40€" },
+        { "label": "Kukko", "amount": "10€" }
+      ]
+    },
+    {
+      "name": "Sekulit",
+      "image": "/kuvia/sekulit.jpg",
+      "isWide": true,
+      "description": [
+        "Myyn sekarotuisina väri- ja rotuvirheelliset. Virheet ovat vain ulkonäöllisiä ominaisuuksia, joiden takia ko yksilö ei sovellu rotukasvatukseen. Luonteensa puolesta nämäkin ovat tyypillisiä rotunsa edustajia ja hurmaavia lemmikkitasoisia otuksia, jotka sopivat mainiosti kotikanalan sekaparveen munimaan ja hyvää elämää viettämään."
+      ],
+      "prices": [
+        { "label": "Nuorikko", "amount": "25€" },
+        { "label": "Muniva kana", "amount": "35€" },
+        { "label": "Jätkän pätkä", "amount": "5€" }
+      ]
+    }
+  ]
+}
