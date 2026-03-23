@@ -7,5 +7,12 @@
   "introText2": "Siilon kautta hoidat helposti rehut ja tarvikkeet.",
   "instagramUrl": "https://www.instagram.com/siltajoensirkus",
   "facebookUrl": "https://www.facebook.com/siltajoensirkus",
-  "shopUrl": "https://siltajoensirkus.mycashflow.fi/"
+  "shopUrl": "https://siltajoensirkus.mycashflow.fi/",
+  "comingSoon": {
+    "show": true,
+    "title": "Seuraavaksi tulossa",
+    "text": "Kesän ensimmäiset tipuerät hautumassa!",
+    "date": "Toukokuu 2024",
+    "image": "/kuvia/sylissa1.JPG"
+  }
 }

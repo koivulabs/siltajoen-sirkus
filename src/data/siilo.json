@@ -27,5 +27,17 @@
     { "value": "24/7", "label": "Valvonta" },
     { "value": "< 2%", "label": "Hävikki" },
     { "value": "15 km", "label": "Lähitilaa" }
+  ],
+  "testimonials": [
+    {
+      "name": "Satu J.",
+      "text": "Marianne neuvoi meitä ruokinnassa todella hyvin, kun aloitimme kanojen kanssa. Rehut ovat huippulaatua!",
+      "date": "20.3.2024"
+    },
+    {
+      "name": "Pekka M.",
+      "text": "Siilon kautta haku onnistui vaivattomasti. Erittäin tyytyväinen palveluun.",
+      "date": "15.3.2024"
+    }
   ]
 }

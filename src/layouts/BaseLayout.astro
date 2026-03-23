@@ -56,9 +56,19 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     
-    <style>
+    <style is:global>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
     <!-- Koivulabs Chatbot -->
@@ -198,6 +208,27 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
           }
         });
       }
+
+      // Scroll Reveal Observer
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      
+      // Re-observe if dynamic content added (simplified for this case)
+      document.addEventListener('astro:page-load', () => {
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      });
     </script>
   </body>
 </html>

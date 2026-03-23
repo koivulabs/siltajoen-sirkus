@@ -401,11 +401,21 @@ function renderSiilo(){
     <div class="card" style="margin-top:1.5rem"><div class="card-title"><span class="card-title-left">📊 Tilastopalkki</span></div>
       ${statsHtml}
       <button class="btn-add" onclick="addSiiloStat()" style="margin-top:0.5rem">+ Lisää tilasto</button>
-    </div>`;
+    </div>
+    <h3 style="font-weight:800;margin-top:2rem;margin-bottom:1rem;font-size:1rem;color:#a8c5a8">💬 Asiakasvolat (Testimonials)</h3>
+    ${(siiloData.testimonials||[]).map((t,i)=>`
+      <div class="card"><div class="card-title"><span class="card-title-left">💬 Palaute ${i+1}</span><button class="btn-del" onclick="removeTestimonial(${i})">✕</button></div>
+        <div class="field-group"><label class="field-label">Nimi</label><input class="field-input" id="t-${i}-name" value="${esc(t.name)}" /></div>
+        <div class="field-group"><label class="field-label">Palaute</label><textarea class="field-input" id="t-${i}-text">${esc(t.text)}</textarea></div>
+        <div class="field-group"><label class="field-label">Päivämäärä</label><input class="field-input" id="t-${i}-date" value="${esc(t.date)}" /></div>
+      </div>`).join('')}
+    <button class="btn-add" onclick="addTestimonial()">+ Lisää asiakaspalaute</button>`;
 }
 function addSiiloCard(){siiloData.featureCards.push({icon:'star',title:'Uusi ominaisuus',body:''});renderSiilo();}
 function removeSiiloCard(i){if(confirm('Poista kortti?')){siiloData.featureCards.splice(i,1);renderSiilo();}}
 function addSiiloStat(){siiloData.stats.push({value:'',label:''});renderSiilo();}
+function addTestimonial(){siiloData.testimonials=siiloData.testimonials||[];siiloData.testimonials.push({name:'Uusi asiakas',text:'',date:new Date().toLocaleDateString('fi-FI')});renderSiilo();}
+function removeTestimonial(i){if(confirm('Poista palaute?')){siiloData.testimonials.splice(i,1);renderSiilo();}}
 
 // ─── CONTACT ───────────────────────────────────────────────────
 function renderContact(){
@@ -439,6 +449,13 @@ function renderHomepage(){
       <div class="field-group"><label class="field-label">Kuva 1</label>${imgPickerHtml('hp-img1',homepageData.heroImage1,50,50)}</div>
       <div class="field-group"><label class="field-label">Kuva 2</label>${imgPickerHtml('hp-img2',homepageData.heroImage2,50,50)}</div>
       <div class="field-group"><label class="field-label">Kuva 3</label>${imgPickerHtml('hp-img3',homepageData.heroImage3,50,50)}</div>
+    </div>
+    <div class="card" style="background:#1a1a1a;color:white"><div class="card-title" style="color:white"><span class="card-title-left">📅 Seuraavaksi tulossa (Coming Soon)</span></div>
+      <div class="field-group"><div class="checkbox-row"><input type="checkbox" id="hp-cs-show" ${homepageData.comingSoon?.show?'checked':''}><label class="field-label" style="margin:0;cursor:pointer;color:white" for="hp-cs-show">Näytä tämä osio etusivulla</label></div></div>
+      <div class="field-group"><label class="field-label">Otsikko (pieni)</label><input class="field-input" id="hp-cs-title" value="${esc(homepageData.comingSoon?.title||'')}" /></div>
+      <div class="field-group"><label class="field-label">Pääteksti (iso)</label><input class="field-input" id="hp-cs-text" value="${esc(homepageData.comingSoon?.text||'')}" /></div>
+      <div class="field-group"><label class="field-label">Ajankohta</label><input class="field-input" id="hp-cs-date" value="${esc(homepageData.comingSoon?.date||'')}" /></div>
+      <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml('hp-cs-img',homepageData.comingSoon?.image,50,50)}</div>
     </div>`;
 }
 
@@ -474,6 +491,7 @@ async function saveCurrentSection(){
     siiloData.heroTagline=val('siilo-tagline');siiloData.heroTitle=val('siilo-title');siiloData.heroBody=val('siilo-body');siiloData.heroImage=val('siilo-heroimage');const hf=getFocal('siilo-heroimage');siiloData.heroFocalX=hf.focalX;siiloData.heroFocalY=hf.focalY;
     siiloData.featureCards.forEach((c,i)=>{c.icon=val(`sc2-${i}-icon`);c.title=val(`sc2-${i}-title`);c.body=val(`sc2-${i}-body`);});
     siiloData.stats.forEach((s,i)=>{s.value=val(`stat-${i}-value`);s.label=val(`stat-${i}-label`);});
+    siiloData.testimonials=(siiloData.testimonials||[]).map((_,i)=>({name:val(`t-${i}-name`),text:val(`t-${i}-text`),date:val(`t-${i}-date`)}));
     filePath='src/data/siilo.json';content=siiloData;
   } else if(currentSection==='contact'){
     contactData.street=val('c-street');contactData.city=val('c-city');contactData.email1=val('c-email1');contactData.email2=val('c-email2');contactData.phone=val('c-phone');contactData.heroImage=val('c-heroimage');const cf=getFocal('c-heroimage');contactData.heroFocalX=cf.focalX;contactData.heroFocalY=cf.focalY;
@@ -481,6 +499,13 @@ async function saveCurrentSection(){
   } else if(currentSection==='homepage'){
     homepageData.heroTitle=val('hp-heroTitle');homepageData.introText=val('hp-intro1');homepageData.introText2=val('hp-intro2');homepageData.instagramUrl=val('hp-instagram');homepageData.facebookUrl=val('hp-facebook');homepageData.shopUrl=val('hp-shop');
     homepageData.heroImage1=val('hp-img1');homepageData.heroImage2=val('hp-img2');homepageData.heroImage3=val('hp-img3');
+    homepageData.comingSoon={
+      show:document.getElementById('hp-cs-show')?.checked||false,
+      title:val('hp-cs-title'),
+      text:val('hp-cs-text'),
+      date:val('hp-cs-date'),
+      image:val('hp-cs-img')
+    };
     filePath='src/data/homepage.json';content=homepageData;
   }
 
