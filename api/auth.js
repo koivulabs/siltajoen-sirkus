@@ -1,62 +1,85 @@
-// /api/auth.js — GitHub OAuth callback handler for Decap CMS
-// This runs as a Vercel Serverless Function
+// /api/auth.js — Täydellinen GitHub OAuth handler Decap CMS:lle
+// Käsittelee sekä kirjautumisen aloituksen että callbackin
 
 export default async function handler(req, res) {
-  const { code } = req.query;
+  const { code, provider, scope } = req.query;
 
-  if (!code) {
-    return res.status(400).send('Missing code parameter');
+  // TAPAUS 1: Decap CMS pyytää kirjautumisen aloitusta
+  // URL: /api/auth?provider=github&scope=repo,user
+  if (provider === 'github' && !code) {
+    const clientId = process.env.GITHUB_CLIENT_ID;
+    const redirectUri = `https://siltajoensirkus.vercel.app/api/auth`;
+    const githubScope = scope || 'repo,user';
+
+    const githubUrl = new URL('https://github.com/login/oauth/authorize');
+    githubUrl.searchParams.set('client_id', clientId);
+    githubUrl.searchParams.set('redirect_uri', redirectUri);
+    githubUrl.searchParams.set('scope', githubScope);
+    githubUrl.searchParams.set('response_type', 'code');
+
+    return res.redirect(302, githubUrl.toString());
   }
 
-  try {
-    const response = await fetch('https://github.com/login/oauth/access_token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        client_id: process.env.GITHUB_CLIENT_ID,
-        client_secret: process.env.GITHUB_CLIENT_SECRET,
-        code,
-      }),
-    });
+  // TAPAUS 2: GitHub ohjaa takaisin koodin kanssa
+  // URL: /api/auth?code=XXXX
+  if (code) {
+    try {
+      const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          client_id: process.env.GITHUB_CLIENT_ID,
+          client_secret: process.env.GITHUB_CLIENT_SECRET,
+          code,
+        }),
+      });
 
-    const data = await response.json();
+      const data = await tokenResponse.json();
 
-    if (data.error) {
-      return res.status(400).send(`GitHub OAuth error: ${data.error_description}`);
-    }
-
-    const token = data.access_token;
-
-    // Send the token back to Decap CMS via postMessage
-    const script = `
-      <script>
-        (function() {
-          function receiveMessage(e) {
-            console.log("receiveMessage %o", e);
-            window.opener.postMessage(
-              'authorization:github:success:${JSON.stringify({ token }).replace(/'/g, "\\'")}',
-              e.origin
+      if (data.error) {
+        return res.status(400).send(`
+          <!doctype html><html><body><script>
+            window.opener && window.opener.postMessage(
+              'authorization:github:error:${JSON.stringify({ message: data.error_description })}',
+              '*'
             );
-          }
-          window.addEventListener("message", receiveMessage, false);
-          window.opener.postMessage("authorizing:github", "*");
-        })()
-      <\/script>
-    `;
+            window.close();
+          <\/script></body></html>
+        `);
+      }
 
-    return res.status(200).send(`
-      <!doctype html>
-      <html>
+      const token = data.access_token;
+
+      // Lähetä token takaisin Decap CMS:lle postMessage-viestillä
+      return res.status(200).send(`
+        <!doctype html>
+        <html>
         <head><meta charset="utf-8" /></head>
         <body>
-          ${script}
+        <script>
+          (function() {
+            function sendToken(e) {
+              window.opener.postMessage(
+                'authorization:github:success:${JSON.stringify({ token, provider: 'github' }).replace(/\\/g, '\\\\').replace(/'/g, "\\'")}',
+                e.origin
+              );
+              window.removeEventListener('message', sendToken);
+            }
+            window.addEventListener('message', sendToken, false);
+            window.opener && window.opener.postMessage('authorizing:github', '*');
+          })();
+        <\/script>
         </body>
-      </html>
-    `);
-  } catch (err) {
-    return res.status(500).send(`Server error: ${err.message}`);
+        </html>
+      `);
+    } catch (err) {
+      return res.status(500).send(`Server error: ${err.message}`);
+    }
   }
+
+  // Jos parametrit puuttuvat täysin
+  return res.status(400).send('Missing required parameters (provider or code)');
 }
