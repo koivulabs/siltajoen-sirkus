@@ -49,6 +49,16 @@
       "image": "",
       "focalX": 50,
       "focalY": 50
+    },
+    {
+      "name": "Darrock",
+      "role": "Lauman vartija",
+      "phone": "",
+      "email": "",
+      "bio": "",
+      "image": "/kuvia/darrock_koira_showcase.JPG",
+      "focalX": 45,
+      "focalY": 48
     }
   ]
 }
