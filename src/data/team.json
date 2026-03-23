@@ -29,6 +29,26 @@
       "image": "",
       "focalX": 50,
       "focalY": 30
+    },
+    {
+      "name": "Uusi jäsen",
+      "role": "",
+      "phone": "",
+      "email": "",
+      "bio": "",
+      "image": "",
+      "focalX": 50,
+      "focalY": 50
+    },
+    {
+      "name": "Jarkko",
+      "role": "Tuottaja",
+      "phone": "",
+      "email": "",
+      "bio": "",
+      "image": "",
+      "focalX": 50,
+      "focalY": 50
     }
   ]
 }
