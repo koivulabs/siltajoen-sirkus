@@ -10,8 +10,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section class="relative px-6 py-20 lg:py-32 overflow-hidden">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
       <div class="z-10">
-        <span class="inline-block text-secondary font-bold tracking-[0.2em] uppercase text-sm mb-6">Siltajoen Sirkus Presents</span>
-        <h1 class="font-headline text-6xl lg:text-8xl font-black text-on-surface leading-[0.9] mb-10 uppercase italic">
+        <span class="inline-block text-secondary font-bold tracking-[0.2em] uppercase text-sm mb-4 lg:mb-6">Siltajoen Sirkus Presents</span>
+        <h1 class="font-headline text-4xl sm:text-5xl lg:text-7xl font-black text-on-surface leading-[0.9] mb-8 lg:mb-10 uppercase italic break-words">
             Sylissä <br/> <span class="text-primary">Kasvaneita</span>
         </h1>
         <p class="text-xl lg:text-2xl text-on-surface-variant leading-relaxed max-w-xl font-medium">
@@ -33,10 +33,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <!-- Product Grid Section -->
   <section class="bg-surface-container-low py-32 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-20 gap-8">
         <div>
-          <h2 class="font-headline text-5xl font-black text-on-surface mb-4 uppercase italic">Sulkapeitteiset Tähdet</h2>
-          <p class="text-on-surface-variant text-lg max-w-md">Löydä uusi perheenjäsen sirkuksen laadukkaimmista ja rakastetuimmista roduista.</p>
+          <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-4 uppercase italic break-words">Sulkapeitteiset Tähdet</h2>
+          <p class="text-on-surface-variant text-base sm:text-lg max-w-md">Löydä uusi perheenjäsen sirkuksen laadukkaimmista ja rakastetuimmista roduista.</p>
         </div>
         <div class="flex flex-wrap gap-3">
           <span class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-full text-xs font-black uppercase flex items-center gap-2">
@@ -125,9 +125,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <!-- Why Section -->
   <section class="py-32 px-6">
     <div class="max-w-7xl mx-auto">
-      <div class="bg-surface-container-highest rounded-xl p-12 lg:p-24 relative overflow-hidden">
+      <div class="bg-surface-container-highest rounded-xl p-8 sm:p-12 lg:p-24 relative overflow-hidden">
         <div class="max-w-2xl relative z-10">
-          <h2 class="font-headline text-5xl lg:text-6xl font-black text-on-surface mb-10 leading-tight uppercase italic">
+          <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-8 lg:mb-10 leading-tight uppercase italic break-words">
               Miksi valita <br/><span class="text-primary">Siltajoen siivekäs?</span>
           </h2>
           <div class="space-y-8 text-xl text-on-surface-variant">
@@ -173,10 +173,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-32 px-6 bg-surface-container-low">
+  <section class="py-20 lg:py-32 px-6 bg-surface-container-low">
     <div class="max-w-4xl mx-auto">
-      <h2 class="font-headline text-5xl font-black text-on-surface mb-16 text-center uppercase italic">Usein kysytyt kysymykset kanoista</h2>
-      <div class="space-y-12">
+      <h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface mb-12 lg:mb-16 text-center uppercase italic break-words">Usein kysytyt kysymykset kanoista</h2>
+      <div class="space-y-8 lg:space-y-12">
         <article class="bg-surface p-10 rounded-xl editorial-shadow border-l-8 border-primary">
           <h3 class="font-headline text-2xl font-black mb-4 uppercase italic">Miten varaan untuvikkoja tai kanoja?</h3>
           <p class="text-on-surface-variant text-lg">Laita meille viestiä yhteystietolomakkeen kautta tai soita suoraan. Sovimme tapaamisen sirkukselle Leppävedelle tai Vaajakoskelle, jossa voit tutustua lintuihin ennen ostopäätöstä.</p>
@@ -194,15 +194,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <!-- Contact Section -->
-  <section class="py-32 px-6" id="yhteys">
+  <section class="py-20 lg:py-32 px-6" id="yhteys">
     <div class="max-w-4xl mx-auto text-center">
-      <span class="text-primary font-black tracking-widest uppercase text-sm mb-6 block">Haluatko varata omasi?</span>
-      <h2 class="font-headline text-7xl font-black mb-10 uppercase italic">Ota Yhteyttä</h2>
-      <p class="text-2xl text-on-surface-variant mb-16 leading-relaxed font-medium">
+      <span class="text-primary font-black tracking-widest uppercase text-xs sm:text-sm mb-4 sm:mb-6 block">Haluatko varata omasi?</span>
+      <h2 class="font-headline text-4xl sm:text-5xl lg:text-7xl font-black mb-8 sm:mb-10 uppercase italic break-words">Ota Yhteyttä</h2>
+      <p class="text-lg sm:text-xl lg:text-2xl text-on-surface-variant mb-12 sm:mb-16 leading-relaxed font-medium">
           Hinnat alk. 35€/kpl. Linnut myydään vain hyviin ja vastuullisiin koteihin. <br/>Laita viestiä ja sovitaan vierailu sirkuksen tiluksille!
       </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-6">
-        <a href="/yhteystiedot" class="bg-primary text-on-primary px-12 py-5 rounded-full font-black text-lg uppercase tracking-wider hover:scale-105 transition-transform shadow-xl shadow-primary/30 inline-block">
+      <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+        <a href="/yhteystiedot" class="bg-primary text-on-primary px-8 sm:px-12 py-4 sm:py-5 rounded-full font-black text-base sm:text-lg uppercase tracking-wider hover:scale-105 transition-transform shadow-xl shadow-primary/30 inline-block">
             Lähetä Viesti
         </a>
         <a href="tel:+358401234567" class="bg-secondary-container text-on-secondary-container px-12 py-5 rounded-full font-black text-lg uppercase tracking-wider hover:scale-105 transition-transform inline-block">
