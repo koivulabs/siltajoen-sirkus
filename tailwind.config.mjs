@@ -5,13 +5,16 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				"primary": "#D9534F",
+				"primary": "#416047",
 				"on-primary": "#ffffff",
-				"secondary": "#FFB800",
-				"surface": "#fff8f5",
-				"on-surface": "#38312c",
-				"background": "#fff8f5",
-				"on-background": "#38312c",
+				"secondary": "#A94B32",
+                "on-secondary": "#ffffff",
+				"surface": "#F9F6F0",
+				"on-surface": "#2D2621",
+				"surface-variant": "#EFEBE3",
+				"on-surface-variant": "#4A433D",
+				"background": "#F9F6F0",
+				"on-background": "#2D2621",
 			},
 			fontFamily: {
 				"headline": ["Epilogue"],
