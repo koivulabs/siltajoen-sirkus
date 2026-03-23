@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://siltajoensirkus.fi/sitemap-index.xml

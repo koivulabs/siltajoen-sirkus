@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Saavutettavuusseloste" 
+  description="Siltajoen Sirkuksen saavutettavuusseloste."
+>
+  <div class="px-6 max-w-4xl mx-auto pt-40 pb-24">
+    <h1 class="font-headline text-5xl md:text-6xl font-black mb-12 italic tracking-tighter text-primary">Saavutettavuusseloste</h1>
+    
+    <article class="prose prose-lg dark:prose-invert max-w-none space-y-8 text-on-surface-variant">
+      <p>
+        Tämä saavutettavuusseloste koskee sivustoa <strong>siltajoensirkus.fi</strong>. Tavoitteenamme on taata mahdollisimman esteetön verkkopalvelu kaikille käyttäjille.
+      </p>
+
+      <section>
+        <h2 class="font-headline text-2xl font-bold text-on-surface mb-4">Vaatimustenmukaisuustila</h2>
+        <p>
+          Tämä verkkosivusto on osittain WCAG 2.1 -standardin AA-tason vaatimusten mukainen. Pyrimme jatkuvasti parantamaan sivustomme saavutettavuutta.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-headline text-2xl font-bold text-on-surface mb-4">Sisältö, joka ei ole saavutettavaa</h2>
+        <p>
+          Osa sivuilla olevasta sisällöstä ei mahdollisesti täytä kaikkia saavutettavuusvaatimuksia täysin:
+          <ul>
+            <li>Joidenkin siirtymien kontrastierot eivät välttämättä ole selkeitä kaikkiin ruutuihin.</li>
+            <li>Kuville on määritelty alt-tekstit, mutta joidenkin koristeellisten kuvien tekstit voivat kaivata vielä tarkennusta.</li>
+          </ul>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-headline text-2xl font-bold text-on-surface mb-4">Palaute ja yhteystiedot</h2>
+        <p>
+          Huomasitko saavutettavuuspuutteen sivustollamme? Kerro siitä meille, ja teemme parhaamme tilanteen korjaamiseksi. Voit lähettää sähköpostia osoitteeseen: <a href="mailto:siilo@siltajoensirkus.fi" class="text-primary hover:underline">siilo@siltajoensirkus.fi</a>.
+        </p>
+      </section>
+    </article>
+  </div>
+</BaseLayout>

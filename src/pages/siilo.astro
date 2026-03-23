@@ -1,0 +1,150 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout 
+  title="Siilo" 
+  description="Tutustu Siltajoen Sirkuksen moderniin siiloon ja ensiluokkaiseen rehulogistiikkaan. Puhtaus, laatu ja automatisoitu viljan varastointi ovat toimintamme keskiössä."
+>
+  <!-- Hero Section -->
+  <section class="px-8 py-20 bg-surface">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6">
+            Rehuhuolto &amp; Perinteet
+        </span>
+        <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8">
+            Siltajoen <span class="text-primary italic">Siilo.</span>
+        </h1>
+        <p class="text-xl text-on-background/70 max-w-lg mb-10 leading-relaxed">
+            Siltajoen Sirkuksessa kaikki alkaa puhtaasta ja laadukkaasta ravinnosta. Perinteinen rehuhuoltomme varmistaa, että jokainen asukkaamme – kanoista suurimpiin tähtiin – saa parasta mahdollista huolenpitoa.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#lisaa" class="bg-primary text-on-primary px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all inline-block">
+              Lue lisää
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-[4/5] rounded-3xl bg-neutral-200 overflow-hidden shadow-2xl flex items-center justify-center text-neutral-400 relative">
+          <img src="/placeholder-farm.jpg" alt="Maatilan rehupussit ja kanat" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
+          <div class="text-center p-8 z-10 relative bg-white/50 backdrop-blur-sm rounded-xl">
+            <span class="material-symbols-outlined text-6xl mb-4">agriculture</span>
+            <p class="font-bold uppercase tracking-widest text-xs">Kuva: Maatilan rehupussit ja kanat</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section: Verbatim Finnish Text -->
+  <section id="lisaa" class="px-8 py-24">
+    <div class="max-w-4xl mx-auto text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-black mb-8 tracking-tighter">Silo &amp; Logistiikka</h2>
+      <p class="text-xl leading-relaxed text-on-background/80">
+          Tutustu Siltajoen Sirkuksen moderniin siiloon ja ensiluokkaiseen rehulogistiikkaan. Puhtaus, laatu ja automatisoitu viljan varastointi ovat toimintamme keskiössä.
+      </p>
+    </div>
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+      <div class="p-10 border border-outline rounded-3xl hover:border-primary/30 transition-colors bg-white">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-8">
+          <span class="material-symbols-outlined text-3xl">verified</span>
+        </div>
+        <h3 class="text-2xl font-black mb-4">Laadunvarmistus</h3>
+        <p class="text-on-background/70 leading-relaxed">
+            Siltajoen Sirkuksen rehuhuolto perustuu tinkimättömään laatuun. Jokainen erä tarkastetaan huolellisesti ennen varastointia.
+        </p>
+      </div>
+      <div class="p-10 border border-outline rounded-3xl hover:border-primary/30 transition-colors bg-white">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-8">
+          <span class="material-symbols-outlined text-3xl">nest_eco_leaf</span>
+        </div>
+        <h3 class="text-2xl font-black mb-4">Luonnonmukaisuus</h3>
+        <p class="text-on-background/70 leading-relaxed">
+            Suosimme lähituotettua viljaa ja luonnollisia rehuja, jotka tukevat eläintemme terveyttä ja hyvinvointia kestävällä tavalla.
+        </p>
+      </div>
+      <div class="p-10 border border-outline rounded-3xl hover:border-primary/30 transition-colors bg-white">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-8">
+          <span class="material-symbols-outlined text-3xl">local_shipping</span>
+        </div>
+        <h3 class="text-2xl font-black mb-4">Tehokas Logistiikka</h3>
+        <p class="text-on-background/70 leading-relaxed">
+            Automatisoitu varastointijärjestelmämme takaa rehun tuoreuden ja hävikin minimoimisen kaikissa olosuhteissa.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Section with Placeholder -->
+  <section class="px-8 py-24 bg-surface">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      <div class="w-full md:w-1/2">
+        <div class="aspect-square rounded-full bg-neutral-200 overflow-hidden border-8 border-white shadow-xl flex items-center justify-center text-neutral-400 relative">
+          <img src="/placeholder-feed.jpg" alt="Perinteiset rehupussit" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
+          <div class="text-center z-10 relative bg-white/50 backdrop-blur-sm p-6 rounded-xl">
+            <span class="material-symbols-outlined text-6xl mb-2">inventory_2</span>
+            <p class="font-bold uppercase tracking-widest text-xs">Kuva: Perinteiset rehupussit</p>
+          </div>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <h2 class="text-4xl md:text-5xl font-black mb-8 tracking-tighter">Puhtaus ja Turvallisuus.</h2>
+        <div class="space-y-8">
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white border border-outline flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">cleaning_services</span>
+            </div>
+            <div>
+              <h4 class="font-black text-xl mb-2">Säännöllinen Puhdistus</h4>
+              <p class="text-on-background/70">Siilomme ja varastomme puhdistetaan perusteellisesti säännöllisin väliajoin puhtauden varmistamiseksi.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-white border border-outline flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">analytics</span>
+            </div>
+            <div>
+              <h4 class="font-black text-xl mb-2">Tarkka Valvonta</h4>
+              <p class="text-on-background/70">Seuraamme varastotilojen lämpötilaa ja kosteutta reaaliajassa, jotta rehu säilyy optimaalisena.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <section class="bg-[#1A1A1A] text-white py-20 px-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+      <div>
+        <div class="text-5xl font-black text-primary mb-2">100%</div>
+        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Puhdas Rehu</div>
+      </div>
+      <div>
+        <div class="text-5xl font-black text-primary mb-2">24/7</div>
+        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Valvonta</div>
+      </div>
+      <div>
+        <div class="text-5xl font-black text-primary mb-2">0</div>
+        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Hävikki</div>
+      </div>
+      <div>
+        <div class="text-5xl font-black text-primary mb-2">12+</div>
+        <div class="text-xs uppercase tracking-[0.2em] font-bold opacity-60">Lähitilaa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="px-8 py-24">
+    <div class="max-w-5xl mx-auto rounded-[3rem] bg-primary text-on-primary p-12 md:p-20 text-center">
+      <h2 class="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Haluatko tietää lisää?</h2>
+      <p class="text-[white]/80 text-lg mb-12 max-w-xl mx-auto">Vastaamme mielellämme kysymyksiisi eläintemme ravinnosta ja sirkuksemme toiminnasta.</p>
+      <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+        <input class="flex-grow rounded-full border-none px-8 py-4 text-[#1A1A1A] placeholder:text-[#1A1A1A]/50 focus:ring-2 focus:ring-[white]" placeholder="Sähköpostiosoitteesi" required type="email"/>
+        <button class="bg-white text-primary px-10 py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:brightness-110 transition-all" type="submit">Lähetä</button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

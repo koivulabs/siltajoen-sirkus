@@ -1,0 +1,144 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://siltajoensirkus.fi/");
+
+// Google fonts
+const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap";
+---
+
+<!DOCTYPE html>
+<html lang="fi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Siltajoen Sirkus</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} | Siltajoen Sirkus`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Siltajoen Sirkus" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Schema.org Data -->
+    <script type="application/ld+json" set:html={`
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Siltajoen Sirkus",
+        "url": "https://siltajoensirkus.fi/",
+        "description": "Lintutila Siltajoen Sirkuksessa kasvatetaan eri rotuisia kanoja, viiriäisiä, ankkoja ja leijonaharjaskaneja. Siilon asiantunteva palvelu tarvike- ja rehumyynti aiheissa.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Siltajoentie",
+          "addressLocality": "Leppävesi",
+          "addressCountry": "FI"
+        }
+      }
+    `}></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={googleFonts} rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary overflow-x-hidden">
+    <!-- Top Navigation -->
+    <header>
+      <nav aria-label="Päävalikko" class="fixed top-0 w-full z-50 bg-[#fff8f5]/80 dark:bg-[#38312c]/80 backdrop-blur-md shadow-[0_20px_50px_rgba(56,49,44,0.06)]">
+        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+          <a href="/" class="text-2xl font-black text-[#D9534F] dark:text-[#ffaba5] uppercase italic font-['Epilogue'] tracking-tight cursor-pointer active:scale-95 transition-transform">
+              # siltajoensirkus
+          </a>
+          <!-- Desktop Links -->
+          <div class="hidden md:flex items-center gap-8 font-['Epilogue'] font-bold tracking-tight">
+            <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/">Koti</a>
+            <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/elaimet">Eläimet</a>
+            <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/siilo">Siilo</a>
+            <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/blogi">Blogi</a>
+            <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/tiimi">Tiimi</a>
+            <a class="text-[#38312c] dark:text-[#fbf2ec] hover:text-[#D9534F] transition-colors cursor-pointer active:scale-95" href="/yhteystiedot">Yhteystiedot</a>
+          </div>
+          <button class="bg-[#D9534F] text-white px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform duration-200 active:scale-95">
+              Liput
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-24 min-h-screen">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-12 bg-[#fbf2ec] dark:bg-[#2d2621] no-line-rule tonal-shift mt-24">
+      <div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-7xl mx-auto">
+        <div class="flex flex-col items-center md:items-start gap-2">
+          <div class="text-lg font-bold text-[#38312c] dark:text-[#fff8f5]">
+              Siltajoen Sirkus
+          </div>
+          <p class="text-[#38312c]/70 dark:text-[#fff8f5]/70 font-['Plus_Jakarta_Sans'] text-sm">
+              Tuotekatu 1, 41310 Leppävesi | Y-Tunnus: 1234567-8 <br/>
+              © {new Date().getFullYear()} Siltajoen Sirkus. All rights reserved. | siilo@siltajoensirkus.fi
+          </p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8 font-['Plus_Jakarta_Sans'] text-sm">
+          <a class="text-[#38312c]/70 dark:text-[#fff8f5]/70 hover:text-[#D9534F] underline-offset-4 hover:underline transition-all duration-300" href="/tietosuojaseloste">Tietosuojaseloste</a>
+          <a class="text-[#38312c]/70 dark:text-[#fff8f5]/70 hover:text-[#D9534F] underline-offset-4 hover:underline transition-all duration-300" href="/saavutettavuus">Saavutettavuus</a>
+        </div>
+        <div class="flex gap-4">
+          <span class="material-symbols-outlined text-[#D9534F] cursor-pointer hover:scale-110 transition-transform">public</span>
+          <span class="material-symbols-outlined text-[#D9534F] cursor-pointer hover:scale-110 transition-transform">mail</span>
+          <span class="material-symbols-outlined text-[#D9534F] cursor-pointer hover:scale-110 transition-transform">share</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 p-6 z-50 flex flex-col sm:flex-row items-center justify-between gap-4 transform transition-transform duration-300 translate-y-full">
+      <div class="flex-1">
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+          Käytämme evästeitä parantaaksemme sivuston käyttökokemusta. Jatkamalla sivuston käyttöä hyväksyt evästeiden käytön. 
+          <a href="/tietosuojaseloste" class="text-primary hover:underline">Lue lisää tietosuojaselosteesta.</a>
+        </p>
+      </div>
+      <div class="flex gap-4">
+        <button id="accept-cookies" class="px-6 py-2 bg-primary text-white rounded-full font-bold hover:opacity-90 transition-opacity">
+          Hyväksy kaikki
+        </button>
+      </div>
+    </div>
+    <script>
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('accept-cookies');
+      
+      if (!localStorage.getItem('cookies-accepted')) {
+        setTimeout(() => {
+            if(banner) banner.classList.remove('translate-y-full');
+        }, 500);
+      }
+      
+      if(acceptBtn) {
+          acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookies-accepted', 'true');
+            if(banner) banner.classList.add('translate-y-full');
+          });
+      }
+    </script>
+  </body>
+</html>
