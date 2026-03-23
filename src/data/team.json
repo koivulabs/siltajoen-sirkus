@@ -4,7 +4,7 @@
       "name": "Marianne",
       "role": "Tirehtööri",
       "phone": "044 975 0415",
-      "email": "",
+      "email": "marianne@siltajoensirkus.fi",
       "bio": "Sirkuksen sielu ja johtaja, joka pitää huolen siitä, että karavaani kulkee ja jokainen tuntee olonsa kotoisaksi.",
       "image": "/kuvia/sylissa2.JPG",
       "focalX": 50,
@@ -16,9 +16,9 @@
       "phone": "",
       "email": "markko@siltajoensirkus.fi",
       "bio": "Mies, joka saa teltan pystyyn ja valot syttymään. Markko on paikalla ensimmäisenä ja lähtee viimeisenä.",
-      "image": "",
-      "focalX": 50,
-      "focalY": 30
+      "image": "/kuvia/sylissa2.JPG",
+      "focalX": 57,
+      "focalY": 24
     },
     {
       "name": "Ansa",
