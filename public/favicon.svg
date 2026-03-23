@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Simplified Rooster Head Favicon -->
-  <path fill="#416047" d="M12 28c-4-2-6-6-6-10 0-6 4-10 10-10s4 2 6 4l4 2-2 4c2 0 4 2 4 4s-2 6-8 6h-8z"/>
-  <path fill="#A94B32" d="M14 4c0-2 2-4 4-2 0 2-2 4-2 4s-2 0-2-2zM18 6c0-2 2-4 4-2 0 2-2 4-2 4s-2 0-2-2zM22 10l2-2 2 2-4 2zM18 26c1 2 0 4-2 4s-3-2-2-4 2-2 4 0z"/>
+  <!-- Simplified Rooster Profile -->
+  <!-- Comb (Terracotta) -->
+  <path fill="#A94B32" d="M12 10c0-3 2-5 4-5s4 2 4 5l-8 0zM17 8c0-3 2-5 4-5s4 2 4 5l-8 0zM22 10c0-3 2-4 3-4s3 2 3 4l-6 0z"/>
+  <!-- Head & Neck (Forest Green) -->
+  <path fill="#416047" d="M22 10c-6 0-11 5-11 11s5 11 11 11h2l-2-11c0-6 0-11 0-11z"/>
+  <!-- Beak (Terracotta) -->
+  <path fill="#A94B32" d="M11 19l-4 3 4 3z"/>
+  <!-- Wattle (Terracotta) -->
+  <path fill="#A94B32" d="M11 25c0 2 2 4 4 4s4-2 4-4l-8 0z"/>
 </svg>
