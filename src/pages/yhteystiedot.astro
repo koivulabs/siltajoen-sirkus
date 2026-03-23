@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import contactDataRaw from "../data/contact.json";
+const c = contactDataRaw as any;
 ---
 
 <BaseLayout 
@@ -30,7 +32,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </div>
                 <div>
                   <p class="font-bold text-lg mb-1">Päämaja</p>
-                  <address class="text-on-surface-variant not-italic leading-relaxed">Siltajoentie 2,<br/>41310 Leppävesi</address>
+                  <address class="text-on-surface-variant not-italic leading-relaxed">{c.street},<br/>{c.city}</address>
                 </div>
               </div>
               <div class="flex items-start gap-6">
@@ -39,8 +41,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </div>
                 <div>
                   <p class="font-bold text-lg mb-1">Sähköposti</p>
-                  <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20 block break-all" href="mailto:siilo@siltajoensirkus.fi">siilo@siltajoensirkus.fi</a>
-                  <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20 block break-all" href="mailto:marianne@siltajoensirkus.fi">marianne@siltajoensirkus.fi</a>
+                  {c.email1 && <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20 block break-all" href={`mailto:${c.email1}`}>{c.email1}</a>}
+                  {c.email2 && <a class="text-on-surface-variant hover:text-primary transition-colors underline decoration-primary/20 block break-all" href={`mailto:${c.email2}`}>{c.email2}</a>}
                 </div>
               </div>
               <div class="flex items-start gap-6">
@@ -49,7 +51,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 </div>
                 <div>
                   <p class="font-bold text-lg mb-1">Puhelin</p>
-                  <a class="text-on-surface-variant hover:text-primary transition-colors font-mono" href="tel:+358449750415">+358 44 975 0415</a>
+                  <a class="text-on-surface-variant hover:text-primary transition-colors font-mono" href={`tel:${(c.phone||'').replace(/\s/g,'')}`}>{c.phone}</a>
                 </div>
               </div>
             </div>

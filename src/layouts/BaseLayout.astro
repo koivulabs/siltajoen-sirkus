@@ -1,4 +1,7 @@
 ---
+import contactDataRaw from "../data/contact.json";
+const c = contactDataRaw as any;
+
 export interface Props {
   title: string;
   description: string;
@@ -39,8 +42,8 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
         "description": "Lintutila Siltajoen Sirkuksessa kasvatetaan eri rotuisia kanoja, viiriäisiä, ankkoja ja leijonaharjaskaneja. Siilon asiantunteva palvelu tarvike- ja rehumyynti aiheissa.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Siltajoentie",
-          "addressLocality": "Leppävesi",
+          "streetAddress": "${c.street}",
+          "addressLocality": "${c.city}",
           "addressCountry": "FI"
         }
       }
@@ -125,8 +128,8 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
               Siltajoen Sirkus
           </div>
           <p class="text-on-surface-variant font-['Plus_Jakarta_Sans'] text-sm text-center md:text-left">
-              Siltajoentie 2, 41310 Leppävesi | Y-Tunnus: (Marianne lisää tähän validia tekstiä) <br/>
-              © {new Date().getFullYear()} Siltajoen Sirkus. All rights reserved. | siilo@siltajoensirkus.fi | marianne@siltajoensirkus.fi
+              {c.street}, {c.city} | Y-Tunnus: (Marianne lisää tähän validia tekstiä) <br/>
+              © {new Date().getFullYear()} Siltajoen Sirkus. All rights reserved. | {c.email1} | {c.email2}
           </p>
         </div>
         <div class="flex flex-wrap justify-center gap-8 font-['Plus_Jakarta_Sans'] text-sm">

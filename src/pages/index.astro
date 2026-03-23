@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import homepageDataRaw from "../data/homepage.json";
+const hp = homepageDataRaw as any;
 ---
 
 <BaseLayout 
@@ -14,17 +16,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
     <div class="relative z-10 text-center px-4 max-w-5xl mx-auto w-full">
       <h1 class="text-[7vw] md:text-7xl lg:text-9xl font-headline font-black italic tracking-tighter text-white mb-8 md:mb-12 uppercase drop-shadow-2xl whitespace-nowrap leading-none">
-          # SILTAJOENSIRKUS
+          {hp.heroTitle}
       </h1>
       <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
         <a href="/elaimet" class="w-full md:w-auto px-8 py-4 bg-primary text-on-primary font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
             Katso myytävät eläimet nyt
         </a>
-        <a href="https://siltajoensirkus.mycashflow.fi/" target="_blank" class="w-full md:w-auto px-8 py-4 bg-secondary text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
+        <a href={hp.shopUrl} target="_blank" class="w-full md:w-auto px-8 py-4 bg-secondary text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
             Verkkokauppaan
         </a>
-        <a href="https://siltajoensirkus.blogspot.com/" target="_blank" class="w-full md:w-auto px-8 py-4 bg-white/90 text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
-            Lue blogista vinkit
+        <a href="/blogi" class="w-full md:w-auto px-8 py-4 bg-white/90 text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
+            Lue tarinat
         </a>
       </div>
     </div>
@@ -37,7 +39,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="space-y-20">
         <div class="group">
           <a href="/blogi" class="hover:text-primary transition-colors">
-            <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 hover:border-primary transition-colors">SIIVEKÄSTÄ ARKEA</h2>
+            <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 hover:border-primary transition-colors uppercase">SIIVEKÄSTÄ ARKEA</h2>
           </a>
           <a href="/blogi" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Tilan tarinat →</a>
         </div>
@@ -47,10 +49,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
         <div class="group cursor-default">
           <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-background border-b-4 border-on-background inline-block mb-2 uppercase tracking-widest">SIILON</h2>
-          <a href="https://siltajoensirkus.mycashflow.fi/" target="_blank" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Verkkokauppaan &rarr;</a>
+          <a href={hp.shopUrl} target="_blank" class="text-xl text-secondary font-bold italic hover:text-primary transition-colors inline-block">Verkkokauppaan &rarr;</a>
         </div>
         <div class="pt-8 flex flex-col sm:flex-row gap-4">
-          <a href="https://siltajoensirkus.mycashflow.fi/" target="_blank" class="bg-zinc-900 text-white text-center px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-zinc-700 transition-colors inline-block">
+          <a href={hp.shopUrl} target="_blank" class="bg-zinc-900 text-white text-center px-10 py-4 font-bold tracking-widest uppercase text-sm hover:bg-zinc-700 transition-colors inline-block">
               OSTOKSILLE VERKKOKAUPPAAN
           </a>
         </div>
@@ -58,10 +60,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <!-- Right Column: Finnish Body Text -->
       <div class="space-y-12 text-zinc-500 text-lg leading-relaxed pt-4">
         <p>
-            Lintutila Siltajoen Sirkuksessa kasvatetaan eri rotuisia kanoja, viiriäisiä, ankkoja ja leijonaharjaskaneja.
+            {hp.introText}
         </p>
         <p>
-            Blogi on pullollaan ohjeita ja neuvoja lintumaiseen arkeen.
+            {hp.introText2}
         </p>
         <p>
             Siilon asiantunteva palvelu tarvike- ja rehumyynti aiheissa. Verkkokaupan kautta postitukset ympäri Suomen, noutotilaukset Naissaaresta Vaajakoskelta tai Siltajoelta Leppävedeltä.
@@ -70,20 +72,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- Animal Imagery Grid (Grey Placeholders) -->
+  <!-- Animal Imagery Grid -->
   <section class="pb-24 px-8 bg-surface">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="aspect-square bg-zinc-200 flex items-center justify-center p-8 text-center text-zinc-500 font-bold border-2 border-zinc-300 rounded-2xl overflow-hidden">
-          <img loading="lazy"  src="/placeholder-bird.jpg" alt="Lintu" class="w-full h-full object-cover" onerror="this.style.display='none'" />
-          <span class="absolute">Kuva: [lintu]</span>
+      <div class="aspect-square bg-zinc-200 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02]">
+          <img loading="lazy" src={hp.heroImage1} alt="Siltajoen Sirkus" class="w-full h-full object-cover" onerror="this.style.display='none'" />
       </div>
-      <div class="aspect-square bg-zinc-200 flex items-center justify-center p-8 text-center text-zinc-500 font-bold border-2 border-zinc-300 rounded-2xl overflow-hidden">
-          <img loading="lazy"  src="/placeholder-boy-chicken.jpg" alt="Poika ja kana" class="w-full h-full object-cover" onerror="this.style.display='none'" />
-          <span class="absolute">Kuva: [poika ja kana]</span>
+      <div class="aspect-square bg-zinc-200 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02]">
+          <img loading="lazy" src={hp.heroImage2} alt="Siltajoen Sirkus" class="w-full h-full object-cover" onerror="this.style.display='none'" />
       </div>
-      <div class="aspect-square bg-zinc-200 flex items-center justify-center p-8 text-center text-zinc-500 font-bold border-2 border-zinc-300 rounded-2xl overflow-hidden">
-          <img loading="lazy"  src="/placeholder-quail.jpg" alt="Viiriäisen poikanen" class="w-full h-full object-cover" onerror="this.style.display='none'" />
-          <span class="absolute">Kuva: [viiriäisen poikanen]</span>
+      <div class="aspect-square bg-zinc-200 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02]">
+          <img loading="lazy" src={hp.heroImage3} alt="Siltajoen Sirkus" class="w-full h-full object-cover" onerror="this.style.display='none'" />
       </div>
     </div>
   </section>
@@ -94,12 +93,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2 class="text-3xl md:text-5xl font-headline font-black mb-12 italic tracking-tight text-center text-primary">Seuraa meitä somessa</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
         <!-- Instagram Banner -->
-        <a href="https://www.instagram.com/siltajoensirkus/" target="_blank" class="block overflow-hidden rounded-[2rem] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-4 border-white group relative bg-white">
+        <a href={hp.instagramUrl} target="_blank" class="block overflow-hidden rounded-[2rem] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-4 border-white group relative bg-white">
           <img src="https://ee375749e6.clvaw-cdnwnd.com/7e950b1ba3cfb0d7a29604269e8df2ec/200000066-ef1c3ef1c7/700/Kurkkaa%20instassa.webp?ph=ee375749e6" alt="Kurkkaa instassa" class="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity" loading="lazy" />
           <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2rem]"></div>
         </a>
         <!-- Facebook Banner -->
-        <a href="https://www.facebook.com/Siltajoensirkus" target="_blank" class="block overflow-hidden rounded-[2rem] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-4 border-white group relative bg-white">
+        <a href={hp.facebookUrl} target="_blank" class="block overflow-hidden rounded-[2rem] hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-4 border-white group relative bg-white">
           <img src="https://ee375749e6.clvaw-cdnwnd.com/7e950b1ba3cfb0d7a29604269e8df2ec/200000067-813a6813a9/700/Untitled%20design.webp?ph=ee375749e6" alt="Siltajoen Sirkus Facebookissa" class="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity" loading="lazy" />
           <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2rem]"></div>
         </a>

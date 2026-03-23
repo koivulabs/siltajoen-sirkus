@@ -434,6 +434,11 @@ function renderHomepage(){
       <div class="field-group"><label class="field-label">Instagram URL</label><input class="field-input" id="hp-instagram" value="${esc(homepageData.instagramUrl)}" /></div>
       <div class="field-group"><label class="field-label">Facebook URL</label><input class="field-input" id="hp-facebook" value="${esc(homepageData.facebookUrl)}" /></div>
       <div class="field-group"><label class="field-label">Verkkokauppa URL</label><input class="field-input" id="hp-shop" value="${esc(homepageData.shopUrl)}" /></div>
+    </div>
+    <div class="card"><div class="card-title"><span class="card-title-left">🖼️ Ruudukon kuvat</span></div>
+      <div class="field-group"><label class="field-label">Kuva 1</label>${imgPickerHtml('hp-img1',homepageData.heroImage1,50,50)}</div>
+      <div class="field-group"><label class="field-label">Kuva 2</label>${imgPickerHtml('hp-img2',homepageData.heroImage2,50,50)}</div>
+      <div class="field-group"><label class="field-label">Kuva 3</label>${imgPickerHtml('hp-img3',homepageData.heroImage3,50,50)}</div>
     </div>`;
 }
 
@@ -475,6 +480,7 @@ async function saveCurrentSection(){
     filePath='src/data/contact.json';content=contactData;
   } else if(currentSection==='homepage'){
     homepageData.heroTitle=val('hp-heroTitle');homepageData.introText=val('hp-intro1');homepageData.introText2=val('hp-intro2');homepageData.instagramUrl=val('hp-instagram');homepageData.facebookUrl=val('hp-facebook');homepageData.shopUrl=val('hp-shop');
+    homepageData.heroImage1=val('hp-img1');homepageData.heroImage2=val('hp-img2');homepageData.heroImage3=val('hp-img3');
     filePath='src/data/homepage.json';content=homepageData;
   }
 
