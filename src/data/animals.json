@@ -18,8 +18,8 @@
       "description": [
         "Viiriäiset ovat pieniä kanalintuja, jotka munivat ruhtinaallisesti. Kuten kaikki munivat linnut, viiriäisetkin tarvitsevat paljon proteiinia ja kalkkia munantuotantonsa tueksi. Siksipä olemme kehittäneet oman suomalaisen rehun viiriäisten ruokintaan."
       ],
-      "focalX": 47,
-      "focalY": 47
+      "focalX": 53,
+      "focalY": 27
     },
     {
       "name": "Ankat",
@@ -49,8 +49,8 @@
           "amount": "35€"
         }
       ],
-      "focalX": 27,
-      "focalY": 31
+      "focalX": 26,
+      "focalY": 16
     },
     {
       "name": "Kääpiökoch",
@@ -71,8 +71,8 @@
           "amount": "10€"
         }
       ],
-      "focalX": 50,
-      "focalY": 30
+      "focalX": 55,
+      "focalY": 20
     },
     {
       "name": "Marans",
@@ -95,8 +95,8 @@
           "amount": "5€/kpl"
         }
       ],
-      "focalX": 67,
-      "focalY": 31
+      "focalX": 60,
+      "focalY": 16
     },
     {
       "name": "Marau",
