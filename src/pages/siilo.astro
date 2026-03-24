@@ -5,7 +5,7 @@ import siiloDataRaw from "../data/siilo.json";
 import { getAsset } from "../utils/assets";
 const siiloData = siiloDataRaw as any;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}', { eager: true });
 const getImg = (path: string) => getAsset(path, images);
 ---
 
@@ -34,9 +34,9 @@ const getImg = (path: string) => getAsset(path, images);
       </div>
       <div class="relative reveal">
         <div class="aspect-[4/5] rounded-3xl bg-neutral-200 overflow-hidden shadow-2xl flex items-center justify-center text-neutral-400 relative">
-          {getAsset(siiloData.heroImage) ? (
+          {getImg(siiloData.heroImage) ? (
             <Image 
-              src={getAsset(siiloData.heroImage)!} 
+              src={getImg(siiloData.heroImage)!} 
               alt="Maatilan rehupussit ja kanat" 
               class="absolute inset-0 w-full h-full object-cover" 
               style={`object-position: ${siiloData.heroFocalX ?? 50}% ${siiloData.heroFocalY ?? 50}%`}

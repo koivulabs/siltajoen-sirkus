@@ -6,7 +6,7 @@ import { getAsset } from "../utils/assets";
 const hp = homepageDataRaw as any;
 
 // Tuodaan dynaaminen hakuohjelma
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}', { eager: true });
 const getImg = (path: string) => getAsset(path, images);
 ---
 

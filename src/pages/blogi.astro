@@ -5,7 +5,7 @@ import blogDataRaw from "../data/blog.json";
 import { getAsset } from "../utils/assets";
 const blogData = blogDataRaw as any;
 
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}', { eager: true });
 const getImg = (path: string) => getAsset(path, images);
 ---
 
@@ -89,9 +89,9 @@ const getImg = (path: string) => getAsset(path, images);
              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                 {post.images.slice(1).map((img: string) => (
                   <div class="aspect-square bg-neutral-100 rounded-[3rem] overflow-hidden border-8 border-white shadow-xl rotate-1 hover:rotate-0 transition-transform duration-500">
-                    {getAsset(img) ? (
+                    {getImg(img) ? (
                       <Image 
-                        src={getAsset(img)!} 
+                        src={getImg(img)!} 
                         alt="" 
                         class="w-full h-full object-cover" 
                         width={600} 
