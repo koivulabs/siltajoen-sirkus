@@ -2,16 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import homepageDataRaw from "../data/homepage.json";
+import { getAsset } from "../utils/assets";
 const hp = homepageDataRaw as any;
 
 // Tuodaan dynaaminen hakuohjelma
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
-const getAsset = (path: string) => {
-    if (!path) return null;
-    const filename = path.split('/').pop();
-    const assetKey = `/src/assets/kuvia/${filename}`;
-    return images[assetKey] ? images[assetKey]() : null;
-};
+const getImg = (path: string) => getAsset(path, images);
 ---
 
 <BaseLayout 
@@ -21,9 +17,9 @@ const getAsset = (path: string) => {
   <!-- Hero Section (LCP Optimized) -->
   <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black -mt-24">
     <div class="absolute inset-0 z-0">
-      {getAsset(hp.heroImage1) ? (
+      {getImg(hp.heroImage1) ? (
         <Image 
-          src={getAsset(hp.heroImage1)!} 
+          src={getImg(hp.heroImage1)!} 
           alt="Siltajoen Sirkus - Sylissä" 
           class="w-full h-full object-cover opacity-60" 
           loading="eager"
@@ -109,9 +105,9 @@ const getAsset = (path: string) => {
         </div>
         <div class="w-full md:w-1/2 reveal">
           <div class="aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-zinc-800 rotate-2 shadow-2xl relative">
-             {getAsset(hp.comingSoon.image) ? (
+             {getImg(hp.comingSoon.image) ? (
                <Image 
-                 src={getAsset(hp.comingSoon.image)!} 
+                 src={getImg(hp.comingSoon.image)!} 
                  alt="Tulossa pian - Siltajoen Sirkus" 
                  class="absolute inset-0 w-full h-full object-cover" 
                  width={800}
@@ -131,22 +127,22 @@ const getAsset = (path: string) => {
   <section class="py-24 px-8 bg-surface">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="aspect-square bg-zinc-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal">
-          {getAsset(hp.heroImage1) ? (
-            <Image src={getAsset(hp.heroImage1)!} alt="Siltajoen Sirkus 1" class="w-full h-full object-cover" width={600} height={600} />
+          {getImg(hp.heroImage1) ? (
+            <Image src={getImg(hp.heroImage1)!} alt="Siltajoen Sirkus 1" class="w-full h-full object-cover" width={600} height={600} />
           ) : (
             <img src={hp.heroImage1} class="w-full h-full object-cover" />
           )}
       </div>
       <div class="aspect-square bg-zinc-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal" style="transition-delay: 200ms">
-          {getAsset(hp.heroImage2) ? (
-            <Image src={getAsset(hp.heroImage2)!} alt="Siltajoen Sirkus 2" class="w-full h-full object-cover" width={600} height={600} />
+          {getImg(hp.heroImage2) ? (
+            <Image src={getImg(hp.heroImage2)!} alt="Siltajoen Sirkus 2" class="w-full h-full object-cover" width={600} height={600} />
           ) : (
             <img src={hp.heroImage2} class="w-full h-full object-cover" />
           )}
       </div>
       <div class="aspect-square bg-zinc-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal" style="transition-delay: 400ms">
-          {getAsset(hp.heroImage3) ? (
-            <Image src={getAsset(hp.heroImage3)!} alt="Siltajoen Sirkus 3" class="w-full h-full object-cover" width={600} height={600} />
+          {getImg(hp.heroImage3) ? (
+            <Image src={getImg(hp.heroImage3)!} alt="Siltajoen Sirkus 3" class="w-full h-full object-cover" width={600} height={600} />
           ) : (
             <img src={hp.heroImage3} class="w-full h-full object-cover" />
           )}

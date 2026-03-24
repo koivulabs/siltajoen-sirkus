@@ -2,16 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import siiloDataRaw from "../data/siilo.json";
+import { getAsset } from "../utils/assets";
 const siiloData = siiloDataRaw as any;
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
-
-const getAsset = (path: string) => {
-    if (!path) return null;
-    const filename = path.split('/').pop();
-    const assetKey = `/src/assets/kuvia/${filename}`;
-    return images[assetKey] ? images[assetKey]() : null;
-};
+const getImg = (path: string) => getAsset(path, images);
 ---
 
 <BaseLayout 
@@ -66,28 +61,28 @@ const getAsset = (path: string) => {
            <h2 class="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">Suosituimmat tuotteet</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {siiloData.products.map((p: any) => (
+          {siiloData.products.map((item: any) => (
             <div class="bg-white rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-lg group reveal">
               <div class="aspect-square bg-neutral-100 relative overflow-hidden">
-                {getAsset(p.image) ? (
-                  <Image 
-                    src={getAsset(p.image)!} 
-                    alt={p.title} 
-                    class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" 
-                    width={500}
-                    height={500}
-                  />
-                ) : (
-                  <img src={p.image} alt={p.title} class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
-                )}
+                {getImg(item.image) ? (
+              <Image 
+                src={getImg(item.image)!} 
+                alt={item.title} 
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                width={600}
+                height={600}
+              />
+            ) : (
+                <img src={item.image} alt={item.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            )}
                 <div class="absolute top-6 right-6 bg-white px-4 py-2 rounded-full font-black text-sm italic shadow-md">
-                   {p.price}
+                   {item.price}
                 </div>
               </div>
               <div class="p-8 space-y-4">
-                <h3 class="text-2xl font-black uppercase italic tracking-tight">{p.title}</h3>
-                <p class="text-on-surface/50 text-sm leading-relaxed">{p.description}</p>
-                <a href={p.url} target="_blank" class="flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-primary group-hover:gap-4 transition-all">
+                <h3 class="text-2xl font-black uppercase italic tracking-tight">{item.title}</h3>
+                <p class="text-on-surface/50 text-sm leading-relaxed">{item.description}</p>
+                <a href={item.url} target="_blank" class="flex items-center gap-2 font-bold uppercase tracking-widest text-xs text-primary group-hover:gap-4 transition-all">
                    Tilaa verkkokaupasta <span class="material-symbols-outlined text-sm">shopping_basket</span>
                 </a>
               </div>

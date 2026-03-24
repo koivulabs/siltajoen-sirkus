@@ -2,17 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import animalsDataRaw from "../data/animals.json";
+import { getAsset } from "../utils/assets";
 const animalsData = animalsDataRaw as any;
 
 // Hae kaikki kuvat src/assets/kuvia kansiosta dynaamisesti
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
-
-const getAsset = (path: string) => {
-    if (!path) return null;
-    const filename = path.split('/').pop();
-    const assetKey = `/src/assets/kuvia/${filename}`;
-    return images[assetKey] ? images[assetKey]() : null;
-};
+const getImg = (path: string) => getAsset(path, images);
 ---
 
 <BaseLayout 
@@ -72,9 +67,9 @@ const getAsset = (path: string) => {
           </div>
           <div class="lg:w-1/2 relative">
             <div class="aspect-square bg-zinc-100 rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white rotate-2 relative group">
-              {getAsset(cat.image) ? (
+              {getImg(cat.image) ? (
                 <Image 
-                  src={getAsset(cat.image)!} 
+                  src={getImg(cat.image)!} 
                   alt={cat.subtitle} 
                   class="w-full h-full object-cover" 
                   style={`object-position: ${cat.focalX ?? 50}% ${cat.focalY ?? 50}%`} 

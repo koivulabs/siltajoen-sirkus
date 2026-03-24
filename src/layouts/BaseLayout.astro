@@ -9,8 +9,12 @@ export interface Props {
 
 const { title, description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://siltajoensirkus.fi/");
+const pathname = Astro.url.pathname;
 
-// Google fonts
+// Oletuskuva jaettavaksi sosiaalisessa mediassa
+const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoensirkus.fi/");
+
+// Google fonts - Lisätty display=swap
 const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap";
 ---
 
@@ -25,12 +29,19 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="apple-touch-icon" href="/favicon.svg?v=2" />
     
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:title" content={`${title} | Siltajoen Sirkus`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Siltajoen Sirkus" />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} | Siltajoen Sirkus`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     
     <!-- Schema.org Data -->
     <script type="application/ld+json" set:html={`
@@ -94,32 +105,32 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
               # siltajoensirkus
           </a>
           <!-- Mobile Menu Button -->
-          <button id="mobile-menu-btn" class="md:hidden flex flex-col items-center justify-center p-2 gap-1.5 focus:outline-none" aria-label="Avaa valikko">
-            <span class="w-6 h-0.5 bg-on-surface transition-transform origin-center"></span>
-            <span class="w-6 h-0.5 bg-on-surface transition-opacity"></span>
-            <span class="w-6 h-0.5 bg-on-surface transition-transform origin-center"></span>
+          <button id="mobile-menu-btn" class="md:hidden flex flex-col items-center justify-center p-2 gap-1.5 focus:outline-none" aria-label="Avaa valikko" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="w-6 h-0.5 bg-on-surface transition-all duration-300 origin-center"></span>
+            <span class="w-6 h-0.5 bg-on-surface transition-all duration-300"></span>
+            <span class="w-6 h-0.5 bg-on-surface transition-all duration-300 origin-center"></span>
           </button>
           
           <!-- Desktop Links -->
           <div class="hidden md:flex items-center gap-8 font-['Epilogue'] font-bold tracking-tight">
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95" href="/">Koti</a>
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95" href="/elaimet">Eläimet</a>
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95" href="/siilo">Siilo</a>
+            <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/" aria-current={pathname === '/' ? 'page' : undefined}>Koti</a>
+            <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/elaimet' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/elaimet" aria-current={pathname === '/elaimet' ? 'page' : undefined}>Eläimet</a>
+            <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/siilo' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/siilo" aria-current={pathname === '/siilo' ? 'page' : undefined}>Siilo</a>
             <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95 font-black uppercase text-secondary" href="https://siltajoensirkus.mycashflow.fi/" target="_blank">Verkkokauppa</a>
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95" href="/blogi">Blogi</a>
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95" href="/tiimi">Tiimi</a>
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95" href="/yhteystiedot">Yhteystiedot</a>
+            <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/blogi' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/blogi" aria-current={pathname === '/blogi' ? 'page' : undefined}>Blogi</a>
+            <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/tiimi' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/tiimi" aria-current={pathname === '/tiimi' ? 'page' : undefined}>Tiimi</a>
+            <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/yhteystiedot' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/yhteystiedot" aria-current={pathname === '/yhteystiedot' ? 'page' : undefined}>Yhteystiedot</a>
           </div>
         </div>
         <!-- Mobile Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden flex-col bg-surface w-full px-6 py-4 shadow-xl border-t border-on-surface/10 font-['Epilogue'] font-bold text-lg">
-          <a class="py-3 text-on-surface border-b border-on-surface/5" href="/">Koti</a>
-          <a class="py-3 text-on-surface border-b border-on-surface/5" href="/elaimet">Eläimet</a>
-          <a class="py-3 text-on-surface border-b border-on-surface/5" href="/siilo">Siilo</a>
+        <div id="mobile-menu" class="hidden flex-col bg-surface w-full px-6 py-4 shadow-xl border-t border-on-surface/10 font-['Epilogue'] font-bold text-lg">
+          <a class={`py-3 border-b border-on-surface/5 ${pathname === '/' ? 'text-primary' : 'text-on-surface'}`} href="/" aria-current={pathname === '/' ? 'page' : undefined}>Koti</a>
+          <a class={`py-3 border-b border-on-surface/5 ${pathname === '/elaimet' ? 'text-primary' : 'text-on-surface'}`} href="/elaimet" aria-current={pathname === '/elaimet' ? 'page' : undefined}>Eläimet</a>
+          <a class={`py-3 border-b border-on-surface/5 ${pathname === '/siilo' ? 'text-primary' : 'text-on-surface'}`} href="/siilo" aria-current={pathname === '/siilo' ? 'page' : undefined}>Siilo</a>
           <a class="py-3 text-secondary font-black uppercase border-b border-on-surface/5" href="https://siltajoensirkus.mycashflow.fi/" target="_blank">Verkkokauppa</a>
-          <a class="py-3 text-on-surface border-b border-on-surface/5" href="/blogi">Blogi</a>
-          <a class="py-3 text-on-surface border-b border-on-surface/5" href="/tiimi">Tiimi</a>
-          <a class="py-3 text-on-surface" href="/yhteystiedot">Yhteystiedot</a>
+          <a class={`py-3 border-b border-on-surface/5 ${pathname === '/blogi' ? 'text-primary' : 'text-on-surface'}`} href="/blogi" aria-current={pathname === '/blogi' ? 'page' : undefined}>Blogi</a>
+          <a class={`py-3 border-b border-on-surface/5 ${pathname === '/tiimi' ? 'text-primary' : 'text-on-surface'}`} href="/tiimi" aria-current={pathname === '/tiimi' ? 'page' : undefined}>Tiimi</a>
+          <a class={`py-3 ${pathname === '/yhteystiedot' ? 'text-primary' : 'text-on-surface'}`} href="/yhteystiedot" aria-current={pathname === '/yhteystiedot' ? 'page' : undefined}>Yhteystiedot</a>
           <!-- Mobile Social Icons -->
           <div class="flex gap-8 items-center justify-center py-6 mt-4 border-t border-on-surface/5">
             <a class="text-on-surface hover:text-primary transition-all" href="https://www.facebook.com/Siltajoensirkus" target="_blank" aria-label="Siltajoen Sirkus Facebookissa">
@@ -211,11 +222,13 @@ const googleFonts = "https://fonts.googleapis.com/css2?family=Epilogue:ital,wght
       const mobileMenu = document.getElementById('mobile-menu');
       if (mobileBtn && mobileMenu) {
         mobileBtn.addEventListener('click', () => {
+          const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+          mobileBtn.setAttribute('aria-expanded', (!isExpanded).toString());
           mobileMenu.classList.toggle('hidden');
           mobileMenu.classList.toggle('flex');
-          // Animate hamburger to X (simplified toggle)
+          
           const spans = mobileBtn.querySelectorAll('span');
-          if (!mobileMenu.classList.contains('hidden')) {
+          if (!isExpanded) {
              spans[0].style.transform = 'translateY(8px) rotate(45deg)';
              spans[1].style.opacity = '0';
              spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
