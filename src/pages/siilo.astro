@@ -1,7 +1,16 @@
----
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import siiloDataRaw from "../data/siilo.json";
 const siiloData = siiloDataRaw as any;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
+
+const getAsset = (path: string) => {
+    if (!path) return null;
+    const filename = path.split('/').pop();
+    const assetKey = `/src/assets/kuvia/${filename}`;
+    return images[assetKey] ? images[assetKey]() : null;
+};
 ---
 
 <BaseLayout 
@@ -29,7 +38,19 @@ const siiloData = siiloDataRaw as any;
       </div>
       <div class="relative reveal">
         <div class="aspect-[4/5] rounded-3xl bg-neutral-200 overflow-hidden shadow-2xl flex items-center justify-center text-neutral-400 relative">
-          <img loading="lazy" src={siiloData.heroImage} alt="Maatilan rehupussit ja kanat" class="absolute inset-0 w-full h-full object-cover" style={`object-position: ${siiloData.heroFocalX ?? 50}% ${siiloData.heroFocalY ?? 50}%`} onerror="this.style.display='none'" />
+          {getAsset(siiloData.heroImage) ? (
+            <Image 
+              src={getAsset(siiloData.heroImage)!} 
+              alt="Maatilan rehupussit ja kanat" 
+              class="absolute inset-0 w-full h-full object-cover" 
+              style={`object-position: ${siiloData.heroFocalX ?? 50}% ${siiloData.heroFocalY ?? 50}%`}
+              width={800}
+              height={1000}
+              loading="eager"
+            />
+          ) : (
+            <img loading="lazy" src={siiloData.heroImage} alt="Maatilan rehupussit ja kanat" class="absolute inset-0 w-full h-full object-cover" style={`object-position: ${siiloData.heroFocalX ?? 50}% ${siiloData.heroFocalY ?? 50}%`} onerror="this.style.display='none'" />
+          )}
         </div>
       </div>
     </div>
@@ -47,7 +68,17 @@ const siiloData = siiloDataRaw as any;
           {siiloData.products.map((p: any) => (
             <div class="bg-white rounded-[2.5rem] overflow-hidden border border-outline/5 shadow-lg group reveal">
               <div class="aspect-square bg-neutral-100 relative overflow-hidden">
-                <img src={p.image} alt={p.title} class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                {getAsset(p.image) ? (
+                  <Image 
+                    src={getAsset(p.image)!} 
+                    alt={p.title} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" 
+                    width={500}
+                    height={500}
+                  />
+                ) : (
+                  <img src={p.image} alt={p.title} class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                )}
                 <div class="absolute top-6 right-6 bg-white px-4 py-2 rounded-full font-black text-sm italic shadow-md">
                    {p.price}
                 </div>

@@ -1,18 +1,39 @@
----
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import homepageDataRaw from "../data/homepage.json";
 const hp = homepageDataRaw as any;
+
+// Tuodaan dynaaminen hakuohjelma
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}');
+const getAsset = (path: string) => {
+    if (!path) return null;
+    const filename = path.split('/').pop();
+    const assetKey = `/src/assets/kuvia/${filename}`;
+    return images[assetKey] ? images[assetKey]() : null;
+};
 ---
 
 <BaseLayout 
   title="Koti" 
   description="Siltajoen Sirkuksessa kasvatetaan eri rotuisia kanoja, viiriäisiä, ankkoja ja leijonaharjaskaneja. Siilon asiantunteva palvelu tarvike- ja rehumyynti aiheissa."
 >
-  <!-- Hero Section -->
+  <!-- Hero Section (LCP Optimized) -->
   <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black -mt-24">
     <div class="absolute inset-0 z-0">
-      <iframe allow="autoplay; encrypted-media" allowfullscreen="" class="w-full h-full object-cover opacity-60 pointer-events-none" frameborder="0" src="https://www.youtube.com/embed/ASIAKKAAN_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=ASIAKKAAN_VIDEO_ID&controls=0&showinfo=0&autohide=1" title="Siltajoen Sirkus"></iframe>
-      <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-surface"></div>
+      {getAsset(hp.heroImage1) ? (
+        <Image 
+          src={getAsset(hp.heroImage1)!} 
+          alt="Siltajoen Sirkus - Sylissä" 
+          class="w-full h-full object-cover opacity-60" 
+          loading="eager"
+          fetchpriority="high"
+          width={1920}
+          height={1080}
+        />
+      ) : (
+        <img src={hp.heroImage1} alt="Siltajoen Sirkus" class="w-full h-full object-cover opacity-60" fetchpriority="high" />
+      )}
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-surface"></div>
     </div>
     <div class="relative z-10 text-center px-4 max-w-5xl mx-auto w-full reveal">
       <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(2rem,10vw,8rem)] font-headline font-black italic tracking-tighter text-white mb-8 md:mb-12 uppercase drop-shadow-2xl leading-none px-4">
@@ -87,7 +108,17 @@ const hp = homepageDataRaw as any;
         </div>
         <div class="w-full md:w-1/2 reveal">
           <div class="aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-zinc-800 rotate-2 shadow-2xl relative">
-             <img src={hp.comingSoon.image} alt="Coming soon" class="absolute inset-0 w-full h-full object-cover" />
+             {getAsset(hp.comingSoon.image) ? (
+               <Image 
+                 src={getAsset(hp.comingSoon.image)!} 
+                 alt="Tulossa pian - Siltajoen Sirkus" 
+                 class="absolute inset-0 w-full h-full object-cover" 
+                 width={800}
+                 height={1000}
+               />
+             ) : (
+               <img src={hp.comingSoon.image} alt="Coming soon" class="absolute inset-0 w-full h-full object-cover" />
+             )}
              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
         </div>
@@ -98,14 +129,26 @@ const hp = homepageDataRaw as any;
   <!-- Animal Imagery Grid -->
   <section class="py-24 px-8 bg-surface">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="aspect-square bg-zinc-200 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal">
-          <img loading="lazy" src={hp.heroImage1} alt="Siltajoen Sirkus" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+      <div class="aspect-square bg-zinc-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal">
+          {getAsset(hp.heroImage1) ? (
+            <Image src={getAsset(hp.heroImage1)!} alt="Siltajoen Sirkus 1" class="w-full h-full object-cover" width={600} height={600} />
+          ) : (
+            <img src={hp.heroImage1} class="w-full h-full object-cover" />
+          )}
       </div>
-      <div class="aspect-square bg-zinc-200 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal" style="transition-delay: 200ms">
-          <img loading="lazy" src={hp.heroImage2} alt="Siltajoen Sirkus" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+      <div class="aspect-square bg-zinc-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal" style="transition-delay: 200ms">
+          {getAsset(hp.heroImage2) ? (
+            <Image src={getAsset(hp.heroImage2)!} alt="Siltajoen Sirkus 2" class="w-full h-full object-cover" width={600} height={600} />
+          ) : (
+            <img src={hp.heroImage2} class="w-full h-full object-cover" />
+          )}
       </div>
-      <div class="aspect-square bg-zinc-200 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal" style="transition-delay: 400ms">
-          <img loading="lazy" src={hp.heroImage3} alt="Siltajoen Sirkus" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+      <div class="aspect-square bg-zinc-100 flex items-center justify-center rounded-2xl overflow-hidden shadow-xl border border-outline/5 transition-transform hover:scale-[1.02] reveal" style="transition-delay: 400ms">
+          {getAsset(hp.heroImage3) ? (
+            <Image src={getAsset(hp.heroImage3)!} alt="Siltajoen Sirkus 3" class="w-full h-full object-cover" width={600} height={600} />
+          ) : (
+            <img src={hp.heroImage3} class="w-full h-full object-cover" />
+          )}
       </div>
     </div>
   </section>
