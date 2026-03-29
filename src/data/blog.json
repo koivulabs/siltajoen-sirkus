@@ -11,9 +11,12 @@
       "slug": "kesakausi-2026",
       "excerpt": "Tänä kesänä otamme vastaan vierailijoita uusin aukioloin. Katso kaikki pysähdyspaikkamme ja valmistaudu tapaamaan uusia kanarotujamme.",
       "body": "Tänä kesänä Siltajoen Sirkus avautuu vierailijoille uusin aukioloajoin. Olemme panostaneet erityisesti lasten kokemukseen – pienokaisilla on nyt mahdollisuus syöttää kananpoikia ja tutustua eri rotuihin läheltä.\n\nKatso tarkempi aikataulu verkkosivuiltamme ja varaa paikkasi hyvissä ajoin. Kesä on aina vilkas kausi, joten suosittelemme yhteydenottoa etukäteen!",
-      "images": ["/kuvia/sylissa1.JPG", "/kuvia/sylissa2.JPG"],
-      "focalX": 50,
-      "focalY": 40,
+      "images": [
+        "/kuvia/kana_ulkona_promo.jpg",
+        "/kuvia/kanajaampari.jpg"
+      ],
+      "focalX": 54,
+      "focalY": 82,
       "featured": true
     },
     {
@@ -23,7 +26,9 @@
       "slug": "talvihoito-vinkit",
       "excerpt": "Talvi on raskainta aikaa kanaloille. Tässä parhaat vinkkimme lintujen hyvinvointiin kylminä kuukausina.",
       "body": "Talvi tuo mukanaan erityisiä haasteita kanaloiden hoitajille. Kylmä, kosteus ja lyhyet päivät vaikuttavat sekä munimiseen että eläinten yleiseen hyvinvointiin.\n\n1. Pidä kanala vedottomana mutta hyvin ilmastoituna\n2. Tarjoa riittävästi puhdasta juomavettä – se jäätyy helposti\n3. Lisää energiaa ruokaan: maissirouhetta illalla lämmittää\n4. Varmista riittävä keinovalo – 14h päivää tarvitaan munimiseen\n5. Tarkista kanalan tiiveys ennen pakkasia",
-      "images": ["/kuvia/valkoinen_kana_katsoo_blur.jpg"],
+      "images": [
+        "/kuvia/valkoinen_kana_katsoo_blur.jpg"
+      ],
       "focalX": 50,
       "focalY": 50,
       "featured": false
@@ -35,7 +40,10 @@
       "slug": "arki-siltajoella",
       "excerpt": "Päivä sirkuksessa alkaa aina kanojen aamiaisen valmistamisella. Kurkista kulissien taakse!",
       "body": "Kello kuusi aamulla, kun harmaanpunainen talviaamunhämärä vielä heilahtaa mäen takana, Marianne on jo liikkeellä. Ensin tarkistetaan vesi – jäätyneet putkistot ovat maalaistalouden arkirealismia.\n\nEläimet eivät odota. Kanaloilta kuuluu jo matalaäänistä nyökinää, viiriäiset paukkuvat ja ankat töräyttävät ensimmäiset päivän kommenttinsa.\n\nAamurutiini kestää noin kaksi tuntia ennen kuin ihmisetkin voivat syödä.",
-      "images": ["/kuvia/tiputkadella.jpg", "/kuvia/viiriainenkasissa.JPG"],
+      "images": [
+        "/kuvia/tiputkadella.jpg",
+        "/kuvia/viirianen_ruoka_automaatilla.jpg"
+      ],
       "focalX": 50,
       "focalY": 50,
       "featured": false
