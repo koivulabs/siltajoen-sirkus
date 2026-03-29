@@ -282,10 +282,12 @@ function renderAnimals(){
   if(!animalsData)return;let html='';
   html+=`<div class="card"><div class="card-title"><span class="card-title-left">🦅 Hero-osio</span></div>
     <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="hero-title" value="${esc(animalsData.hero.title)}" /></div>
+    <div class="field-group"><label class="field-label">Kuvaus (kappaleet erotetaan tyhjällä rivillä)</label><textarea class="field-input" id="hero-desc" style="min-height:150px">${esc((animalsData.hero.description||[]).join('\n\n'))}</textarea></div>
     <div class="field-group"><label class="field-label">Hero-kuva</label>${imgPickerHtml('hero-image',animalsData.hero.image,animalsData.hero.focalX,animalsData.hero.focalY)}</div>
   </div>`;
   animalsData.specialCategories.forEach((cat,i)=>{
-    html+=`<div class="card"><div class="card-title"><span class="card-title-left">🦆 ${esc(cat.name)}</span></div>
+    html+=`<div class="card"><div class="card-title"><span class="card-title-left">🦆 ${esc(cat.name)}</span><button class="btn-del" onclick="removeSpecialCategory(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Nimi (navigaatio)</label><input class="field-input" id="sc-${i}-name" value="${esc(cat.name)}" /></div>
       <div class="field-group"><label class="field-label">Alaotsikko</label><input class="field-input" id="sc-${i}-subtitle" value="${esc(cat.subtitle||'')}" /></div>
       <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`sc-${i}-image`,cat.image,cat.focalX,cat.focalY)}</div>
       <div class="field-group"><label class="field-label">Kuvaus</label><textarea class="field-input" id="sc-${i}-desc">${esc(cat.description.join('\n\n'))}</textarea></div>
@@ -297,11 +299,15 @@ function renderAnimals(){
       <div class="prices-row">
         <div><label class="field-label">Nimike</label><input class="field-input" id="breed-${i}-price-${pi}-label" value="${esc(p.label)}" /></div>
         <div><label class="field-label">Hinta</label><input class="field-input" id="breed-${i}-price-${pi}-amount" value="${esc(p.amount)}" /></div>
+        <button class="btn-del" onclick="removeBreedPrice(${i},${pi})" title="Poista hinta" style="align-self:end;margin-bottom:0.25rem">✕</button>
       </div>`).join('');
     html+=`<div class="card"><div class="card-title"><span class="card-title-left">🐔 ${esc(breed.name)}</span><button class="btn-del" onclick="removeBreed(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Rodun nimi</label><input class="field-input" id="breed-${i}-name" value="${esc(breed.name)}" /></div>
       <div class="field-group"><label class="field-label">Kuva</label>${imgPickerHtml(`breed-${i}-image`,breed.image,breed.focalX,breed.focalY)}</div>
       <div class="field-group"><label class="field-label">Kuvaus</label><textarea class="field-input" id="breed-${i}-desc" style="min-height:120px">${esc(breed.description.join('\n\n'))}</textarea></div>
       ${pricesHtml}
+      <button class="btn-add" onclick="addBreedPrice(${i})" style="margin-top:0.5rem">+ Lisää hinta</button>
+      <div class="field-group"><div class="checkbox-row"><input type="checkbox" id="breed-${i}-wide" ${breed.isWide?'checked':''}><label class="field-label" style="margin:0;cursor:pointer" for="breed-${i}-wide">Leveä kortti (koko rivin levyinen)</label></div></div>
     </div>`;
   });
   html+=`<button class="btn-add" onclick="addBreed()">+ Lisää uusi kanarotu</button>`;
@@ -312,10 +318,13 @@ function addBreed(){
   renderAnimals();
 }
 function removeBreed(i){if(confirm('Poista tämä rotu?')){animalsData.chickenBreeds.splice(i,1);renderAnimals();}}
+function addBreedPrice(i){if(!animalsData.chickenBreeds[i].prices)animalsData.chickenBreeds[i].prices=[];animalsData.chickenBreeds[i].prices.push({label:'',amount:''});renderAnimals();}
+function removeBreedPrice(i,pi){animalsData.chickenBreeds[i].prices.splice(pi,1);renderAnimals();}
 function addSpecialCategory(){
   animalsData.specialCategories.push({name:'Uusi kategoria',subtitle:'',image:'',description:[''],focalX:50,focalY:50});
   renderAnimals();
 }
+function removeSpecialCategory(i){if(confirm('Poista tämä kategoria?')){animalsData.specialCategories.splice(i,1);renderAnimals();}}
 
 // ─── BLOG ──────────────────────────────────────────────────────
 function renderBlog(){
@@ -334,6 +343,7 @@ function renderBlog(){
       </div>`).join('');
     html+=`<div class="card"><div class="card-title"><span class="card-title-left">📰 ${esc(post.title)}</span><button class="btn-del" onclick="removePost(${i})" title="Poista">✕</button></div>
       <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="post-${i}-title" value="${esc(post.title)}" /></div>
+      <div class="field-group"><label class="field-label">Slug (URL-tunniste)</label><input class="field-input" id="post-${i}-slug" value="${esc(post.slug||'')}" placeholder="esim. kesakausi-2026" /></div>
       <div class="prices-row">
         <div><label class="field-label">Kategoria</label><input class="field-input" id="post-${i}-category" value="${esc(post.category)}" /></div>
         <div><label class="field-label">Päivämäärä</label><input class="field-input" id="post-${i}-date" value="${esc(post.date)}" /></div>
@@ -350,7 +360,7 @@ function renderBlog(){
   document.getElementById('blog-editor').innerHTML=html;
 }
 function addPost(){
-  blogData.posts.push({title:'Uusi artikkeli',category:'UUTINEN',date:'',excerpt:'',body:'',images:[],featured:false,focalX:50,focalY:50});
+  blogData.posts.push({title:'Uusi artikkeli',slug:'',category:'UUTINEN',date:'',excerpt:'',body:'',images:[],featured:false,focalX:50,focalY:50});
   renderBlog();
 }
 function removePost(i){if(confirm('Poista tämä artikkeli?')){blogData.posts.splice(i,1);renderBlog();}}
@@ -401,6 +411,7 @@ function renderSiilo(){
     <div class="prices-row" style="margin-bottom:0.75rem">
       <div><label class="field-label">Arvo</label><input class="field-input" id="stat-${i}-value" value="${esc(s.value)}" /></div>
       <div><label class="field-label">Selite</label><input class="field-input" id="stat-${i}-label" value="${esc(s.label)}" /></div>
+      <button class="btn-del" onclick="removeSiiloStat(${i})" title="Poista" style="align-self:end;margin-bottom:0.25rem">✕</button>
     </div>`).join('');
   document.getElementById('siilo-editor').innerHTML=`
     <div class="card"><div class="card-title"><span class="card-title-left">🌾 Hero-teksti</span></div>
@@ -439,6 +450,7 @@ function renderSiilo(){
 function addSiiloCard(){siiloData.featureCards.push({icon:'star',title:'Uusi ominaisuus',body:''});renderSiilo();}
 function removeSiiloCard(i){if(confirm('Poista kortti?')){siiloData.featureCards.splice(i,1);renderSiilo();}}
 function addSiiloStat(){siiloData.stats.push({value:'',label:''});renderSiilo();}
+function removeSiiloStat(i){if(confirm('Poista tilasto?')){siiloData.stats.splice(i,1);renderSiilo();}}
 function addProduct(){siiloData.products=siiloData.products||[];siiloData.products.push({title:'Uusi tuote',price:'',url:'',description:'',image:''});renderSiilo();}
 function removeProduct(i){if(confirm('Poista tuote?')){siiloData.products.splice(i,1);renderSiilo();}}
 function addTestimonial(){siiloData.testimonials=siiloData.testimonials||[];siiloData.testimonials.push({name:'Uusi asiakas',text:'',date:new Date().toLocaleDateString('fi-FI')});renderSiilo();}
@@ -494,14 +506,14 @@ async function saveCurrentSection(){
   let filePath,content;
 
   if(currentSection==='animals'){
-    animalsData.hero.title=val('hero-title');animalsData.hero.image=val('hero-image');Object.assign(animalsData.hero,getFocal('hero-image'));
-    animalsData.specialCategories.forEach((cat,i)=>{cat.subtitle=val(`sc-${i}-subtitle`);cat.image=val(`sc-${i}-image`);cat.description=val(`sc-${i}-desc`).split('\n\n').filter(Boolean);Object.assign(cat,getFocal(`sc-${i}-image`));});
-    animalsData.chickenBreeds.forEach((breed,i)=>{breed.image=val(`breed-${i}-image`);breed.description=val(`breed-${i}-desc`).split('\n\n').filter(Boolean);Object.assign(breed,getFocal(`breed-${i}-image`));(breed.prices||[]).forEach((p,pi)=>{p.label=val(`breed-${i}-price-${pi}-label`);p.amount=val(`breed-${i}-price-${pi}-amount`);});});
+    animalsData.hero.title=val('hero-title');animalsData.hero.description=val('hero-desc').split('\n\n').filter(Boolean);animalsData.hero.image=val('hero-image');Object.assign(animalsData.hero,getFocal('hero-image'));
+    animalsData.specialCategories.forEach((cat,i)=>{cat.name=val(`sc-${i}-name`);cat.subtitle=val(`sc-${i}-subtitle`);cat.image=val(`sc-${i}-image`);cat.description=val(`sc-${i}-desc`).split('\n\n').filter(Boolean);Object.assign(cat,getFocal(`sc-${i}-image`));});
+    animalsData.chickenBreeds.forEach((breed,i)=>{breed.name=val(`breed-${i}-name`);breed.image=val(`breed-${i}-image`);breed.description=val(`breed-${i}-desc`).split('\n\n').filter(Boolean);breed.isWide=document.getElementById(`breed-${i}-wide`)?.checked||false;Object.assign(breed,getFocal(`breed-${i}-image`));(breed.prices||[]).forEach((p,pi)=>{p.label=val(`breed-${i}-price-${pi}-label`);p.amount=val(`breed-${i}-price-${pi}-amount`);});});
     filePath='src/data/animals.json';content=animalsData;
   } else if(currentSection==='blog'){
     blogData.heroTitle=val('blog-heroTitle');blogData.heroSubtitle=val('blog-heroSubtitle');blogData.heroBody=val('blog-heroBody');blogData.bloggerUrl=val('blog-bloggerUrl');
     blogData.posts.forEach((post,i)=>{
-      post.title=val(`post-${i}-title`);post.category=val(`post-${i}-category`);post.date=val(`post-${i}-date`);post.excerpt=val(`post-${i}-excerpt`);post.body=val(`post-${i}-body`);
+      post.title=val(`post-${i}-title`);post.slug=val(`post-${i}-slug`);post.category=val(`post-${i}-category`);post.date=val(`post-${i}-date`);post.excerpt=val(`post-${i}-excerpt`);post.body=val(`post-${i}-body`);
       post.featured=document.getElementById(`post-${i}-featured`)?.checked||false;
       // Collect images array
       const imgs=[];

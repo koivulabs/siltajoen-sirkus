@@ -4,5 +4,7 @@
   "email1": "siilo@siltajoensirkus.fi",
   "email2": "marianne@siltajoensirkus.fi",
   "phone": "+358 44 975 0415",
-  "heroImage": "/kuvia/valkoinen_kana_katsoo_blur.jpg"
+  "heroImage": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
+  "heroFocalX": 50,
+  "heroFocalY": 50
 }
