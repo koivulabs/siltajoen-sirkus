@@ -1,32 +1,32 @@
 {
-  "heroTagline": "Rehuhuolto & Perinteet",
+  "heroTagline": "Rehuhuolto & Tarvikkeet",
   "heroTitle": "Siltajoen Siilo.",
-  "heroBody": "Siltajoen Sirkuksessa kaikki alkaa puhtaasta ja laadukkaasta ravinnosta. Perinteinen rehuhuoltomme varmistaa, että jokainen asukkaamme – kanoista suurimpiin tähtiin – saa parasta mahdollista huolenpitoa.",
+  "heroBody": "Yli 20 vuoden kokemuksella valitut rehut ja tarvikkeet linnuille ja pieneläimille. Siilosta löydät kaiken tarvitsemasi – asiantuntevalla palvelulla ja noutopisteiltä tai postitse kotiinkuljetettuna.",
   "heroImage": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
   "heroFocalX": 50,
   "heroFocalY": 50,
   "featureCards": [
     {
       "icon": "verified",
-      "title": "Laadunvarmistus",
-      "body": "Siltajoen Sirkuksen rehuhuolto perustuu tinkimättömään laatuun. Jokainen erä tarkastetaan huolellisesti ennen varastointia."
+      "title": "Valikoitu laatu",
+      "body": "Jokainen rehu ja tarvike on valittu pitkän kokemuksen perusteella. Myymme vain tuotteita joita itse käytämme ja joihin luotamme."
     },
     {
       "icon": "nest_eco_leaf",
-      "title": "Luonnonmukaisuus",
-      "body": "Suosimme lähituotettua viljaa ja luonnollisia rehuja, jotka tukevat eläintemme terveyttä ja hyvinvointia kestävällä tavalla."
+      "title": "Luonnollinen lähestymistapa",
+      "body": "Suosimme lähituotettua viljaa ja luonnollisia rehuja, jotka tukevat eläinten terveyttä ja hyvinvointia."
     },
     {
       "icon": "local_shipping",
-      "title": "Tehokas Logistiikka",
-      "body": "Automatisoitu varastointijärjestelmämme takaa rehun tuoreuden ja hävikin minimoimisen kaikissa olosuhteissa."
+      "title": "Helppo toimitus",
+      "body": "Verkkokaupan kautta postitukset ympäri Suomen. Noutotilaukset Naissaaresta Vaajakoskelta tai Siltajoelta Leppävedeltä."
     }
   ],
   "stats": [
-    { "value": "100%", "label": "Puhdas Rehu" },
-    { "value": "24/7", "label": "Valvonta" },
-    { "value": "< 2%", "label": "Hävikki" },
-    { "value": "15 km", "label": "Lähitilaa" }
+    { "value": "20+", "label": "Vuotta kokemusta" },
+    { "value": "100%", "label": "Testatut tuotteet" },
+    { "value": "3", "label": "Noutopistettä" },
+    { "value": "♥", "label": "Intohimolla tehty" }
   ],
   "testimonials": [
     {

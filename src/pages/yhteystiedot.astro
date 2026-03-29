@@ -79,7 +79,10 @@ const c = contactDataRaw as any;
       <!-- Form Side -->
       <section class="lg:col-span-7 bg-surface-container rounded-[3rem] p-8 md:p-16 border border-outline/5 reveal">
         <div>
-          <h2 class="font-headline text-3xl md:text-4xl font-black mb-12 italic tracking-tight">Lähetä viesti</h2>
+          <h2 class="font-headline text-3xl md:text-4xl font-black mb-4 italic tracking-tight">Lähetä viesti</h2>
+          <p class="text-on-surface-variant text-sm mb-10">Voit myös lähettää sähköpostia suoraan osoitteeseen <a href="mailto:marianne@siltajoensirkus.fi" class="text-primary hover:underline">marianne@siltajoensirkus.fi</a></p>
+          <!-- HUOM: Lomake vaatii Resend API-avaimen (RESEND_API_KEY) Vercelin ympäristömuuttujiin.
+               Jos lomaketta ei halua käyttöön, tämän <form> elementin voi poistaa kokonaan. -->
           <form id="contactForm" class="space-y-10">
             <div class="space-y-3">
               <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="name">Nimi</label>
@@ -173,7 +176,7 @@ const c = contactDataRaw as any;
           <div class="space-y-6">
             <div class="flex items-center gap-5 group">
               <span class="material-symbols-outlined text-primary bg-primary/10 p-3 rounded-full">location_on</span>
-              <span class="font-bold">Päämaja & Treenitila: Siltajoentie 2, 41310 Leppävesi</span>
+              <span class="font-bold">Siltajoentie 2, 41310 Leppävesi</span>
             </div>
           </div>
         </div>

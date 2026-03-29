@@ -1,75 +1,17 @@
 backend:
   name: github
-  repo: koivulabs/siltajoen-sirkus
+  repo: OWNER/REPO
   branch: main
   base_url: https://siltajoensirkus.vercel.app
   auth_endpoint: /api/auth
 
-# Mediat tallennetaan public/kuvia -kansioon, josta ne jo löytyvät
+# Mediat tallennetaan public/kuvia -kansioon
 media_folder: "public/kuvia"
 public_folder: "/kuvia"
 
 locale: fi
 
 collections:
-
-  # ─────────────────────────────────────────────
-  # ELÄIMET
-  # ─────────────────────────────────────────────
-  - name: "animals"
-    label: "Eläimet"
-    files:
-
-      - name: "animals_data"
-        label: "Kaikki eläimet"
-        file: "src/data/animals.json"
-        format: json
-        fields:
-
-          # Hero-osio
-          - label: "Hero-osio"
-            name: "hero"
-            widget: "object"
-            fields:
-              - { label: "Otsikko", name: "title", widget: "string" }
-              - { label: "Kuva", name: "image", widget: "image" }
-              - label: "Kuvauskappaleet"
-                name: "description"
-                widget: "list"
-                field: { label: "Kappale", name: "item", widget: "text" }
-
-          # Erikoiskategoriat (Viiriäiset, Ankat)
-          - label: "Erikoiskategoriat (Viiriäiset, Ankat jne.)"
-            name: "specialCategories"
-            widget: "list"
-            fields:
-              - { label: "Nimi", name: "name", widget: "string" }
-              - { label: "Alaotsikko", name: "subtitle", widget: "string", required: false }
-              - { label: "Kuva", name: "image", widget: "image" }
-              - label: "Kuvauskappaleet"
-                name: "description"
-                widget: "list"
-                field: { label: "Kappale", name: "item", widget: "text" }
-
-          # Kanarodut
-          - label: "Kanarodut"
-            name: "chickenBreeds"
-            widget: "list"
-            fields:
-              - { label: "Nimi", name: "name", widget: "string" }
-              - { label: "Kuva", name: "image", widget: "image" }
-              - { label: "Leveä kortti (vie koko rivin)", name: "isWide", widget: "boolean", default: false, required: false }
-              - label: "Kuvauskappaleet"
-                name: "description"
-                widget: "list"
-                field: { label: "Kappale", name: "item", widget: "text" }
-              - label: "Hinnat"
-                name: "prices"
-                widget: "list"
-                required: false
-                fields:
-                  - { label: "Nimike (esim. Nuorikko)", name: "label", widget: "string" }
-                  - { label: "Hinta (esim. 35€)", name: "amount", widget: "string" }
 
   # ─────────────────────────────────────────────
   # ETUSIVU
@@ -82,11 +24,162 @@ collections:
         file: "src/data/homepage.json"
         format: json
         fields:
-          - { label: "Pääotsikko (rivi 1)", name: "heroLine1", widget: "string" }
-          - { label: "Pääotsikko (rivi 2, korostettu)", name: "heroLine2", widget: "string" }
+          - { label: "Pääotsikko", name: "heroTitle", widget: "string" }
           - { label: "Hero-kuva 1", name: "heroImage1", widget: "image" }
           - { label: "Hero-kuva 2", name: "heroImage2", widget: "image" }
           - { label: "Hero-kuva 3", name: "heroImage3", widget: "image" }
+          - { label: "Esittelyteksti", name: "introText", widget: "text" }
+          - { label: "Esittelyteksti 2", name: "introText2", widget: "text" }
+          - { label: "Instagram URL", name: "instagramUrl", widget: "string" }
+          - { label: "Facebook URL", name: "facebookUrl", widget: "string" }
+          - { label: "Verkkokauppa URL", name: "shopUrl", widget: "string" }
+          - label: "Tulossa pian -osio"
+            name: "comingSoon"
+            widget: "object"
+            fields:
+              - { label: "Näytä", name: "show", widget: "boolean", default: true }
+              - { label: "Otsikko", name: "title", widget: "string" }
+              - { label: "Teksti", name: "text", widget: "string" }
+              - { label: "Ajankohta", name: "date", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+
+  # ─────────────────────────────────────────────
+  # ELÄIMET
+  # ─────────────────────────────────────────────
+  - name: "animals"
+    label: "Eläimet"
+    files:
+      - name: "animals_data"
+        label: "Kaikki eläimet"
+        file: "src/data/animals.json"
+        format: json
+        fields:
+          - label: "Hero-osio"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Otsikko", name: "title", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - label: "Kuvauskappaleet"
+                name: "description"
+                widget: "list"
+                field: { label: "Kappale", name: "item", widget: "text" }
+              - { label: "Kuvan fokuspiste X (%)", name: "focalX", widget: "number", default: 50, required: false }
+              - { label: "Kuvan fokuspiste Y (%)", name: "focalY", widget: "number", default: 50, required: false }
+          - label: "Erikoiskategoriat (Viiriäiset, Ankat jne.)"
+            name: "specialCategories"
+            widget: "list"
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "Alaotsikko", name: "subtitle", widget: "string", required: false }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - label: "Kuvauskappaleet"
+                name: "description"
+                widget: "list"
+                field: { label: "Kappale", name: "item", widget: "text" }
+              - { label: "Kuvan fokuspiste X (%)", name: "focalX", widget: "number", default: 50, required: false }
+              - { label: "Kuvan fokuspiste Y (%)", name: "focalY", widget: "number", default: 50, required: false }
+          - label: "Kanarodut"
+            name: "chickenBreeds"
+            widget: "list"
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - { label: "Leveä kortti", name: "isWide", widget: "boolean", default: false, required: false }
+              - label: "Kuvauskappaleet"
+                name: "description"
+                widget: "list"
+                field: { label: "Kappale", name: "item", widget: "text" }
+              - label: "Hinnat"
+                name: "prices"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "Nimike (esim. Nuorikko)", name: "label", widget: "string" }
+                  - { label: "Hinta (esim. 35€)", name: "amount", widget: "string" }
+              - { label: "Kuvan fokuspiste X (%)", name: "focalX", widget: "number", default: 50, required: false }
+              - { label: "Kuvan fokuspiste Y (%)", name: "focalY", widget: "number", default: 50, required: false }
+
+  # ─────────────────────────────────────────────
+  # SIILO (Rehukauppa)
+  # ─────────────────────────────────────────────
+  - name: "siilo"
+    label: "Siilo"
+    files:
+      - name: "siilo_data"
+        label: "Siilon sisältö"
+        file: "src/data/siilo.json"
+        format: json
+        fields:
+          - { label: "Hero-tunniste", name: "heroTagline", widget: "string" }
+          - { label: "Hero-otsikko", name: "heroTitle", widget: "string" }
+          - { label: "Hero-teksti", name: "heroBody", widget: "text" }
+          - { label: "Hero-kuva", name: "heroImage", widget: "image" }
+          - { label: "Kuvan fokuspiste X (%)", name: "heroFocalX", widget: "number", default: 50, required: false }
+          - { label: "Kuvan fokuspiste Y (%)", name: "heroFocalY", widget: "number", default: 50, required: false }
+          - label: "Ominaisuuskortit"
+            name: "featureCards"
+            widget: "list"
+            fields:
+              - { label: "Ikoni (Material Symbols nimi)", name: "icon", widget: "string" }
+              - { label: "Otsikko", name: "title", widget: "string" }
+              - { label: "Teksti", name: "body", widget: "text" }
+          - label: "Tilastot"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Arvo", name: "value", widget: "string" }
+              - { label: "Selite", name: "label", widget: "string" }
+          - label: "Asiakaspalautteet"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "Kommentti", name: "text", widget: "text" }
+              - { label: "Päivämäärä", name: "date", widget: "string" }
+          - label: "Tuotteet"
+            name: "products"
+            widget: "list"
+            fields:
+              - { label: "Tuotenimi", name: "title", widget: "string" }
+              - { label: "Kuvaus", name: "description", widget: "text" }
+              - { label: "Hinta", name: "price", widget: "string" }
+              - { label: "Kuva", name: "image", widget: "image" }
+              - { label: "Verkkokauppa-linkki", name: "url", widget: "string" }
+
+  # ─────────────────────────────────────────────
+  # BLOGI
+  # ─────────────────────────────────────────────
+  - name: "blog"
+    label: "Blogi"
+    files:
+      - name: "blog_data"
+        label: "Blogiartikkelit"
+        file: "src/data/blog.json"
+        format: json
+        fields:
+          - { label: "Hero-otsikko", name: "heroTitle", widget: "string" }
+          - { label: "Hero-alaotsikko", name: "heroSubtitle", widget: "string" }
+          - { label: "Hero-teksti", name: "heroBody", widget: "text" }
+          - { label: "Blogger-arkiston URL", name: "bloggerUrl", widget: "string" }
+          - label: "Artikkelit"
+            name: "posts"
+            widget: "list"
+            fields:
+              - { label: "Otsikko", name: "title", widget: "string" }
+              - { label: "Kategoria", name: "category", widget: "string" }
+              - { label: "Päivämäärä", name: "date", widget: "string" }
+              - { label: "URL-polku", name: "slug", widget: "string" }
+              - { label: "Lyhyt kuvaus", name: "excerpt", widget: "text" }
+              - { label: "Koko teksti", name: "body", widget: "text", required: false }
+              - label: "Kuvat"
+                name: "images"
+                widget: "list"
+                required: false
+                field: { label: "Kuva", name: "image", widget: "image" }
+              - { label: "Kuvan fokuspiste X (%)", name: "focalX", widget: "number", default: 50, required: false }
+              - { label: "Kuvan fokuspiste Y (%)", name: "focalY", widget: "number", default: 50, required: false }
+              - { label: "Nostettu artikkeli", name: "featured", widget: "boolean", default: false }
 
   # ─────────────────────────────────────────────
   # TIIMI
@@ -104,9 +197,21 @@ collections:
             widget: "list"
             fields:
               - { label: "Nimi", name: "name", widget: "string" }
-              - { label: "Titteli / Rooli", name: "role", widget: "string" }
-              - { label: "Kuva", name: "image", widget: "image" }
-              - { label: "Kuvaus", name: "bio", widget: "text" }
+              - { label: "Titteli / Rooli", name: "role", widget: "string", required: false }
+              - { label: "Kuva", name: "image", widget: "image", required: false }
+              - { label: "Kuvaus", name: "bio", widget: "text", required: false }
+              - { label: "Puhelin", name: "phone", widget: "string", required: false }
+              - { label: "Sähköposti", name: "email", widget: "string", required: false }
+              - { label: "Kuvan fokuspiste X (%)", name: "focalX", widget: "number", default: 50, required: false }
+              - { label: "Kuvan fokuspiste Y (%)", name: "focalY", widget: "number", default: 50, required: false }
+          - label: "Yhteistyökumppanit"
+            name: "partners"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Nimi", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Kuvaus", name: "description", widget: "text" }
 
   # ─────────────────────────────────────────────
   # YHTEYSTIEDOT

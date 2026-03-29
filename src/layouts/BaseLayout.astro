@@ -70,6 +70,7 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
     <style is:global>
         /* Modern icon settings */
         .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             display: inline-block;
             line-height: 1;
@@ -78,6 +79,8 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
             word-wrap: normal;
             white-space: nowrap;
             direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         /* Scroll Reveal */
         .reveal {
