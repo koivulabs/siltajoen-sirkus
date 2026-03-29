@@ -23,10 +23,22 @@
     }
   ],
   "stats": [
-    { "value": "10+", "label": "Vuotta kokemusta" },
-    { "value": "100%", "label": "Testatut tuotteet" },
-    { "value": "1+", "label": "Noutopiste + rehureitit" },
-    { "value": "♥", "label": "Intohimolla tehty" }
+    {
+      "value": "10+",
+      "label": "Vuotta kokemusta"
+    },
+    {
+      "value": "100%",
+      "label": "Testatut tuotteet"
+    },
+    {
+      "value": "1+",
+      "label": "Noutopiste + rehureitit"
+    },
+    {
+      "value": "♥",
+      "label": "Intohimolla tehty"
+    }
   ],
   "testimonials": [
     {
@@ -43,17 +55,17 @@
   "products": [
     {
       "title": "Sirkuksen Täysrehu",
-      "description": "Optimaalinen ravinto kanoille ja viiriäisille.",
       "price": "24,90 €",
-      "image": "/kuvia/sylissa1.JPG",
-      "url": "https://siltajoensirkus.mycashflow.fi/"
+      "url": "https://siltajoensirkus.mycashflow.fi/",
+      "description": "Optimaalinen ravinto kanoille ja viiriäisille.",
+      "image": "/kuvia/vilja.JPG"
     },
     {
       "title": "Virikekylpyhiekka",
-      "description": "Puhdasta ja hienojakoista hiekkaa kylpyihin.",
       "price": "12,50 €",
-      "image": "/kuvia/sylissa2.JPG",
-      "url": "https://siltajoensirkus.mycashflow.fi/"
+      "url": "https://siltajoensirkus.mycashflow.fi/",
+      "description": "Puhdasta ja hienojakoista hiekkaa kylpyihin.",
+      "image": "/kuvia/munagradientkennossa.jpg"
     }
   ]
 }
