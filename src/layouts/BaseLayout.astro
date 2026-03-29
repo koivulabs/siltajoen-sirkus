@@ -96,6 +96,39 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
         :root {
             color-scheme: light;
         }
+        /* Mobile fixes: reduce oversized radii and text on small screens */
+        @media (max-width: 640px) {
+            .rounded-\[3rem\], .rounded-\[3\.5rem\] { border-radius: 1.5rem; }
+            .rounded-\[2\.5rem\] { border-radius: 1.25rem; }
+            .rounded-\[4rem\] { border-radius: 2rem; }
+        }
+        /* Scroll-to-top button */
+        #scroll-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 40;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: var(--color-primary, #c0522a);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(1rem);
+            transition: opacity 0.3s, transform 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        #scroll-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
     </style>
     <!-- Chatbot placeholder: lisää oma chatbot-ratkaisu tähän tarvittaessa -->
   </head>
@@ -143,6 +176,7 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
               <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
           </div>
+        </div>
       </nav>
     </header>
 
@@ -151,8 +185,8 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
     </main>
 
     <!-- Footer -->
-    <footer class="w-full py-12 bg-surface-variant no-line-rule tonal-shift mt-24">
-      <div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-7xl mx-auto">
+    <footer class="w-full py-12 bg-surface-variant mt-24">
+      <div class="flex flex-col md:flex-row justify-between items-center px-6 sm:px-12 gap-6 max-w-7xl mx-auto">
         <div class="flex flex-col items-center md:items-start gap-2">
           <div class="text-lg font-bold text-on-surface">
               Siltajoen Sirkus
@@ -175,7 +209,7 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
           </a>
         </div>
       </div>
-      <div class="max-w-7xl mx-auto px-12 mt-10 pt-6 border-t border-on-surface/5 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="max-w-7xl mx-auto px-6 sm:px-12 mt-10 pt-6 border-t border-on-surface/5 flex flex-col md:flex-row justify-between items-center gap-4">
          <p class="text-on-surface/30 text-[10px] uppercase tracking-widest font-bold">
             © {new Date().getFullYear()} Siltajoen Sirkus
          </p>
@@ -184,6 +218,11 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
          </div>
       </div>
     </footer>
+
+    <!-- Scroll to top button -->
+    <button id="scroll-top-btn" aria-label="Takaisin ylös">
+      <span class="material-symbols-outlined" style="font-size:1.5rem;">arrow_upward</span>
+    </button>
 
     <!-- Cookie Banner -->
     <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 p-6 z-50 flex flex-col sm:flex-row items-center justify-between gap-4 transform transition-transform duration-300 translate-y-full">
@@ -266,6 +305,21 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
 
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       
+      // Scroll-to-top button
+      const scrollBtn = document.getElementById('scroll-top-btn');
+      if (scrollBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 400) {
+            scrollBtn.classList.add('visible');
+          } else {
+            scrollBtn.classList.remove('visible');
+          }
+        }, { passive: true });
+        scrollBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
       // Re-observe if dynamic content added (simplified for this case)
       document.addEventListener('astro:page-load', () => {
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));

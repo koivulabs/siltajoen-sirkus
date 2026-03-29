@@ -2,8 +2,11 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import animalsDataRaw from "../data/animals.json";
+import contactDataRaw from "../data/contact.json";
 import { getAsset } from "../utils/assets";
 const animalsData = animalsDataRaw as any;
+const c = contactDataRaw as any;
+const phoneLink = c.phone.replace(/\s/g,'').replace('+358','0');
 
 // Hae kaikki kuvat src/assets/kuvia kansiosta dynaamisesti
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/kuvia/*.{jpeg,jpg,png,gif,JPG}', { eager: true });
@@ -57,13 +60,20 @@ const getImg = (path: string) => getAsset(path, images);
       <section class="mb-32 reveal">
         <div class={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-20 items-center`}>
           <div class="lg:w-1/2 space-y-8">
-            <h2 class="font-headline text-4xl md:text-6xl font-black italic tracking-tight uppercase leading-[0.9]">{cat.subtitle}</h2>
+            <h2 class="font-headline text-3xl sm:text-4xl md:text-6xl font-black italic tracking-tight uppercase leading-[0.9]">{cat.subtitle}</h2>
             <div class="space-y-6 text-xl text-on-surface-variant leading-relaxed">
               {cat.description.map((p: string) => <p>{p}</p>)}
             </div>
-            <a href="/yhteystiedot" class="inline-block px-10 py-4 bg-primary text-on-primary rounded-full font-bold uppercase text-sm tracking-widest hover:brightness-110 transition-all shadow-xl">
-              Kysy lisää tästä rodusta
-            </a>
+            <div class="flex flex-wrap gap-3">
+              <a href={`tel:${phoneLink}`} class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-full font-bold uppercase text-xs tracking-wider hover:brightness-110 transition-all shadow-xl">
+                <span class="material-symbols-outlined text-sm">call</span>
+                Soita ja kysy lisää
+              </a>
+              <a href={`mailto:${c.email2}`} class="inline-flex items-center gap-2 px-6 py-3 border-2 border-on-surface text-on-surface rounded-full font-bold uppercase text-xs tracking-wider hover:bg-on-surface hover:text-white transition-all">
+                <span class="material-symbols-outlined text-sm">mail</span>
+                Sähköposti
+              </a>
+            </div>
           </div>
           <div class="lg:w-1/2 relative">
             <div class="aspect-square bg-zinc-100 rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white rotate-2 relative group">
@@ -81,7 +91,7 @@ const getImg = (path: string) => getAsset(path, images);
               )}
               <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
               <div class="absolute bottom-10 left-10 text-white drop-shadow-lg">
-                <h3 class="text-4xl md:text-5xl font-black italic uppercase tracking-tighter leading-none">{cat.subtitle}</h3>
+                <h3 class="text-2xl sm:text-4xl md:text-5xl font-black italic uppercase tracking-tighter leading-none">{cat.subtitle}</h3>
               </div>
             </div>
           </div>
@@ -118,23 +128,35 @@ const getImg = (path: string) => getAsset(path, images);
             )}
           </div>
           <div class="space-y-6">
-            <h3 class="font-headline text-4xl md:text-5xl font-black italic tracking-tighter uppercase leading-none">{breed.name}</h3>
+            <h3 class="font-headline text-2xl sm:text-4xl md:text-5xl font-black italic tracking-tighter uppercase leading-none">{breed.name}</h3>
             <div class="space-y-4 text-on-surface-variant leading-relaxed">
                {breed.description.map((p: string) => <p>{p}</p>)}
             </div>
             
-            <div class="pt-6 border-t border-outline/10 flex flex-wrap gap-8 items-end justify-between">
-              <div class="space-y-4">
-                {breed.prices.map((price: any) => (
-                  <div class="flex items-center gap-4">
-                    <span class="text-xs font-bold uppercase tracking-widest text-primary/60">{price.label}</span>
-                    <span class="text-2xl font-black italic">{price.amount}</span>
-                  </div>
-                ))}
+            <div class="pt-6 border-t border-outline/10 space-y-6">
+              <div class="flex flex-wrap gap-8 items-end justify-between">
+                <div class="space-y-4">
+                  {breed.prices.map((price: any) => (
+                    <div class="flex items-center gap-4">
+                      <span class="text-xs font-bold uppercase tracking-widest text-primary/60">{price.label}</span>
+                      <span class="text-2xl font-black italic">{price.amount}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <a href={`/yhteystiedot?aihe=${encodeURIComponent(breed.name)}`} class="px-8 py-4 bg-zinc-900 text-white rounded-full font-bold uppercase text-xs tracking-widest hover:bg-primary transition-all shadow-lg">
-                Kysy saatavuutta
-              </a>
+              <div class="bg-surface-container-low rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+                <p class="text-on-surface-variant text-sm">Kiinnostuitko? Ota yhteyttä ja kysy saatavuutta:</p>
+                <div class="flex flex-wrap gap-3">
+                  <a href={`tel:${phoneLink}`} class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-full font-bold text-xs tracking-wider hover:brightness-110 transition-all">
+                    <span class="material-symbols-outlined text-sm">call</span>
+                    Soita
+                  </a>
+                  <a href={`mailto:${c.email2}`} class="inline-flex items-center gap-2 px-5 py-2.5 border border-on-surface/20 text-on-surface rounded-full font-bold text-xs tracking-wider hover:bg-on-surface hover:text-white transition-all">
+                    <span class="material-symbols-outlined text-sm">mail</span>
+                    Sähköposti
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>

@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: OWNER/REPO
+  repo: koivulabs/siltajoen-sirkus
   branch: main
   base_url: https://siltajoensirkus.vercel.app
   auth_endpoint: /api/auth

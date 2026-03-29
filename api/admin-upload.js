@@ -27,7 +27,7 @@ export default async function handler(req, res) {
   }
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-  const REPO = 'OWNER/REPO';
+  const REPO = 'koivulabs/siltajoen-sirkus';
   const filePath = `public/kuvia/${safeName}`;
   const apiUrl = `https://api.github.com/repos/${REPO}/contents/${filePath}`;
 

@@ -1,7 +1,7 @@
 {
   "heroTagline": "Rehuhuolto & Tarvikkeet",
   "heroTitle": "Siltajoen Siilo.",
-  "heroBody": "Yli 20 vuoden kokemuksella valitut rehut ja tarvikkeet linnuille ja pieneläimille. Siilosta löydät kaiken tarvitsemasi – asiantuntevalla palvelulla ja noutopisteiltä tai postitse kotiinkuljetettuna.",
+  "heroBody": "Yli 10 vuoden kokemuksella valitut rehut ja tarvikkeet linnuille ja pieneläimille. Siilosta löydät kaiken tarvitsemasi – asiantuntevalla palvelulla noutopisteeltä tai postitse kotiinkuljetettuna.",
   "heroImage": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
   "heroFocalX": 50,
   "heroFocalY": 50,
@@ -19,13 +19,13 @@
     {
       "icon": "local_shipping",
       "title": "Helppo toimitus",
-      "body": "Verkkokaupan kautta postitukset ympäri Suomen. Noutotilaukset Naissaaresta Vaajakoskelta tai Siltajoelta Leppävedeltä."
+      "body": "Verkkokaupan kautta postitukset ympäri Suomen. Noutotilaukset Siltajoelta Leppävedeltä tai rehureiteiltä."
     }
   ],
   "stats": [
-    { "value": "20+", "label": "Vuotta kokemusta" },
+    { "value": "10+", "label": "Vuotta kokemusta" },
     { "value": "100%", "label": "Testatut tuotteet" },
-    { "value": "3", "label": "Noutopistettä" },
+    { "value": "1+", "label": "Noutopiste + rehureitit" },
     { "value": "♥", "label": "Intohimolla tehty" }
   ],
   "testimonials": [

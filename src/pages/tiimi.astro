@@ -1,17 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import teamDataRaw from "../data/team.json";
+import contactDataRaw from "../data/contact.json";
 const teamData = teamDataRaw as any;
+const c = contactDataRaw as any;
+const phoneLink = c.phone.replace(/\s/g,'').replace('+358','0');
 ---
 
 <BaseLayout
   title="Tiimi"
-  description="Tutustu Siltajoen Sirkuksen sydämeen. Täältä löydät sirkusperheemme jäsenet, tirehtööristä huoltojoukkoihin."
+  description="Tutustu Siltajoen Sirkuksen tiimiin. Täältä löydät tilan väen tirehtööristä huoltojoukkoihin."
 >
   <!-- Hero Section -->
   <header class="max-w-7xl mx-auto px-8 mb-20 text-center pt-16 reveal">
-    <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Sirkusperheemme</span>
-    <h1 class="text-4xl sm:text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 uppercase italic">Konkkaron&shy;kka</h1>
+    <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Tilan väki</span>
+    <h1 class="text-3xl sm:text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8 uppercase italic">Konkkaron&shy;kka</h1>
     <p class="text-xl text-on-surface/60 max-w-2xl mx-auto leading-relaxed">
       Siltajoen Sirkus on enemmän kuin pelkkä lintutila – se on eläinrakkaiden ihmisten yhteinen koti. Tutustu ihmisiin, jotka pitävät huolen tilasta ja linnuista joka päivä.
     </p>
@@ -67,7 +70,7 @@ const teamData = teamDataRaw as any;
     <section class="max-w-7xl mx-auto px-8 mt-40">
       <div class="text-center mb-16 reveal">
         <span class="text-secondary font-bold uppercase tracking-widest text-xs mb-4 block">Verkosto & Yhteystyö</span>
-        <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter">Muut projektit</h2>
+        <h2 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic tracking-tighter">Muut projektit</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {teamData.partners.map((p: any) => (
@@ -85,13 +88,13 @@ const teamData = teamDataRaw as any;
 
   <!-- Info Banner -->
   <section class="max-w-7xl mx-auto px-8 mt-32 mb-10 reveal">
-    <div class="bg-surface-container rounded-[3rem] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 border border-outline">
+    <div class="bg-surface-container rounded-[1.5rem] sm:rounded-[3rem] p-8 sm:p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-12 border border-outline">
       <div class="max-w-xl">
-        <h2 class="text-3xl md:text-5xl font-black uppercase italic mb-6 leading-none">Haluatko osaksi porukkaa?</h2>
-        <p class="text-lg text-on-surface/60 mb-8">Etsimme jatkuvasti uusia kykyjä ja reippaita käsipareja sirkusperheeseemme. Jos lintumaailma ja sirkuselämä houkuttelee, ota yhteyttä!</p>
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-black uppercase italic mb-6 leading-none">Haluatko osaksi porukkaa?</h2>
+        <p class="text-lg text-on-surface/60 mb-8">Etsimme jatkuvasti reippaita käsipareja tilan arkeen. Jos lintumaailma ja eläintenhoito kiinnostaa, ota yhteyttä!</p>
         <div class="flex flex-wrap gap-4">
-          <a class="bg-on-surface text-white px-8 py-4 rounded-full font-bold uppercase text-sm hover:bg-on-surface/80 transition-all" href="mailto:rekry@siltajoensirkus.fi">Lähetä hakemus</a>
-          <a class="border border-on-surface text-on-surface px-8 py-4 rounded-full font-bold uppercase text-sm hover:bg-on-surface/5 transition-all" href="tel:0449750415">Soita Marianelle</a>
+          <a class="bg-on-surface text-white px-8 py-4 rounded-full font-bold uppercase text-sm hover:bg-on-surface/80 transition-all" href={`mailto:${c.email2}`}>Lähetä hakemus</a>
+          <a class="border border-on-surface text-on-surface px-8 py-4 rounded-full font-bold uppercase text-sm hover:bg-on-surface/5 transition-all" href={`tel:${phoneLink}`}>Soita Marianelle</a>
         </div>
       </div>
       <div class="w-full md:w-1/3 aspect-square bg-neutral-200 rounded-[2rem] flex items-center justify-center text-center p-4 relative overflow-hidden">

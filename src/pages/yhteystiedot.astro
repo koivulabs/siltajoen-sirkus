@@ -2,26 +2,27 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import contactDataRaw from "../data/contact.json";
 const c = contactDataRaw as any;
+const phoneLink = c.phone.replace(/\s/g,'').replace('+358','0');
 ---
 
 <BaseLayout 
   title="Yhteystiedot" 
-  description="Ota yhteyttä Siltajoen Sirkukseen. Löydät meidät Leppävedeltä ja Vaajakoskelta. Kysy eläimistä, rehuista tai tarkista aukioloajat."
+  description="Ota yhteyttä Siltajoen Sirkukseen. Löydät meidät Siltajoelta Leppävedeltä. Kysy eläimistä, rehuista tai ota yhteyttä."
 >
   <div class="px-6 max-w-7xl mx-auto pt-16">
     <!-- Hero Section -->
     <header class="mb-24 mt-10 reveal">
-      <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Esiripun Takana</span>
-      <h1 class="font-headline text-5xl sm:text-6xl md:text-8xl font-black text-on-surface leading-tight mb-8 tracking-tighter italic">Ota Yhteyttä</h1>
+      <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Tavoita meidät</span>
+      <h1 class="font-headline text-4xl sm:text-6xl md:text-8xl font-black text-on-surface leading-tight mb-8 tracking-tighter italic">Ota Yhteyttä</h1>
       <p class="text-on-surface-variant text-xl md:text-2xl max-w-3xl leading-relaxed font-light">
           Onko sinulla kysyttävää eläimistä, rehuista tai tilasta? Olemme täällä auttamassa sinua.
       </p>
     </header>
 
     <!-- Contact Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-24">
       <!-- Information Side -->
-      <aside class="lg:col-span-5 space-y-12 reveal">
+      <aside class="space-y-12 reveal">
         <div class="bg-surface-container-low rounded-[2.5rem] p-12 space-y-12 border border-outline/5">
           <section>
             <h2 class="font-headline text-3xl font-black mb-8 italic tracking-tight">Yhteystiedot</h2>
@@ -57,14 +58,6 @@ const c = contactDataRaw as any;
             </div>
           </section>
 
-          <section class="pt-10 border-t border-outline/10">
-            <h3 class="font-headline text-xl font-bold mb-6 italic">Aukioloajat</h3>
-            <div class="space-y-4 text-on-surface-variant font-medium">
-              <div class="flex justify-between border-b border-outline/5 pb-2"><span>Maanantai - Perjantai</span> <span>09:00 - 18:00</span></div>
-              <div class="flex justify-between border-b border-outline/5 pb-2"><span>Lauantai</span> <span>10:00 - 16:00</span></div>
-              <div class="flex justify-between"><span>Sunnuntai</span> <span class="italic opacity-50">Suljettu</span></div>
-            </div>
-          </section>
         </div>
 
         <!-- Farm Atmosphere -->
@@ -76,99 +69,53 @@ const c = contactDataRaw as any;
         </div>
       </aside>
 
-      <!-- Form Side -->
-      <section class="lg:col-span-7 bg-surface-container rounded-[3rem] p-8 md:p-16 border border-outline/5 reveal">
-        <div>
-          <h2 class="font-headline text-3xl md:text-4xl font-black mb-4 italic tracking-tight">Lähetä viesti</h2>
-          <p class="text-on-surface-variant text-sm mb-10">Voit myös lähettää sähköpostia suoraan osoitteeseen <a href="mailto:marianne@siltajoensirkus.fi" class="text-primary hover:underline">marianne@siltajoensirkus.fi</a></p>
-          <!-- HUOM: Lomake vaatii Resend API-avaimen (RESEND_API_KEY) Vercelin ympäristömuuttujiin.
-               Jos lomaketta ei halua käyttöön, tämän <form> elementin voi poistaa kokonaan. -->
-          <form id="contactForm" class="space-y-10">
-            <div class="space-y-3">
-              <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="name">Nimi</label>
-              <input class="w-full bg-surface border-none rounded-full px-8 py-5 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30" name="name" id="name" placeholder="Nimesi tai yrityksesi nimi" type="text" required/>
-            </div>
-            <div class="space-y-3">
-              <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="email">Sähköposti</label>
-              <input class="w-full bg-surface border-none rounded-full px-8 py-5 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30" name="email" id="email" placeholder="sähköposti@esimerkki.fi" type="email" required/>
-            </div>
-            <div class="space-y-3">
-              <label class="font-bold text-xs uppercase tracking-widest text-on-surface/50 ml-4" for="message">Viesti</label>
-              <textarea class="w-full bg-surface border-none rounded-[2rem] px-8 py-6 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-on-surface/30 resize-none" name="message" id="message" placeholder="Miten voimme auttaa?" rows="6" required></textarea>
-            </div>
-            <p id="formStatus" class="hidden text-sm font-bold text-primary ml-4"></p>
-            <button id="submitBtn" class="w-full bg-primary text-on-primary font-headline font-black tracking-[0.2em] py-6 rounded-full hover:bg-primary-dim transition-all shadow-2xl shadow-primary/30 flex justify-center items-center gap-3 uppercase text-sm italic" type="submit">
-              <span class="material-symbols-outlined" data-icon="send">send</span>
-              Lähetä viesti
-            </button>
-          </form>
-
-          <script>
-            const form = document.getElementById('contactForm');
-            const statusLabel = document.getElementById('formStatus');
-            const submitBtn = document.getElementById('submitBtn');
-
-            form.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              statusLabel.classList.remove('hidden');
-              statusLabel.innerText = 'Lähetetään...';
-              submitBtn.disabled = true;
-
-              try {
-                const formData = new FormData(form);
-                formData.append('type', 'contact');
-                const response = await fetch('/api/contact', {
-                  method: 'POST',
-                  body: formData,
-                });
-                const result = await response.json();
-                
-                if (result.success) {
-                  statusLabel.innerText = result.message;
-                  statusLabel.className = 'text-sm font-bold text-tertiary ml-4';
-                  form.reset();
-                } else {
-                  throw new Error(result.message);
-                }
-              } catch (err) {
-                statusLabel.innerText = err.message || 'Hups, jotain meni pieleen.';
-                statusLabel.className = 'text-sm font-bold text-primary ml-4';
-              } finally {
-                submitBtn.disabled = false;
-              }
-            });
-          </script>
+      <!-- CTA Side -->
+      <section class="bg-surface-container rounded-[1.5rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-16 border border-outline/5 reveal flex flex-col justify-center items-center text-center">
+        <span class="material-symbols-outlined text-primary text-6xl mb-6">contact_support</span>
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-black mb-4 italic tracking-tight">Ota yhteyttä</h2>
+        <p class="text-on-surface-variant text-lg mb-10 max-w-md">
+          Tavoitat meidät helpoiten puhelimitse tai sähköpostilla. Vastaamme mielellämme kaikkiin kysymyksiisi eläimistä, rehuista ja tarvikkeista.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={`tel:${phoneLink}`} class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:brightness-110 transition-all shadow-xl flex items-center gap-3">
+            <span class="material-symbols-outlined">call</span>
+            Soita
+          </a>
+          <a href={`mailto:${c.email2}`} class="border-2 border-on-surface text-on-surface px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-on-surface hover:text-white transition-all flex items-center gap-3">
+            <span class="material-symbols-outlined">mail</span>
+            Lähetä sähköposti
+          </a>
         </div>
       </section>
     </div>
 
     <!-- FAQ Section -->
     <section class="mt-40">
-      <h2 class="font-headline text-3xl md:text-5xl font-black mb-16 text-center italic tracking-tight">Usein Kysytyt Kysymykset</h2>
+      <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-black mb-12 sm:mb-16 text-center italic tracking-tight">Usein Kysytyt Kysymykset</h2>
       <div class="grid md:grid-cols-2 gap-8">
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
           <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Missä tilanne sijaitsee?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Päätoimipisteemme on Siltajoella, mutta meillä on kiinteät noutopisteet myös <strong>Leppävedellä</strong> ja <strong>Vaajakoskella</strong>.</p>
+          <p class="text-on-surface-variant leading-relaxed">Siltajoen Sirkus sijaitsee Siltajoella, <strong>Leppävedellä</strong>. Rehureiteiltä toimitus onnistuu myös erikseen sovittaessa.</p>
         </div>
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
           <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Miten tilaan eläimiä tai rehuja?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Voit tilata tuotteita suoraan verkkokaupastamme tai ottaa yhteyttä puhelimitse tai lomakkeella. Eläintilaukset sovitaan aina henkilökohtaisesti.</p>
+          <p class="text-on-surface-variant leading-relaxed">Voit tilata tuotteita suoraan verkkokaupastamme tai ottaa yhteyttä puhelimitse tai sähköpostilla. Eläintilaukset sovitaan aina henkilökohtaisesti.</p>
         </div>
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
           <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Onko toimipisteissä pysäköintiä?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Kyllä, kaikissa kolmessa toimipisteessämme on runsaasti ilmaista pysäköintitilaa asiakkaillemme.</p>
+          <p class="text-on-surface-variant leading-relaxed">Kyllä, tilallamme on runsaasti ilmaista pysäköintitilaa asiakkaillemme.</p>
         </div>
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
           <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Noutopisteet ja toimitukset?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Eläimiä ja rehuja voi noutaa ennakkoon sovitusti Leppäveden ja Vaajakosken noutopisteiltämme. Verkkokaupan tilaukset postitamme ympäri Suomen.</p>
+          <p class="text-on-surface-variant leading-relaxed">Eläimiä ja rehuja voi noutaa ennakkoon sovitusti Siltajoelta Leppävedeltä tai rehureiteiltä. Verkkokaupan tilaukset postitamme ympäri Suomen.</p>
         </div>
       </div>
     </section>
 
     <!-- Locations Map Section -->
-    <section class="mt-40 mb-20 bg-surface-container-high rounded-[3.5rem] overflow-hidden grid lg:grid-cols-2 items-stretch border border-outline/10">
-      <div class="p-12 md:p-20">
-        <h2 class="font-headline text-3xl md:text-5xl font-black mb-8 italic tracking-tight">Löydät meidät täältä</h2>
+    <section class="mt-24 sm:mt-40 mb-20 bg-surface-container-high rounded-[1.5rem] sm:rounded-[3.5rem] overflow-hidden grid lg:grid-cols-2 items-stretch border border-outline/10">
+      <div class="p-8 sm:p-12 md:p-20">
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-black mb-8 italic tracking-tight">Löydät meidät täältä</h2>
         <div class="space-y-10 mb-12">
           <p class="text-on-surface-variant text-lg leading-relaxed">
               Siltajoen Sirkus sijaitsee upean luonnon helmassa Keski-Suomessa.

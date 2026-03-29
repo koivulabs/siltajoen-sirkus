@@ -167,7 +167,7 @@ async function showAdmin(){
   renderSection('animals');
 }
 async function loadAllData(){
-  const base=window.location.origin+'/../';
+  const base='https://raw.githubusercontent.com/koivulabs/siltajoen-sirkus/main/';
   const [a,bl,t,s,c,h]=await Promise.all([
     fetch(base+'src/data/animals.json').then(r=>r.json()),
     fetch(base+'src/data/blog.json').then(r=>r.json()),
@@ -183,7 +183,7 @@ async function loadAllData(){
   contactData=JSON.parse(JSON.stringify(c));
   homepageData=JSON.parse(JSON.stringify(h));
   try{
-    const imgRes=await fetch('/api/admin-images');
+    const imgRes=await fetch('https://api.github.com/repos/koivulabs/siltajoen-sirkus/contents/public/kuvia');
     const files=await imgRes.json();
     allImages=files.filter(f=>/\.(jpg|jpeg|png|webp|gif)$/i.test(f.name)).map(f=>`/kuvia/${f.name}`);
   }catch{allImages=[];}
@@ -350,10 +350,12 @@ function renderBlog(){
   document.getElementById('blog-editor').innerHTML=html;
 }
 function addPost(){
-  blogData.posts.push({title:'Uusi artikkeli',category:'UUTINEN',date:'',excerpt:'',image:'',featured:false,focalX:50,focalY:50});
+  blogData.posts.push({title:'Uusi artikkeli',category:'UUTINEN',date:'',excerpt:'',body:'',images:[],featured:false,focalX:50,focalY:50});
   renderBlog();
 }
 function removePost(i){if(confirm('Poista tämä artikkeli?')){blogData.posts.splice(i,1);renderBlog();}}
+function addPostImage(i){if(!blogData.posts[i].images)blogData.posts[i].images=[];blogData.posts[i].images.push('');renderBlog();}
+function removePostImage(i,imgIdx){blogData.posts[i].images.splice(imgIdx,1);renderBlog();}
 
 // ─── TEAM ──────────────────────────────────────────────────────
 function renderTeam(){
