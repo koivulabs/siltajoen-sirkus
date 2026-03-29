@@ -167,7 +167,7 @@ async function showAdmin(){
   renderSection('animals');
 }
 async function loadAllData(){
-  const base='https://raw.githubusercontent.com/koivulabs/siltajoen-sirkus/main/';
+  const base=window.location.origin+'/../';
   const [a,bl,t,s,c,h]=await Promise.all([
     fetch(base+'src/data/animals.json').then(r=>r.json()),
     fetch(base+'src/data/blog.json').then(r=>r.json()),
@@ -183,7 +183,7 @@ async function loadAllData(){
   contactData=JSON.parse(JSON.stringify(c));
   homepageData=JSON.parse(JSON.stringify(h));
   try{
-    const imgRes=await fetch('https://api.github.com/repos/koivulabs/siltajoen-sirkus/contents/public/kuvia');
+    const imgRes=await fetch('/api/admin-images');
     const files=await imgRes.json();
     allImages=files.filter(f=>/\.(jpg|jpeg|png|webp|gif)$/i.test(f.name)).map(f=>`/kuvia/${f.name}`);
   }catch{allImages=[];}

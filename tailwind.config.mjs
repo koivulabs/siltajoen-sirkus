@@ -13,8 +13,13 @@ export default {
 				"on-surface": "#2D2621",
 				"surface-variant": "#EFEBE3",
 				"on-surface-variant": "#4A433D",
+				"surface-container": "#F2EFE8",
+				"surface-container-low": "#F5F2EB",
+				"surface-container-high": "#EDEAD3",
 				"background": "#F9F6F0",
 				"on-background": "#2D2621",
+				"outline": "#7A756F",
+				"tertiary": "#2E7D32",
 			},
 			fontFamily: {
 				"headline": ["Epilogue"],

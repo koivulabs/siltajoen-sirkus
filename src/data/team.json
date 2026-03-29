@@ -16,7 +16,7 @@
       "phone": "",
       "email": "markko@siltajoensirkus.fi",
       "bio": "Mies, joka saa teltan pystyyn ja valot syttymään. Markko on paikalla ensimmäisenä ja lähtee viimeisenä.",
-      "image": "/kuvia/sylissa2.JPG",
+      "image": "",
       "focalX": 57,
       "focalY": 24
     },
@@ -31,31 +31,11 @@
       "focalY": 30
     },
     {
-      "name": "Taina",
-      "role": "",
-      "phone": "",
-      "email": "",
-      "bio": "",
-      "image": "",
-      "focalX": 50,
-      "focalY": 50
-    },
-    {
-      "name": "Jarkko",
-      "role": "Tuottaja",
-      "phone": "",
-      "email": "",
-      "bio": "",
-      "image": "",
-      "focalX": 50,
-      "focalY": 50
-    },
-    {
       "name": "Darrock",
       "role": "Lauman vartija",
       "phone": "",
       "email": "",
-      "bio": "",
+      "bio": "Tilan paras kaveri neljällä jalalla. Darrock pitää huolen siitä, että kaikilla asukkailla on turvallista.",
       "image": "/kuvia/darrock_koira_showcase.JPG",
       "focalX": 45,
       "focalY": 48

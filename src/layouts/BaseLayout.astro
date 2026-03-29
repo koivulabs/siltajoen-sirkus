@@ -67,9 +67,6 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
       }
     `}></script>
 
-    <!-- Chatbot Preconnect (Wait until load anyway) -->
-    <link rel="preconnect" href="https://rag-chatbot-api-unq6.onrender.com" crossorigin />
-    
     <style is:global>
         /* Modern icon settings */
         .material-symbols-outlined {
@@ -97,19 +94,7 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
             color-scheme: light;
         }
     </style>
-    <!-- Koivulabs Chatbot (Delayed Load for Performance) -->
-    <script is:inline>
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const script = document.createElement('script');
-          script.src = "https://rag-chatbot-api-unq6.onrender.com/widget.js";
-          script.setAttribute('data-api', "https://rag-chatbot-api-unq6.onrender.com");
-          script.setAttribute('data-bot-id', "siltajoen-sirkus");
-          script.defer = true;
-          document.head.appendChild(script);
-        }, 2000); // 2s delay to prioritize LCP
-      });
-    </script>
+    <!-- Chatbot placeholder: lisää oma chatbot-ratkaisu tähän tarvittaessa -->
   </head>
   <body class="bg-surface text-on-surface font-body selection:bg-primary/20 selection:text-primary overflow-x-hidden">
     <!-- Top Navigation -->
@@ -131,7 +116,7 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
             <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/" aria-current={pathname === '/' ? 'page' : undefined}>Koti</a>
             <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/elaimet' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/elaimet" aria-current={pathname === '/elaimet' ? 'page' : undefined}>Eläimet</a>
             <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/siilo' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/siilo" aria-current={pathname === '/siilo' ? 'page' : undefined}>Siilo</a>
-            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95 font-black uppercase text-secondary" href="https://siltajoensirkus.mycashflow.fi/" target="_blank">Verkkokauppa</a>
+            <a class="text-on-surface hover:text-primary transition-colors cursor-pointer active:scale-95 font-black uppercase text-secondary" href="https://siltajoensirkus.mycashflow.fi/" target="_blank" rel="noopener noreferrer">Verkkokauppa</a>
             <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/blogi' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/blogi" aria-current={pathname === '/blogi' ? 'page' : undefined}>Blogi</a>
             <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/tiimi' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/tiimi" aria-current={pathname === '/tiimi' ? 'page' : undefined}>Tiimi</a>
             <a class={`transition-colors cursor-pointer active:scale-95 ${pathname === '/yhteystiedot' ? 'text-primary' : 'text-on-surface hover:text-primary'}`} href="/yhteystiedot" aria-current={pathname === '/yhteystiedot' ? 'page' : undefined}>Yhteystiedot</a>
@@ -142,16 +127,16 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
           <a class={`py-3 border-b border-on-surface/5 ${pathname === '/' ? 'text-primary' : 'text-on-surface'}`} href="/" aria-current={pathname === '/' ? 'page' : undefined}>Koti</a>
           <a class={`py-3 border-b border-on-surface/5 ${pathname === '/elaimet' ? 'text-primary' : 'text-on-surface'}`} href="/elaimet" aria-current={pathname === '/elaimet' ? 'page' : undefined}>Eläimet</a>
           <a class={`py-3 border-b border-on-surface/5 ${pathname === '/siilo' ? 'text-primary' : 'text-on-surface'}`} href="/siilo" aria-current={pathname === '/siilo' ? 'page' : undefined}>Siilo</a>
-          <a class="py-3 text-secondary font-black uppercase border-b border-on-surface/5" href="https://siltajoensirkus.mycashflow.fi/" target="_blank">Verkkokauppa</a>
+          <a class="py-3 text-secondary font-black uppercase border-b border-on-surface/5" href="https://siltajoensirkus.mycashflow.fi/" target="_blank" rel="noopener noreferrer">Verkkokauppa</a>
           <a class={`py-3 border-b border-on-surface/5 ${pathname === '/blogi' ? 'text-primary' : 'text-on-surface'}`} href="/blogi" aria-current={pathname === '/blogi' ? 'page' : undefined}>Blogi</a>
           <a class={`py-3 border-b border-on-surface/5 ${pathname === '/tiimi' ? 'text-primary' : 'text-on-surface'}`} href="/tiimi" aria-current={pathname === '/tiimi' ? 'page' : undefined}>Tiimi</a>
           <a class={`py-3 ${pathname === '/yhteystiedot' ? 'text-primary' : 'text-on-surface'}`} href="/yhteystiedot" aria-current={pathname === '/yhteystiedot' ? 'page' : undefined}>Yhteystiedot</a>
           <!-- Mobile Social Icons -->
           <div class="flex gap-8 items-center justify-center py-6 mt-4 border-t border-on-surface/5">
-            <a class="text-on-surface hover:text-primary transition-all" href="https://www.facebook.com/Siltajoensirkus" target="_blank" aria-label="Siltajoen Sirkus Facebookissa">
+            <a class="text-on-surface hover:text-primary transition-all" href="https://www.facebook.com/Siltajoensirkus" target="_blank" rel="noopener noreferrer" aria-label="Siltajoen Sirkus Facebookissa">
               <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
-            <a class="text-on-surface hover:text-primary transition-all" href="https://www.instagram.com/siltajoensirkus/" target="_blank" aria-label="Siltajoen Sirkus Instagramissa">
+            <a class="text-on-surface hover:text-primary transition-all" href="https://www.instagram.com/siltajoensirkus/" target="_blank" rel="noopener noreferrer" aria-label="Siltajoen Sirkus Instagramissa">
               <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
           </div>
@@ -170,7 +155,7 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
               Siltajoen Sirkus
           </div>
           <p class="text-on-surface-variant font-['Plus_Jakarta_Sans'] text-sm text-center md:text-left">
-              {c.street}, {c.city} | Y-Tunnus: (Marianne lisää tähän validia tekstiä) <br/>
+              {c.street}, {c.city}<br/>
               © {new Date().getFullYear()} Siltajoen Sirkus. All rights reserved. | {c.email1} | {c.email2}
           </p>
         </div>
@@ -179,10 +164,10 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
           <a class="text-on-surface-variant hover:text-primary underline-offset-4 hover:underline transition-all duration-300" href="/saavutettavuus">Saavutettavuus</a>
         </div>
         <div class="flex gap-4 items-center">
-          <a class="text-on-surface hover:text-primary transition-all hover:scale-110" href="https://www.facebook.com/Siltajoensirkus" target="_blank" aria-label="Siltajoen Sirkus Facebookissa (avautuu uuteen välilehteen)">
+          <a class="text-on-surface hover:text-primary transition-all hover:scale-110" href="https://www.facebook.com/Siltajoensirkus" target="_blank" rel="noopener noreferrer" aria-label="Siltajoen Sirkus Facebookissa (avautuu uuteen välilehteen)">
             <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
-          <a class="text-on-surface hover:text-primary transition-all hover:scale-110" href="https://www.instagram.com/siltajoensirkus/" target="_blank" aria-label="Siltajoen Sirkus Instagramissa (avautuu uuteen välilehteen)">
+          <a class="text-on-surface hover:text-primary transition-all hover:scale-110" href="https://www.instagram.com/siltajoensirkus/" target="_blank" rel="noopener noreferrer" aria-label="Siltajoen Sirkus Instagramissa (avautuu uuteen välilehteen)">
             <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
@@ -191,12 +176,8 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
          <p class="text-on-surface/30 text-[10px] uppercase tracking-widest font-bold">
             © {new Date().getFullYear()} Siltajoen Sirkus
          </p>
-         <div class="flex items-center gap-2 text-on-surface/30 text-[10px] font-bold uppercase tracking-widest group">
-            <span>Toteutus</span>
-            <a href="https://koivulabs.com" target="_blank" class="hover:text-primary transition-colors flex items-center gap-1">
-              <span class="group-hover:text-primary transition-colors">KOIVULABS</span>
-              <span class="material-symbols-outlined text-[10px]">open_in_new</span>
-            </a>
+         <div class="flex items-center gap-2 text-on-surface/30 text-[10px] font-bold uppercase tracking-widest">
+            <span>Siltajoen Sirkus</span>
          </div>
       </div>
     </footer>
@@ -210,6 +191,9 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
         </p>
       </div>
       <div class="flex gap-4">
+        <button id="reject-cookies" class="px-6 py-2 bg-zinc-200 text-zinc-700 rounded-full font-bold hover:bg-zinc-300 transition-colors">
+          Vain välttämättömät
+        </button>
         <button id="accept-cookies" class="px-6 py-2 bg-primary text-white rounded-full font-bold hover:opacity-90 transition-opacity">
           Hyväksy kaikki
         </button>
@@ -228,6 +212,14 @@ const ogImage = new URL("/kuvia/sylissa1.JPG", Astro.site || "https://siltajoens
       if(acceptBtn) {
           acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookies-accepted', 'true');
+            if(banner) banner.classList.add('translate-y-full');
+          });
+      }
+
+      const rejectBtn = document.getElementById('reject-cookies');
+      if(rejectBtn) {
+          rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookies-accepted', 'necessary');
             if(banner) banner.classList.add('translate-y-full');
           });
       }

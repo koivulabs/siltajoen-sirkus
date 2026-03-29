@@ -6,7 +6,7 @@ const c = contactDataRaw as any;
 
 <BaseLayout 
   title="Yhteystiedot" 
-  description="Ota yhteyttä Siltajoen Sirkukseen. Löydät meidät Leppävedeltä ja Vaajakoskelta. Kysy lipuista, varaa esitys tai tarkista aukioloajat."
+  description="Ota yhteyttä Siltajoen Sirkukseen. Löydät meidät Leppävedeltä ja Vaajakoskelta. Kysy eläimistä, rehuista tai tarkista aukioloajat."
 >
   <div class="px-6 max-w-7xl mx-auto pt-16">
     <!-- Hero Section -->
@@ -14,7 +14,7 @@ const c = contactDataRaw as any;
       <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Esiripun Takana</span>
       <h1 class="font-headline text-5xl sm:text-6xl md:text-8xl font-black text-on-surface leading-tight mb-8 tracking-tighter italic">Ota Yhteyttä</h1>
       <p class="text-on-surface-variant text-xl md:text-2xl max-w-3xl leading-relaxed font-light">
-          Onko sinulla kysyttävää lipuista, esityksistä tai eläimistä? Olemme täällä luomassa taikaa kanssasi.
+          Onko sinulla kysyttävää eläimistä, rehuista tai tilasta? Olemme täällä auttamassa sinua.
       </p>
     </header>
 
@@ -67,12 +67,11 @@ const c = contactDataRaw as any;
           </section>
         </div>
 
-        <!-- Bird/Farm Themed Placeholder -->
-        <div class="relative overflow-hidden rounded-[2.5rem] aspect-square bg-neutral-200">
-          <img loading="lazy"  alt="Siltajoen sirkuksen tunnelmaa" class="w-full h-full object-cover grayscale opacity-60" src="/placeholder-magic.jpg" onerror="this.style.display='none'" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-          <div class="absolute bottom-10 left-10 text-white z-10">
-            <p class="font-headline font-black text-3xl italic tracking-tighter leading-tight">Taikuus alkaa<br/>täältä.</p>
+        <!-- Farm Atmosphere -->
+        <div class="relative overflow-hidden rounded-[2.5rem] aspect-square bg-primary/5 flex items-center justify-center">
+          <div class="text-center px-8">
+            <span class="material-symbols-outlined text-primary text-6xl mb-4 block">yard</span>
+            <p class="font-headline font-black text-3xl italic tracking-tighter leading-tight text-on-surface">Siivekkäiden<br/>paratiisi.</p>
           </div>
         </div>
       </aside>
@@ -149,16 +148,16 @@ const c = contactDataRaw as any;
           <p class="text-on-surface-variant leading-relaxed">Päätoimipisteemme on Siltajoella, mutta meillä on kiinteät noutopisteet myös <strong>Leppävedellä</strong> ja <strong>Vaajakoskella</strong>.</p>
         </div>
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
-          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Miten varaan liput?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Voit ostaa liput suoraan verkkokaupastamme tai varata ne puhelimitse. Ryhmävaraukset onnistuvat parhaiten yllä olevalla lomakkeella.</p>
+          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Miten tilaan eläimiä tai rehuja?</h3>
+          <p class="text-on-surface-variant leading-relaxed">Voit tilata tuotteita suoraan verkkokaupastamme tai ottaa yhteyttä puhelimitse tai lomakkeella. Eläintilaukset sovitaan aina henkilökohtaisesti.</p>
         </div>
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
           <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Onko toimipisteissä pysäköintiä?</h3>
           <p class="text-on-surface-variant leading-relaxed">Kyllä, kaikissa kolmessa toimipisteessämme on runsaasti ilmaista pysäköintitilaa asiakkaillemme.</p>
         </div>
         <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
-          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Noutopisteet ja lipunmyynti?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Eläimiä ja rehuja voi noutaa ennakkoon sovitusti Leppäveden ja Vaajakosken noutopisteiltämme arkisin aukioloaikojen puitteissa.</p>
+          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Noutopisteet ja toimitukset?</h3>
+          <p class="text-on-surface-variant leading-relaxed">Eläimiä ja rehuja voi noutaa ennakkoon sovitusti Leppäveden ja Vaajakosken noutopisteiltämme. Verkkokaupan tilaukset postitamme ympäri Suomen.</p>
         </div>
       </div>
     </section>
@@ -169,7 +168,7 @@ const c = contactDataRaw as any;
         <h2 class="font-headline text-3xl md:text-5xl font-black mb-8 italic tracking-tight">Löydät meidät täältä</h2>
         <div class="space-y-10 mb-12">
           <p class="text-on-surface-variant text-lg leading-relaxed">
-              Siltajoen Sirkuskylä sijaitsee upean luonnon helmassa Keski-Suomessa.
+              Siltajoen Sirkus sijaitsee upean luonnon helmassa Keski-Suomessa.
           </p>
           <div class="space-y-6">
             <div class="flex items-center gap-5 group">
@@ -178,7 +177,7 @@ const c = contactDataRaw as any;
             </div>
           </div>
         </div>
-        <a class="inline-flex items-center gap-4 font-headline font-black text-primary tracking-widest uppercase italic group text-sm" href="https://www.google.com/maps/dir/?api=1&destination=Siltajoentie+2+Leppavesi" target="_blank">
+        <a class="inline-flex items-center gap-4 font-headline font-black text-primary tracking-widest uppercase italic group text-sm" href="https://www.google.com/maps/dir/?api=1&destination=Siltajoentie+2+Leppavesi" target="_blank" rel="noopener noreferrer">
             Avaa navigointi
             <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
         </a>
