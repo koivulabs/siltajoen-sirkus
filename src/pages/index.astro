@@ -14,39 +14,75 @@ const getImg = (path: string) => getAsset(path, images);
   title="Koti" 
   description="Siltajoen Sirkuksessa kasvatetaan eri rotuisia kanoja, viiriäisiä, ankkoja ja leijonaharjaskaneja. Siilon asiantunteva palvelu tarvike- ja rehumyynti aiheissa."
 >
-  <!-- Hero Section (LCP Optimized) -->
-  <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black -mt-24">
-    <div class="absolute inset-0 z-0">
+  <!-- Hero Section: Cinematic Overlay (B) -->
+  <section class="relative h-screen max-h-[900px] w-full overflow-hidden bg-black -mt-24">
+    <!-- Background Image Grid -->
+    <div class="absolute inset-0 grid grid-cols-1 sm:grid-cols-3 gap-1 opacity-50">
       {getImg(hp.heroImage1) ? (
-        <Image 
-          src={getImg(hp.heroImage1)!} 
-          alt="Siltajoen Sirkus - Sylissä" 
-          class="w-full h-full object-cover opacity-60" 
+        <Image
+          src={getImg(hp.heroImage1)!}
+          alt=""
+          class="w-full h-full object-cover"
+          style="object-position: 54% 36%"
           loading="eager"
           fetchpriority="high"
-          width={1920}
-          height={1080}
+          width={800}
+          height={900}
         />
       ) : (
-        <img src={hp.heroImage1} alt="Siltajoen Sirkus" class="w-full h-full object-cover opacity-60" fetchpriority="high" />
+        <img src={hp.heroImage1} alt="" class="w-full h-full object-cover" style="object-position: 54% 36%" fetchpriority="high" />
       )}
-      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-surface"></div>
+      {getImg(hp.heroImage3) ? (
+        <Image
+          src={getImg(hp.heroImage3)!}
+          alt=""
+          class="w-full h-full object-cover hidden sm:block"
+          loading="eager"
+          width={800}
+          height={900}
+        />
+      ) : (
+        <img src={hp.heroImage3} alt="" class="w-full h-full object-cover hidden sm:block" loading="eager" />
+      )}
+      {getImg(hp.heroImage2) ? (
+        <Image
+          src={getImg(hp.heroImage2)!}
+          alt=""
+          class="w-full h-full object-cover hidden sm:block"
+          style="object-position: 50% 30%"
+          loading="eager"
+          width={800}
+          height={900}
+        />
+      ) : (
+        <img src={hp.heroImage2} alt="" class="w-full h-full object-cover hidden sm:block" style="object-position: 50% 30%" loading="eager" />
+      )}
     </div>
-    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto w-full reveal">
-      <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[clamp(2rem,10vw,8rem)] font-headline font-black italic tracking-tighter text-white mb-8 md:mb-12 uppercase drop-shadow-2xl leading-none px-4">
-          {hp.heroTitle}
+    <!-- Dark Gradient Overlay -->
+    <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.8) 100%)"></div>
+    <!-- Content -->
+    <div class="relative z-[2] h-full flex flex-col justify-end px-8 sm:px-12 md:px-16 pb-24 sm:pb-20 max-w-[900px] reveal">
+      <span class="font-headline text-[11px] font-extrabold uppercase tracking-[0.4em] text-primary mb-5">Siltajoen Sirkus · Leppävesi</span>
+      <h1 class="font-headline text-[clamp(2.5rem,6vw,5rem)] font-black text-white leading-[0.92] tracking-tight mb-6">
+        Siivekkäiden<br/>
+        <span class="block text-white/40 italic">paratiisi.</span>
       </h1>
-      <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
-        <a href="/elaimet" class="w-full md:w-auto px-8 py-4 bg-primary text-on-primary font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
-            Tutustu siivekkäisiimme
+      <p class="text-lg text-white/55 max-w-[500px] leading-relaxed mb-10">
+        {hp.introText}
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/elaimet" class="px-8 sm:px-10 py-4 sm:py-[18px] bg-primary text-white rounded-full font-bold text-[13px] uppercase tracking-[0.15em] hover:brightness-110 transition-all">
+          Tutustu siivekkäisiimme
         </a>
-        <a href={hp.shopUrl} target="_blank" rel="noopener noreferrer" class="w-full md:w-auto px-8 py-4 bg-secondary text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
-            Verkkokauppaan
-        </a>
-        <a href="/blogi" class="w-full md:w-auto px-8 py-4 bg-white/90 text-on-surface font-headline font-bold rounded-full text-lg shadow-lg hover:scale-105 transition-transform active:scale-95 inline-block text-center">
-            Lue tarinat
+        <a href={hp.shopUrl} target="_blank" rel="noopener noreferrer" class="px-8 sm:px-10 py-4 sm:py-[18px] bg-white/10 backdrop-blur text-white rounded-full font-bold text-[13px] uppercase tracking-[0.15em] hover:bg-white/20 transition-all">
+          Verkkokauppaan
         </a>
       </div>
+    </div>
+    <!-- Scroll Hint -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-[3] text-white/30 text-[12px] uppercase tracking-[0.3em] text-center">
+      Selaa alas
+      <span class="block w-px h-10 bg-white/20 mx-auto mt-3 animate-pulse"></span>
     </div>
   </section>
 
