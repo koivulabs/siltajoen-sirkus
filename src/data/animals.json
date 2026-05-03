@@ -39,6 +39,7 @@
       "name": "Silkkikanat",
       "image": "/kuvia/silkkikana.jpg",
       "description": [
+        "EI SIITOSPARVEA TÄLLÄ HETKELLÄ",
         "Silkkikanat ovat söpön siliteltäviä pehmolelun näköisiä pööpiäisiä. Luonteeltaan silkit ovat juuri niin hurmaavia miltä näyttävätkin: uteliaan kesyjä ja pikkuisen höppänöitä.",
         "Silkkikanan sulka on tyypillisesti karvamainen höhhelö. Meillä silkeistä löytyy myös muut sulkamuodot ns smooth, eli \"normisulkainen\" ja frisee, eli kiharasulkainen versio.",
         "Silkkikana on pieni noin kilon kokoinen kääpiörotu ja erittäin hautomainnokas. Emoina silkit ovatkin mahtavia ja silkkien kasvattaja saakin nauttia ympäri vuoden pikkutipuista. Silkkikana on hautomakone, jossa ei ole on off-nappulaa."
@@ -50,7 +51,8 @@
         }
       ],
       "focalX": 26,
-      "focalY": 16
+      "focalY": 16,
+      "isWide": false
     },
     {
       "name": "Kääpiökoch",
@@ -72,14 +74,15 @@
         }
       ],
       "focalX": 55,
-      "focalY": 20
+      "focalY": 20,
+      "isWide": false
     },
     {
       "name": "Marans",
       "image": "/kuvia/marans.jpg",
       "description": [
-        "Marans on vanha ranskalainen liha- ja munarotu, jonka erityispiirre on erittäin tummanruskea kuoriset kookkaat munat.",
-        "Siltajoella kasvatetaan Maranseja kahdessa erisukuisessa parvessa, väreissä Black Copper ja Blue Copper + Blue. Blue Copper kukon parvessa on muutama Splash kana, joten toisinaan myyntiin tulee myös Splashin värisiä kanoja ja kukkoja."
+        "EI SIITOSPARVEA TÄLLÄ HETKELLÄ",
+        "Marans on vanha ranskalainen liha- ja munarotu, jonka erityispiirre on erittäin tummanruskea kuoriset kookkaat munat."
       ],
       "prices": [
         {
@@ -96,7 +99,8 @@
         }
       ],
       "focalX": 60,
-      "focalY": 16
+      "focalY": 16,
+      "isWide": false
     },
     {
       "name": "Marau",
@@ -116,7 +120,8 @@
         }
       ],
       "focalX": 50,
-      "focalY": 58
+      "focalY": 58,
+      "isWide": false
     },
     {
       "name": "Araucana",
@@ -135,13 +140,15 @@
         }
       ],
       "focalX": 63,
-      "focalY": 41
+      "focalY": 41,
+      "isWide": false
     },
     {
       "name": "Mille Fleur",
       "image": "/kuvia/millefleur.jpg",
       "description": [
-        "Kirjavat vilkkaat pikkukanat, voiko tällaisia olla olemassakaan? Aivan kuin sadusta. Silti ihan oikeita kanasia pienine munineen ja suurine jalkasulkineen."
+        "EI SIITOSPARVEA TÄLLÄ HETKELLÄ",
+        "Kirjavat vilkkaat pikkukanat, voiko tällaisia olla olemassakaan? Aivan kuin sadusta. Silti ihan oikeita kanasia pienine munineen ja suurine jalkasulkineen. Kesyjä ja vilkkaita."
       ],
       "prices": [
         {
@@ -158,7 +165,8 @@
         }
       ],
       "focalX": 46,
-      "focalY": 35
+      "focalY": 35,
+      "isWide": false
     },
     {
       "name": "Sekulit",
