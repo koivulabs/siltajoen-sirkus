@@ -6,5 +6,35 @@
   "phone": "+358 44 975 0415",
   "heroImage": "/kuvia/valkoinen_kana_katsoo_blur.jpg",
   "heroFocalX": 50,
-  "heroFocalY": 50
+  "heroFocalY": 50,
+  "page": {
+    "heroTagline": "Tavoita meidät",
+    "heroTitle": "Ota Yhteyttä",
+    "heroBody": "Onko sinulla kysyttävää eläimistä, rehuista tai tilasta? Olemme täällä auttamassa sinua.",
+    "ctaTitle": "Ota yhteyttä",
+    "ctaBody": "Tavoitat meidät helpoiten puhelimitse tai sähköpostilla. Vastaamme mielellämme kaikkiin kysymyksiisi eläimistä, rehuista ja tarvikkeista.",
+    "ctaCallButton": "Soita",
+    "ctaEmailButton": "Lähetä sähköposti",
+    "faqTitle": "Usein Kysytyt Kysymykset",
+    "faqs": [
+      {
+        "question": "Missä tilanne sijaitsee?",
+        "answer": "Siltajoen Sirkus sijaitsee Siltajoella, <strong>Leppävedellä</strong>. Rehureiteiltä toimitus onnistuu myös erikseen sovittaessa."
+      },
+      {
+        "question": "Miten tilaan eläimiä tai rehuja?",
+        "answer": "Voit tilata tuotteita suoraan verkkokaupastamme tai ottaa yhteyttä puhelimitse tai sähköpostilla. Eläintilaukset sovitaan aina henkilökohtaisesti."
+      },
+      {
+        "question": "Onko toimipisteissä pysäköintiä?",
+        "answer": "Kyllä, tilallamme on runsaasti ilmaista pysäköintitilaa asiakkaillemme."
+      },
+      {
+        "question": "Noutopisteet ja toimitukset?",
+        "answer": "Eläimiä ja rehuja voi noutaa ennakkoon sovitusti Siltajoelta Leppävedeltä tai rehureiteiltä. Verkkokaupan tilaukset postitamme ympäri Suomen."
+      }
+    ],
+    "mapTitle": "Löydät meidät täältä",
+    "mapBody": "Siltajoen Sirkus sijaitsee upean luonnon helmassa Keski-Suomessa."
+  }
 }

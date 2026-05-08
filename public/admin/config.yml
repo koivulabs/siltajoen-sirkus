@@ -229,4 +229,26 @@ collections:
           - { label: "Sähköposti 1", name: "email1", widget: "string" }
           - { label: "Sähköposti 2", name: "email2", widget: "string" }
           - { label: "Puhelin", name: "phone", widget: "string" }
-          - { label: "Hero-kuva", name: "heroImage", widget: "image" }
+          - { label: "Hero-kuva (käytetään muilla sivuilla)", name: "heroImage", widget: "image", required: false }
+          - { label: "Hero-kuvan fokuspiste X (%)", name: "heroFocalX", widget: "number", default: 50, required: false }
+          - { label: "Hero-kuvan fokuspiste Y (%)", name: "heroFocalY", widget: "number", default: 50, required: false }
+          - label: "Sivun tekstit"
+            name: "page"
+            widget: "object"
+            fields:
+              - { label: "Hero-tagline (yläteksti)", name: "heroTagline", widget: "string" }
+              - { label: "Hero-otsikko", name: "heroTitle", widget: "string" }
+              - { label: "Hero-teksti", name: "heroBody", widget: "text" }
+              - { label: "CTA-otsikko (oikea palsta)", name: "ctaTitle", widget: "string" }
+              - { label: "CTA-teksti", name: "ctaBody", widget: "text" }
+              - { label: "Soita-napin teksti", name: "ctaCallButton", widget: "string" }
+              - { label: "Sähköposti-napin teksti", name: "ctaEmailButton", widget: "string" }
+              - { label: "FAQ-otsikko", name: "faqTitle", widget: "string" }
+              - label: "Usein kysytyt kysymykset"
+                name: "faqs"
+                widget: "list"
+                fields:
+                  - { label: "Kysymys", name: "question", widget: "string" }
+                  - { label: "Vastaus (HTML sallittu, esim. <strong>)", name: "answer", widget: "text" }
+              - { label: "Karttaosion otsikko", name: "mapTitle", widget: "string" }
+              - { label: "Karttaosion teksti", name: "mapBody", widget: "text" }

@@ -19,10 +19,10 @@ const mapDirUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery
   <div class="px-6 max-w-7xl mx-auto pt-16">
     <!-- Hero Section -->
     <header class="mb-24 mt-10 reveal">
-      <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Tavoita meidät</span>
-      <h1 class="font-headline text-4xl sm:text-6xl md:text-8xl font-black text-on-surface leading-tight mb-8 tracking-tighter italic">Ota Yhteyttä</h1>
+      <span class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">{c.page.heroTagline}</span>
+      <h1 class="font-headline text-4xl sm:text-6xl md:text-8xl font-black text-on-surface leading-tight mb-8 tracking-tighter italic">{c.page.heroTitle}</h1>
       <p class="text-on-surface-variant text-xl md:text-2xl max-w-3xl leading-relaxed font-light">
-          Onko sinulla kysyttävää eläimistä, rehuista tai tilasta? Olemme täällä auttamassa sinua.
+          {c.page.heroBody}
       </p>
     </header>
 
@@ -79,18 +79,18 @@ const mapDirUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery
       <!-- CTA Side -->
       <section class="bg-surface-container rounded-[1.5rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-16 border border-outline/5 reveal flex flex-col justify-center items-center text-center">
         <span class="material-symbols-outlined text-primary text-6xl mb-6">contact_support</span>
-        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-black mb-4 italic tracking-tight">Ota yhteyttä</h2>
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-black mb-4 italic tracking-tight">{c.page.ctaTitle}</h2>
         <p class="text-on-surface-variant text-lg mb-10 max-w-md">
-          Tavoitat meidät helpoiten puhelimitse tai sähköpostilla. Vastaamme mielellämme kaikkiin kysymyksiisi eläimistä, rehuista ja tarvikkeista.
+          {c.page.ctaBody}
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href={`tel:${phoneLink}`} class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:brightness-110 transition-all shadow-xl flex items-center gap-3">
             <span class="material-symbols-outlined">call</span>
-            Soita
+            {c.page.ctaCallButton}
           </a>
           <a href={`mailto:${c.email2}`} class="border-2 border-on-surface text-on-surface px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-on-surface hover:text-white transition-all flex items-center gap-3">
             <span class="material-symbols-outlined">mail</span>
-            Lähetä sähköposti
+            {c.page.ctaEmailButton}
           </a>
         </div>
       </section>
@@ -98,34 +98,24 @@ const mapDirUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery
 
     <!-- FAQ Section -->
     <section class="mt-40">
-      <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-black mb-12 sm:mb-16 text-center italic tracking-tight">Usein Kysytyt Kysymykset</h2>
+      <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-black mb-12 sm:mb-16 text-center italic tracking-tight">{c.page.faqTitle}</h2>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
-          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Missä tilanne sijaitsee?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Siltajoen Sirkus sijaitsee Siltajoella, <strong>Leppävedellä</strong>. Rehureiteiltä toimitus onnistuu myös erikseen sovittaessa.</p>
-        </div>
-        <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
-          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Miten tilaan eläimiä tai rehuja?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Voit tilata tuotteita suoraan verkkokaupastamme tai ottaa yhteyttä puhelimitse tai sähköpostilla. Eläintilaukset sovitaan aina henkilökohtaisesti.</p>
-        </div>
-        <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
-          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Onko toimipisteissä pysäköintiä?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Kyllä, tilallamme on runsaasti ilmaista pysäköintitilaa asiakkaillemme.</p>
-        </div>
-        <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
-          <h3 class="font-headline font-black text-xl mb-4 italic text-primary">Noutopisteet ja toimitukset?</h3>
-          <p class="text-on-surface-variant leading-relaxed">Eläimiä ja rehuja voi noutaa ennakkoon sovitusti Siltajoelta Leppävedeltä tai rehureiteiltä. Verkkokaupan tilaukset postitamme ympäri Suomen.</p>
-        </div>
+        {c.page.faqs.map((faq: { question: string; answer: string }) => (
+          <div class="bg-surface-container-low p-10 rounded-[2.5rem] border border-outline/5 hover:border-primary/20 transition-colors">
+            <h3 class="font-headline font-black text-xl mb-4 italic text-primary">{faq.question}</h3>
+            <p class="text-on-surface-variant leading-relaxed" set:html={faq.answer}></p>
+          </div>
+        ))}
       </div>
     </section>
 
     <!-- Locations Map Section -->
     <section class="mt-24 sm:mt-40 mb-20 bg-surface-container-high rounded-[1.5rem] sm:rounded-[3.5rem] overflow-hidden grid lg:grid-cols-2 items-stretch border border-outline/10">
       <div class="p-8 sm:p-12 md:p-20">
-        <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-black mb-8 italic tracking-tight">Löydät meidät täältä</h2>
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-5xl font-black mb-8 italic tracking-tight">{c.page.mapTitle}</h2>
         <div class="space-y-10 mb-12">
           <p class="text-on-surface-variant text-lg leading-relaxed">
-              Siltajoen Sirkus sijaitsee upean luonnon helmassa Keski-Suomessa.
+              {c.page.mapBody}
           </p>
           <div class="space-y-6">
             <div class="flex items-center gap-5 group">
