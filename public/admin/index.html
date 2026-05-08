@@ -102,6 +102,8 @@
       <button class="nav-item" onclick="showSection('siilo',event)">🌾 Siilo</button>
       <button class="nav-item" onclick="showSection('contact',event)">📍 Yhteystiedot</button>
       <button class="nav-item" onclick="showSection('homepage',event)">🏠 Kotisivu</button>
+      <button class="nav-item" onclick="showSection('accessibility',event)">♿ Saavutettavuusseloste</button>
+      <button class="nav-item" onclick="showSection('privacy',event)">🛡️ Tietosuojaseloste</button>
     </nav>
     <div class="main-content">
       <div class="section active" id="section-animals">
@@ -134,6 +136,16 @@
         <p class="desc">Muokkaa etusivun tekstejä ja kuvia.</p>
         <div id="homepage-editor">Ladataan...</div>
       </div>
+      <div class="section" id="section-accessibility">
+        <h2>Saavutettavuusseloste</h2>
+        <p class="desc">Muokkaa /saavutettavuus-sivun sisältöä. Lisää tai poista sektioita ja luettelokohtia.</p>
+        <div id="accessibility-editor">Ladataan...</div>
+      </div>
+      <div class="section" id="section-privacy">
+        <h2>Tietosuojaseloste</h2>
+        <p class="desc">Muokkaa /tietosuojaseloste-sivun sisältöä. Bodyssä toimii &lt;br/&gt; rivinvaihto.</p>
+        <div id="privacy-editor">Ladataan...</div>
+      </div>
     </div>
   </div>
 </div>
@@ -144,7 +156,7 @@
 </div>
 
 <script>
-let animalsData=null,blogData=null,teamData=null,siiloData=null,contactData=null,homepageData=null;
+let animalsData=null,blogData=null,teamData=null,siiloData=null,contactData=null,homepageData=null,accessibilityData=null,privacyData=null;
 let allImages=[];
 let currentSection='animals';
 
@@ -168,13 +180,15 @@ async function showAdmin(){
 }
 async function loadAllData(){
   const base='https://raw.githubusercontent.com/koivulabs/siltajoen-sirkus/main/';
-  const [a,bl,t,s,c,h]=await Promise.all([
+  const [a,bl,t,s,c,h,acc,priv]=await Promise.all([
     fetch(base+'src/data/animals.json').then(r=>r.json()),
     fetch(base+'src/data/blog.json').then(r=>r.json()),
     fetch(base+'src/data/team.json').then(r=>r.json()),
     fetch(base+'src/data/siilo.json').then(r=>r.json()),
     fetch(base+'src/data/contact.json').then(r=>r.json()),
     fetch(base+'src/data/homepage.json').then(r=>r.json()),
+    fetch(base+'src/data/accessibility.json').then(r=>r.json()),
+    fetch(base+'src/data/privacy.json').then(r=>r.json()),
   ]);
   animalsData=JSON.parse(JSON.stringify(a));
   blogData=JSON.parse(JSON.stringify(bl));
@@ -182,6 +196,8 @@ async function loadAllData(){
   siiloData=JSON.parse(JSON.stringify(s));
   contactData=JSON.parse(JSON.stringify(c));
   homepageData=JSON.parse(JSON.stringify(h));
+  accessibilityData=JSON.parse(JSON.stringify(acc));
+  privacyData=JSON.parse(JSON.stringify(priv));
   try{
     const imgRes=await fetch('https://api.github.com/repos/koivulabs/siltajoen-sirkus/contents/public/kuvia');
     const files=await imgRes.json();
@@ -205,6 +221,8 @@ function renderSection(name){
   if(name==='siilo')renderSiilo();
   if(name==='contact')renderContact();
   if(name==='homepage')renderHomepage();
+  if(name==='accessibility')renderAccessibility();
+  if(name==='privacy')renderPrivacy();
 }
 
 // ─── IMAGE PICKER ──────────────────────────────────────────────
@@ -459,6 +477,22 @@ function removeTestimonial(i){if(confirm('Poista palaute?')){siiloData.testimoni
 // ─── CONTACT ───────────────────────────────────────────────────
 function renderContact(){
   if(!contactData)return;
+  // Migraatio-fallback: jos GitHub-versiossa ei vielä ole page-osiota
+  // (vanha contact.json), luodaan tyhjät kentät niin admin renderöi.
+  if(!contactData.page){
+    contactData.page={
+      heroTagline:'',heroTitle:'',heroBody:'',
+      ctaTitle:'',ctaBody:'',ctaCallButton:'Soita',ctaEmailButton:'Lähetä sähköposti',
+      faqTitle:'Usein Kysytyt Kysymykset',faqs:[],
+      mapTitle:'Löydät meidät täältä',mapBody:''
+    };
+  }
+  const p=contactData.page;
+  const faqsHtml=(p.faqs||[]).map((f,i)=>`
+    <div class="card" style="background:#0f1117"><div class="card-title"><span class="card-title-left">❓ Kysymys ${i+1}</span><button class="btn-del" onclick="removeContactFaq(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Kysymys</label><input class="field-input" id="c-faq-${i}-q" value="${esc(f.question)}" /></div>
+      <div class="field-group"><label class="field-label">Vastaus (HTML sallittu, esim. &lt;strong&gt;)</label><textarea class="field-input" id="c-faq-${i}-a">${esc(f.answer)}</textarea></div>
+    </div>`).join('');
   document.getElementById('contact-editor').innerHTML=`
     <div class="card"><div class="card-title"><span class="card-title-left">📍 Yhteystiedot</span></div>
       <div class="field-group"><label class="field-label">Katuosoite</label><input class="field-input" id="c-street" value="${esc(contactData.street)}" /></div>
@@ -466,8 +500,195 @@ function renderContact(){
       <div class="field-group"><label class="field-label">Sähköposti 1</label><input class="field-input" id="c-email1" value="${esc(contactData.email1)}" /></div>
       <div class="field-group"><label class="field-label">Sähköposti 2</label><input class="field-input" id="c-email2" value="${esc(contactData.email2)}" /></div>
       <div class="field-group"><label class="field-label">Puhelin</label><input class="field-input" id="c-phone" value="${esc(contactData.phone)}" /></div>
-      <div class="field-group"><label class="field-label">Hero-kuva</label>${imgPickerHtml('c-heroimage',contactData.heroImage,contactData.heroFocalX,contactData.heroFocalY)}</div>
+      <div class="field-group"><label class="field-label">Hero-kuva (käytössä Eläimet/Siilo/Tiimi-sivuilla)</label>${imgPickerHtml('c-heroimage',contactData.heroImage,contactData.heroFocalX,contactData.heroFocalY)}</div>
+    </div>
+
+    <div class="card"><div class="card-title"><span class="card-title-left">✉️ Hero-osio (yhteystiedot-sivun yläosa)</span></div>
+      <div class="field-group"><label class="field-label">Tagline (yläteksti)</label><input class="field-input" id="c-pg-heroTagline" value="${esc(p.heroTagline)}" /></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="c-pg-heroTitle" value="${esc(p.heroTitle)}" /></div>
+      <div class="field-group"><label class="field-label">Esittelyteksti</label><textarea class="field-input" id="c-pg-heroBody">${esc(p.heroBody)}</textarea></div>
+    </div>
+
+    <div class="card"><div class="card-title"><span class="card-title-left">📞 CTA-osio (oikea palsta)</span></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="c-pg-ctaTitle" value="${esc(p.ctaTitle)}" /></div>
+      <div class="field-group"><label class="field-label">Teksti</label><textarea class="field-input" id="c-pg-ctaBody">${esc(p.ctaBody)}</textarea></div>
+      <div class="prices-row">
+        <div><label class="field-label">Soita-napin teksti</label><input class="field-input" id="c-pg-ctaCallButton" value="${esc(p.ctaCallButton)}" /></div>
+        <div><label class="field-label">Sähköposti-napin teksti</label><input class="field-input" id="c-pg-ctaEmailButton" value="${esc(p.ctaEmailButton)}" /></div>
+      </div>
+    </div>
+
+    <div class="card"><div class="card-title"><span class="card-title-left">❔ Usein kysytyt kysymykset</span></div>
+      <div class="field-group"><label class="field-label">Osion otsikko</label><input class="field-input" id="c-pg-faqTitle" value="${esc(p.faqTitle)}" /></div>
+      ${faqsHtml}
+      <button class="btn-add" onclick="addContactFaq()">+ Lisää kysymys-vastaus</button>
+    </div>
+
+    <div class="card"><div class="card-title"><span class="card-title-left">🗺️ Karttaosio (alaosa)</span></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="c-pg-mapTitle" value="${esc(p.mapTitle)}" /></div>
+      <div class="field-group"><label class="field-label">Teksti</label><textarea class="field-input" id="c-pg-mapBody">${esc(p.mapBody)}</textarea></div>
+      <p class="desc" style="margin:0">Itse kartta päivittyy automaattisesti yllä olevan osoitteen perusteella — ei erillistä kenttää.</p>
     </div>`;
+}
+function addContactFaq(){
+  // Tallenna nykyiset kentät ennen re-renderöintiä, jotta käyttäjän
+  // kesken kirjoittamat tekstit eivät huku.
+  syncContactPageFromDom();
+  contactData.page.faqs.push({question:'',answer:''});
+  renderContact();
+}
+function removeContactFaq(i){
+  if(!confirm('Poista tämä kysymys?'))return;
+  syncContactPageFromDom();
+  contactData.page.faqs.splice(i,1);
+  renderContact();
+}
+function syncContactPageFromDom(){
+  // Lukee kaikki yhteystieto-kentät DOMista contactDataan, jotta dynaamiset
+  // muutokset (lisää/poista kysymys) eivät hävitä muita kenttiä.
+  if(!contactData||!contactData.page)return;
+  const v=id=>{const el=document.getElementById(id);return el?el.value:'';};
+  if(document.getElementById('c-street')) contactData.street=v('c-street');
+  if(document.getElementById('c-city')) contactData.city=v('c-city');
+  if(document.getElementById('c-email1')) contactData.email1=v('c-email1');
+  if(document.getElementById('c-email2')) contactData.email2=v('c-email2');
+  if(document.getElementById('c-phone')) contactData.phone=v('c-phone');
+  const p=contactData.page;
+  if(document.getElementById('c-pg-heroTagline')) p.heroTagline=v('c-pg-heroTagline');
+  if(document.getElementById('c-pg-heroTitle')) p.heroTitle=v('c-pg-heroTitle');
+  if(document.getElementById('c-pg-heroBody')) p.heroBody=v('c-pg-heroBody');
+  if(document.getElementById('c-pg-ctaTitle')) p.ctaTitle=v('c-pg-ctaTitle');
+  if(document.getElementById('c-pg-ctaBody')) p.ctaBody=v('c-pg-ctaBody');
+  if(document.getElementById('c-pg-ctaCallButton')) p.ctaCallButton=v('c-pg-ctaCallButton');
+  if(document.getElementById('c-pg-ctaEmailButton')) p.ctaEmailButton=v('c-pg-ctaEmailButton');
+  if(document.getElementById('c-pg-faqTitle')) p.faqTitle=v('c-pg-faqTitle');
+  if(document.getElementById('c-pg-mapTitle')) p.mapTitle=v('c-pg-mapTitle');
+  if(document.getElementById('c-pg-mapBody')) p.mapBody=v('c-pg-mapBody');
+  (p.faqs||[]).forEach((f,i)=>{
+    if(document.getElementById(`c-faq-${i}-q`)) f.question=v(`c-faq-${i}-q`);
+    if(document.getElementById(`c-faq-${i}-a`)) f.answer=v(`c-faq-${i}-a`);
+  });
+}
+
+// ─── ACCESSIBILITY ─────────────────────────────────────────────
+function renderAccessibility(){
+  if(!accessibilityData)return;
+  const a=accessibilityData;
+  const sectionsHtml=(a.sections||[]).map((s,i)=>{
+    const listHtml=(s.list||[]).map((item,li)=>`
+      <div class="prices-row">
+        <div style="grid-column:1 / span 2"><input class="field-input" id="acc-${i}-list-${li}" value="${esc(item)}" placeholder="Luettelokohta" /></div>
+        <button class="btn-del" onclick="removeAccListItem(${i},${li})" title="Poista" style="align-self:end;margin-bottom:0.25rem">✕</button>
+      </div>`).join('');
+    return`<div class="card"><div class="card-title"><span class="card-title-left">📑 Sektio ${i+1}</span><button class="btn-del" onclick="removeAccSection(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Otsikko</label><input class="field-input" id="acc-${i}-title" value="${esc(s.title)}" /></div>
+      <div class="field-group"><label class="field-label">Teksti (HTML sallittu)</label><textarea class="field-input" id="acc-${i}-body">${esc(s.body)}</textarea></div>
+      <label class="field-label">Luettelokohdat (valinnainen)</label>
+      ${listHtml}
+      <button class="btn-add" onclick="addAccListItem(${i})" style="margin-top:0.5rem">+ Lisää luettelokohta</button>
+    </div>`;
+  }).join('');
+  document.getElementById('accessibility-editor').innerHTML=`
+    <div class="card"><div class="card-title"><span class="card-title-left">♿ Sivun perusteet</span></div>
+      <div class="field-group"><label class="field-label">Sivun otsikko</label><input class="field-input" id="acc-title" value="${esc(a.title)}" /></div>
+      <div class="field-group"><label class="field-label">Intro-teksti (HTML sallittu)</label><textarea class="field-input" id="acc-intro">${esc(a.intro)}</textarea></div>
+    </div>
+    ${sectionsHtml}
+    <button class="btn-add" onclick="addAccSection()">+ Lisää sektio</button>`;
+}
+function syncAccessibilityFromDom(){
+  if(!accessibilityData)return;
+  const v=id=>{const el=document.getElementById(id);return el?el.value:'';};
+  if(document.getElementById('acc-title')) accessibilityData.title=v('acc-title');
+  if(document.getElementById('acc-intro')) accessibilityData.intro=v('acc-intro');
+  (accessibilityData.sections||[]).forEach((s,i)=>{
+    if(document.getElementById(`acc-${i}-title`)) s.title=v(`acc-${i}-title`);
+    if(document.getElementById(`acc-${i}-body`)) s.body=v(`acc-${i}-body`);
+    (s.list||[]).forEach((_,li)=>{
+      if(document.getElementById(`acc-${i}-list-${li}`)) s.list[li]=v(`acc-${i}-list-${li}`);
+    });
+  });
+}
+function addAccSection(){
+  syncAccessibilityFromDom();
+  accessibilityData.sections.push({title:'Uusi sektio',body:'',list:[]});
+  renderAccessibility();
+}
+function removeAccSection(i){
+  if(!confirm('Poista tämä sektio?'))return;
+  syncAccessibilityFromDom();
+  accessibilityData.sections.splice(i,1);
+  renderAccessibility();
+}
+function addAccListItem(i){
+  syncAccessibilityFromDom();
+  if(!accessibilityData.sections[i].list) accessibilityData.sections[i].list=[];
+  accessibilityData.sections[i].list.push('');
+  renderAccessibility();
+}
+function removeAccListItem(i,li){
+  syncAccessibilityFromDom();
+  accessibilityData.sections[i].list.splice(li,1);
+  renderAccessibility();
+}
+
+// ─── PRIVACY ───────────────────────────────────────────────────
+function renderPrivacy(){
+  if(!privacyData)return;
+  const sectionsHtml=(privacyData.sections||[]).map((s,i)=>{
+    const listHtml=(s.list||[]).map((item,li)=>`
+      <div class="prices-row">
+        <div style="grid-column:1 / span 2"><input class="field-input" id="priv-${i}-list-${li}" value="${esc(item)}" placeholder="Luettelokohta" /></div>
+        <button class="btn-del" onclick="removePrivacyListItem(${i},${li})" title="Poista" style="align-self:end;margin-bottom:0.25rem">✕</button>
+      </div>`).join('');
+    return`<div class="card"><div class="card-title"><span class="card-title-left">📑 Sektio ${i+1}</span><button class="btn-del" onclick="removePrivacySection(${i})" title="Poista">✕</button></div>
+      <div class="field-group"><label class="field-label">Otsikko (esim. "1. Rekisterinpitäjä")</label><input class="field-input" id="priv-${i}-title" value="${esc(s.title)}" /></div>
+      <div class="field-group"><label class="field-label">Teksti (HTML sallittu, &lt;br/&gt; rivinvaihto)</label><textarea class="field-input" id="priv-${i}-body">${esc(s.body)}</textarea></div>
+      <label class="field-label">Luettelokohdat (valinnainen)</label>
+      ${listHtml}
+      <button class="btn-add" onclick="addPrivacyListItem(${i})" style="margin-top:0.5rem">+ Lisää luettelokohta</button>
+    </div>`;
+  }).join('');
+  document.getElementById('privacy-editor').innerHTML=`
+    <div class="card"><div class="card-title"><span class="card-title-left">🛡️ Sivun perusteet</span></div>
+      <div class="field-group"><label class="field-label">Sivun otsikko</label><input class="field-input" id="priv-title" value="${esc(privacyData.title)}" /></div>
+    </div>
+    ${sectionsHtml}
+    <button class="btn-add" onclick="addPrivacySection()">+ Lisää sektio</button>`;
+}
+function syncPrivacyFromDom(){
+  if(!privacyData)return;
+  const v=id=>{const el=document.getElementById(id);return el?el.value:'';};
+  if(document.getElementById('priv-title')) privacyData.title=v('priv-title');
+  (privacyData.sections||[]).forEach((s,i)=>{
+    if(document.getElementById(`priv-${i}-title`)) s.title=v(`priv-${i}-title`);
+    if(document.getElementById(`priv-${i}-body`)) s.body=v(`priv-${i}-body`);
+    (s.list||[]).forEach((_,li)=>{
+      if(document.getElementById(`priv-${i}-list-${li}`)) s.list[li]=v(`priv-${i}-list-${li}`);
+    });
+  });
+}
+function addPrivacySection(){
+  syncPrivacyFromDom();
+  privacyData.sections.push({title:'Uusi sektio',body:'',list:[]});
+  renderPrivacy();
+}
+function removePrivacySection(i){
+  if(!confirm('Poista tämä sektio?'))return;
+  syncPrivacyFromDom();
+  privacyData.sections.splice(i,1);
+  renderPrivacy();
+}
+function addPrivacyListItem(i){
+  syncPrivacyFromDom();
+  if(!privacyData.sections[i].list) privacyData.sections[i].list=[];
+  privacyData.sections[i].list.push('');
+  renderPrivacy();
+}
+function removePrivacyListItem(i,li){
+  syncPrivacyFromDom();
+  privacyData.sections[i].list.splice(li,1);
+  renderPrivacy();
 }
 
 // ─── HOMEPAGE ──────────────────────────────────────────────────
@@ -536,7 +757,30 @@ async function saveCurrentSection(){
     filePath='src/data/siilo.json';content=siiloData;
   } else if(currentSection==='contact'){
     contactData.street=val('c-street');contactData.city=val('c-city');contactData.email1=val('c-email1');contactData.email2=val('c-email2');contactData.phone=val('c-phone');contactData.heroImage=val('c-heroimage');const cf=getFocal('c-heroimage');contactData.heroFocalX=cf.focalX;contactData.heroFocalY=cf.focalY;
+    if(!contactData.page) contactData.page={};
+    const p=contactData.page;
+    p.heroTagline=val('c-pg-heroTagline');p.heroTitle=val('c-pg-heroTitle');p.heroBody=val('c-pg-heroBody');
+    p.ctaTitle=val('c-pg-ctaTitle');p.ctaBody=val('c-pg-ctaBody');
+    p.ctaCallButton=val('c-pg-ctaCallButton');p.ctaEmailButton=val('c-pg-ctaEmailButton');
+    p.faqTitle=val('c-pg-faqTitle');p.mapTitle=val('c-pg-mapTitle');p.mapBody=val('c-pg-mapBody');
+    p.faqs=(p.faqs||[]).map((f,i)=>({question:val(`c-faq-${i}-q`),answer:val(`c-faq-${i}-a`)}));
     filePath='src/data/contact.json';content=contactData;
+  } else if(currentSection==='accessibility'){
+    accessibilityData.title=val('acc-title');accessibilityData.intro=val('acc-intro');
+    accessibilityData.sections=(accessibilityData.sections||[]).map((s,i)=>({
+      title:val(`acc-${i}-title`),
+      body:val(`acc-${i}-body`),
+      list:(s.list||[]).map((_,li)=>val(`acc-${i}-list-${li}`)).filter(x=>x.length>0),
+    }));
+    filePath='src/data/accessibility.json';content=accessibilityData;
+  } else if(currentSection==='privacy'){
+    privacyData.title=val('priv-title');
+    privacyData.sections=(privacyData.sections||[]).map((s,i)=>({
+      title:val(`priv-${i}-title`),
+      body:val(`priv-${i}-body`),
+      list:(s.list||[]).map((_,li)=>val(`priv-${i}-list-${li}`)).filter(x=>x.length>0),
+    }));
+    filePath='src/data/privacy.json';content=privacyData;
   } else if(currentSection==='homepage'){
     homepageData.heroTitle=val('hp-heroTitle');homepageData.introText=val('hp-intro1');homepageData.introText2=val('hp-intro2');homepageData.instagramUrl=val('hp-instagram');homepageData.facebookUrl=val('hp-facebook');homepageData.shopUrl=val('hp-shop');
     homepageData.heroImage1=val('hp-img1');homepageData.heroImage2=val('hp-img2');homepageData.heroImage3=val('hp-img3');
