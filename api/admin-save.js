@@ -1,4 +1,9 @@
 // api/admin-save.js — Tallentaa JSON-tiedoston GitHubiin GitHub API:n kautta
+//
+// HUOM: Vercel-serverless-funktio. Importtaa Zod-skeeman JS-mirroristä
+// (src/utils/contactSchema.js), koska TS-tiedostoja ei käännetä `api/`:sta.
+import { contactSchema } from "../src/utils/contactSchema.js";
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
@@ -31,6 +36,32 @@ export default async function handler(req, res) {
   ];
   if (!allowedPaths.includes(filePath)) {
     return res.status(403).json({ error: 'Tiedostopolku ei sallittu' });
+  }
+
+  // ─── Per-tiedosto syötevalidointi ───────────────────────────────
+  // contact.json: validoi Zod-skeemalla, jotta admin-UI ei pääse rikkomaan
+  // tuotantosivun yhteystietoja (esim. ei-validi email tai tyhjä osoite).
+  if (filePath === 'src/data/contact.json') {
+    let parsed;
+    if (typeof content === 'string') {
+      try {
+        parsed = JSON.parse(content);
+      } catch {
+        return res.status(400).json({ error: 'contact.json: ei validia JSONia' });
+      }
+    } else {
+      parsed = content;
+    }
+    const result = contactSchema.safeParse(parsed);
+    if (!result.success) {
+      const issues = result.error.issues.map(
+        (i) => `${i.path.join('.') || '(juuri)'}: ${i.message}`
+      );
+      return res.status(400).json({
+        error: 'Yhteystietojen validointi epäonnistui',
+        details: issues,
+      });
+    }
   }
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;

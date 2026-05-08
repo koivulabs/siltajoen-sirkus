@@ -3,10 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import contactDataRaw from "../data/contact.json";
 const c = contactDataRaw as any;
 const phoneLink = c.phone.replace(/\s/g,'').replace('+358','0');
+
+// Rakenna Google Maps -iframen URL contact.jsonin osoitteesta. Käytämme
+// `https://www.google.com/maps?q=...&output=embed` -muotoa, joka ei vaadi
+// API-avainta ja päivittyy automaattisesti aina kun osoite muuttuu adminissa.
+const mapQuery = encodeURIComponent(`${c.street} ${c.city}`);
+const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+const mapDirUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
 ---
 
-<BaseLayout 
-  title="Yhteystiedot" 
+<BaseLayout
+  title="Yhteystiedot"
   description="Ota yhteyttä Siltajoen Sirkukseen. Löydät meidät Siltajoelta Leppävedeltä. Kysy eläimistä, rehuista tai ota yhteyttä."
 >
   <div class="px-6 max-w-7xl mx-auto pt-16">
@@ -123,25 +130,25 @@ const phoneLink = c.phone.replace(/\s/g,'').replace('+358','0');
           <div class="space-y-6">
             <div class="flex items-center gap-5 group">
               <span class="material-symbols-outlined text-primary bg-primary/10 p-3 rounded-full">location_on</span>
-              <span class="font-bold">Siltajoentie 2, 41310 Leppävesi</span>
+              <span class="font-bold">{c.street}, {c.city}</span>
             </div>
           </div>
         </div>
-        <a class="inline-flex items-center gap-4 font-headline font-black text-primary tracking-widest uppercase italic group text-sm" href="https://www.google.com/maps/dir/?api=1&destination=Siltajoentie+2+Leppavesi" target="_blank" rel="noopener noreferrer">
+        <a class="inline-flex items-center gap-4 font-headline font-black text-primary tracking-widest uppercase italic group text-sm" href={mapDirUrl} target="_blank" rel="noopener noreferrer">
             Avaa navigointi
             <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
         </a>
       </div>
       <div class="min-h-[500px] bg-neutral-100 relative grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden shadow-inner">
-        <iframe 
+        <iframe
           title="Siltajoen Sirkus Sijainti"
-          width="100%" 
-          height="100%" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1872.4820625624775!2d25.8927014!3d62.2963625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4685718df2bf6a97%3A0x6a97f2bf6a97f2bf!2sSiltajoentie%202%2C%2041310%20Laukaa!5e0!3m2!1sfi!2sfi!4v1711200000000!5m2!1sfi!2sfi"
+          src={mapEmbedUrl}
           class="absolute inset-0 w-full h-full"
         ></iframe>
       </div>
