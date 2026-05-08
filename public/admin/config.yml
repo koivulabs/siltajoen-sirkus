@@ -252,3 +252,52 @@ collections:
                   - { label: "Vastaus (HTML sallittu, esim. <strong>)", name: "answer", widget: "text" }
               - { label: "Karttaosion otsikko", name: "mapTitle", widget: "string" }
               - { label: "Karttaosion teksti", name: "mapBody", widget: "text" }
+
+  # ─────────────────────────────────────────────
+  # SAAVUTETTAVUUSSELOSTE
+  # ─────────────────────────────────────────────
+  - name: "accessibility"
+    label: "Saavutettavuusseloste"
+    files:
+      - name: "accessibility_data"
+        label: "Saavutettavuusseloste"
+        file: "src/data/accessibility.json"
+        format: json
+        fields:
+          - { label: "Sivun otsikko", name: "title", widget: "string" }
+          - { label: "Intro-teksti (HTML sallittu)", name: "intro", widget: "text" }
+          - label: "Sektiot"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Sektion otsikko", name: "title", widget: "string" }
+              - { label: "Sektion teksti (HTML sallittu)", name: "body", widget: "text" }
+              - label: "Lista (valinnainen luettelokohta-lista)"
+                name: "list"
+                widget: "list"
+                required: false
+                field: { label: "Kohta", name: "item", widget: "string" }
+
+  # ─────────────────────────────────────────────
+  # TIETOSUOJASELOSTE
+  # ─────────────────────────────────────────────
+  - name: "privacy"
+    label: "Tietosuojaseloste"
+    files:
+      - name: "privacy_data"
+        label: "Tietosuojaseloste"
+        file: "src/data/privacy.json"
+        format: json
+        fields:
+          - { label: "Sivun otsikko", name: "title", widget: "string" }
+          - label: "Sektiot"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Sektion otsikko", name: "title", widget: "string" }
+              - { label: "Sektion teksti (HTML sallittu, <br> rivinvaihto)", name: "body", widget: "text" }
+              - label: "Lista (valinnainen luettelokohta-lista)"
+                name: "list"
+                widget: "list"
+                required: false
+                field: { label: "Kohta", name: "item", widget: "string" }

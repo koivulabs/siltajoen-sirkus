@@ -1,0 +1,40 @@
+{
+  "title": "Tietosuojaseloste",
+  "sections": [
+    {
+      "title": "1. Rekisterinpitäjä",
+      "body": "Siltajoen Sirkus<br/>Siltajoentie 2, 41310 Leppävesi<br/>siilo@siltajoensirkus.fi",
+      "list": []
+    },
+    {
+      "title": "2. Yhteyshenkilö rekisteriä koskevissa asioissa",
+      "body": "Marianne, Tirehtööri<br/>044 975 0415",
+      "list": []
+    },
+    {
+      "title": "3. Rekisterin nimi",
+      "body": "Siltajoen Sirkuksen asiakas- ja markkinointirekisteri.",
+      "list": []
+    },
+    {
+      "title": "4. Henkilötietojen käsittelyn tarkoitus",
+      "body": "Tietoja käsitellään asiakassuhteen hoitamiseen, yhteydenottoihin vastaamiseen, palveluiden tuottamiseen ja suoramarkkinointiin, jos sille on annettu suostumus.",
+      "list": []
+    },
+    {
+      "title": "5. Rekisterin tietosisältö",
+      "body": "Rekisteriin voidaan tallentaa seuraavia tietoja:",
+      "list": [
+        "Etu- ja sukunimi",
+        "Sähköpostiosoite",
+        "Puhelinnumero",
+        "Asiakkaan lähettämät viestit ja yhteydenottotiedot"
+      ]
+    },
+    {
+      "title": "6. Evästeet (Cookies)",
+      "body": "Käytämme sivuillamme evästeitä parantaaksemme sivuston käyttökokemusta. Voit hallita evästeasetuksia selaimestasi käsin.",
+      "list": []
+    }
+  ]
+}

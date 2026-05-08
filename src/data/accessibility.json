@@ -1,0 +1,24 @@
+{
+  "title": "Saavutettavuusseloste",
+  "intro": "Tämä saavutettavuusseloste koskee sivustoa <strong>siltajoensirkus.fi</strong>. Tavoitteenamme on taata mahdollisimman esteetön verkkopalvelu kaikille käyttäjille.",
+  "sections": [
+    {
+      "title": "Vaatimustenmukaisuustila",
+      "body": "Tämä verkkosivusto on osittain WCAG 2.1 -standardin AA-tason vaatimusten mukainen. Pyrimme jatkuvasti parantamaan sivustomme saavutettavuutta.",
+      "list": []
+    },
+    {
+      "title": "Sisältö, joka ei ole saavutettavaa",
+      "body": "Osa sivuilla olevasta sisällöstä ei mahdollisesti täytä kaikkia saavutettavuusvaatimuksia täysin:",
+      "list": [
+        "Joidenkin siirtymien kontrastierot eivät välttämättä ole selkeitä kaikkiin ruutuihin.",
+        "Kuville on määritelty alt-tekstit, mutta joidenkin koristeellisten kuvien tekstit voivat kaivata vielä tarkennusta."
+      ]
+    },
+    {
+      "title": "Palaute ja yhteystiedot",
+      "body": "Huomasitko saavutettavuuspuutteen sivustollamme? Kerro siitä meille, ja teemme parhaamme tilanteen korjaamiseksi. Voit lähettää sähköpostia osoitteeseen: <a href=\"mailto:siilo@siltajoensirkus.fi\" class=\"text-primary hover:underline\">siilo@siltajoensirkus.fi</a>.",
+      "list": []
+    }
+  ]
+}
