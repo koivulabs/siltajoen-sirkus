@@ -9,12 +9,12 @@
     {
       "icon": "verified",
       "title": "Valikoitu laatu",
-      "body": "Jokainen rehu ja tarvike on valittu pitkän kokemuksen perusteella. Myymme vain tuotteita joita itse käytämme ja joihin luotamme."
+      "body": "Jokainen rehu ja tarvike on testattu niin oman tilainten eläinten, ihmisten, lasten kuin kumppanitilojen toimesta.  Myymme vain tuotteita joita itse käytämme ja joihin luotamme. Huomaathan, että eri tuotteet toimivat eri tilanteisiin, opastamme mielellämme toimivimmat juuri teidän arkeen."
     },
     {
       "icon": "nest_eco_leaf",
       "title": "Luonnollinen lähestymistapa",
-      "body": "Suosimme lähituotettua viljaa ja luonnollisia rehuja, jotka tukevat eläinten terveyttä ja hyvinvointia."
+      "body": "Suosimme lähituotettua viljaa ja luonnollisia rehuja, jotka tukevat eläinten terveyttä ja hyvinvointia. Erityisesti viiriäisille ja kotikanoille kehityetyt rehumme sisältävät enemmän hyvin sulavaa proteiinia enemmän kuin teolliset rehut, jotka on optimoitu eurojen ei kanojen elinikäsiyyden kannalta."
     },
     {
       "icon": "local_shipping",
@@ -59,13 +59,6 @@
       "url": "https://siltajoensirkus.mycashflow.fi/",
       "description": "Optimaalinen ravinto kanoille ja viiriäisille.",
       "image": "/kuvia/vilja.JPG"
-    },
-    {
-      "title": "Virikekylpyhiekka",
-      "price": "12,50 €",
-      "url": "https://siltajoensirkus.mycashflow.fi/",
-      "description": "Puhdasta ja hienojakoista hiekkaa kylpyihin.",
-      "image": "/kuvia/munagradientkennossa.jpg"
     }
   ]
 }
