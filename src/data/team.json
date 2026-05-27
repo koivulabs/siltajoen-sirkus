@@ -6,27 +6,7 @@
       "phone": "044 975 0415",
       "email": "marianne@siltajoensirkus.fi",
       "bio": "Marianne on tilan sydän ja sielu, jolla on yli 10 vuoden vankka kokemus eläinten kasvatuksesta ja tilan hoidosta. Hänen intohimonsa näkyy jokaisessa sirkuksen siivekkäässä ja tarkasti mietityssä yksityiskohdassa. Vaatimattomuus sikseen – Marianne on alansa todellinen rautainen ammattilainen.",
-      "image": "/kuvia/sylissa2.JPG",
-      "focalX": 50,
-      "focalY": 30
-    },
-    {
-      "name": "Markko",
-      "role": "Tekniikka & Huolto",
-      "phone": "",
-      "email": "markko@siltajoensirkus.fi",
-      "bio": "Mies, joka saa teltan pystyyn ja valot syttymään. Markko on paikalla ensimmäisenä ja lähtee viimeisenä.",
-      "image": "",
-      "focalX": 57,
-      "focalY": 24
-    },
-    {
-      "name": "Ansa",
-      "role": "Somettaja",
-      "phone": "",
-      "email": "",
-      "bio": "Tilan visuaalinen ääni maailmalle. Ansa vastaa siitä, että arki ja tunnelma välittyvät verkon yli aitoina ja puhuttelevina tarinoina.",
-      "image": "",
+      "image": "/kuvia/30743926_1052883751519777_8165869690359382016_n.jpg",
       "focalX": 50,
       "focalY": 30
     },
@@ -41,9 +21,9 @@
       "focalY": 30
     },
     {
-      "name": "Jarkko",
-      "role": "",
-      "phone": "",
+      "name": "Keijo",
+      "role": "Kanadaddy, vastaa puhelimeen jos Marianne ei",
+      "phone": "+358 40 1560438",
       "email": "",
       "bio": "",
       "image": "",
@@ -75,7 +55,7 @@
     {
       "name": "Marsku kuvaa",
       "url": "https://www.instagram.com/marsku_kuvaa/",
-      "description": "Tallennettuja hetkiä ja tunnelmia."
+      "description": "Valokuvausta elämän arkeen ja juhlaan. "
     }
   ]
 }
