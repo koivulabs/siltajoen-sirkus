@@ -32,21 +32,6 @@
       "focalX": 50,
       "focalY": 50,
       "featured": false
-    },
-    {
-      "title": "Elämää maalla: Siltajoen arki",
-      "category": "TARINAT",
-      "date": "12. Tammikuuta, 2026",
-      "slug": "arki-siltajoella",
-      "excerpt": "Päivä sirkuksessa alkaa aina kanojen aamiaisen valmistamisella. Kurkista kulissien taakse!",
-      "body": "Kello kuusi aamulla, kun harmaanpunainen talviaamunhämärä vielä heilahtaa mäen takana, Marianne on jo liikkeellä. Ensin tarkistetaan vesi – jäätyneet putkistot ovat maalaistalouden arkirealismia.\n\nEläimet eivät odota. Kanaloilta kuuluu jo matalaäänistä nyökinää, viiriäiset paukkuvat ja ankat töräyttävät ensimmäiset päivän kommenttinsa.\n\nAamurutiini kestää noin kaksi tuntia ennen kuin ihmisetkin voivat syödä.",
-      "images": [
-        "/kuvia/tiputkadella.jpg",
-        "/kuvia/viirianen_ruoka_automaatilla.jpg"
-      ],
-      "focalX": 50,
-      "focalY": 50,
-      "featured": false
     }
   ]
 }
