@@ -19,7 +19,7 @@
     {
       "icon": "local_shipping",
       "title": "Helppo toimitus",
-      "body": "Verkkokaupan kautta postitukset ympäri Suomen. Noutotilaukset Siltajoelta Leppävedeltä tai rehureiteiltä."
+      "body": "Verkkokaupan kautta postitukset ympäri Suomen. Noutotilaukset Siltajoelta Leppävedeltä tai rehureiteiltä, esim:\n\nVarkaus - Joensuu -Kuopio\nJämsä - Tampere \nPääkaupunkiseutu - Hämeenlinna - Riihimäki\nAlavus- Seinäjoki - Vaasa - Pietarsaari\nIisalmi - Kajaani \n\nTilausten nouto onnistuu m,yös reitin varrelta. Laita tilauksen kommenttikenttään paikka mistä nappaat, niin kuski osaa pysähtyä.\n\nTee tilaus: https://siltajoensirkus.mycashflow.fi/\n"
     }
   ],
   "stats": [
@@ -54,10 +54,10 @@
   ],
   "products": [
     {
-      "title": "Sirkuksen Täysrehu",
+      "title": "Munaus - Munivien kanojen vitamiinirikastettu täysrehu",
       "price": "24,90 €",
-      "url": "https://siltajoensirkus.mycashflow.fi/",
-      "description": "Optimaalinen ravinto kanoille ja viiriäisille.",
+      "url": "https://siltajoensirkus.mycashflow.fi/product/206",
+      "description": "Optimaalinen ravinto muniville kotikanoille",
       "image": "/kuvia/vilja.JPG"
     }
   ]
